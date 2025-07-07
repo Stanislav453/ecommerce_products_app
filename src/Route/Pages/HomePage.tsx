@@ -1,9 +1,10 @@
 import React from 'react'
+import { Header } from '../../Components/Header/Header'
 
 export const HomePage = () => {
   return (
     <div>
-      Home
+      <Header />
     </div>
   )
 }
