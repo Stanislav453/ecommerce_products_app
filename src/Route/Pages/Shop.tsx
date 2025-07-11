@@ -1,7 +1,12 @@
 // import { UseFetchData } from "../../api/ApiActions/FetchProducts";
 
+import { useProducts } from "../../Store/useProducts";
+
 export const Shop = () => {
-  
+  const products = useProducts((state: any) => state.products);
+
+
+  if (!products) return "Loading...";
 
   return (
     <div>
