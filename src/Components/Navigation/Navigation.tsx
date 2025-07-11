@@ -1,5 +1,5 @@
-import React from "react";
-import { Link, NavLink, Outlet } from "react-router";
+import { FetchProducts } from "../../api/ApiActions/FetchProducts";
+import {  NavLink, Outlet } from "react-router";
 import {
   IoSearchOutline,
   IoPersonOutline,
@@ -7,6 +7,8 @@ import {
 } from "react-icons/io5";
 
 export const Navigation = () => {
+  FetchProducts();
+
   return (
     <>
       <div className="flex flex-col items-center">
