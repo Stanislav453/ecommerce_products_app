@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
-import headerBanner from "../../../public/header-banner.webp";
+import headerBanner from "/public/header-banner.webp";
 
 export const Header = () => {
   return (
