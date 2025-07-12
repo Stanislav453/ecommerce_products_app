@@ -2,9 +2,11 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_URL } from "../apiUrl";
 import { useProducts } from "../../Store/useProducts";
+import { useError } from "../../Store/useError";
 
 export const FetchProducts = () => {
-  const updateProducts = useProducts((state: any) => state.setProducts);
+  const updateProducts = useProducts((state) => state.setProducts);
+  const updateError = useError((state) => state.setApiError);
 
   useEffect(() => {
     const getData = async () => {
@@ -14,7 +16,7 @@ export const FetchProducts = () => {
         updateProducts(data.products);
       } catch (e: any) {
         console.log(e.message);
-      } finally {
+        updateError(e.message);
       }
     };
 
