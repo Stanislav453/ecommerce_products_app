@@ -6,18 +6,22 @@ import type { ProductType } from "../../type";
 export const Shop = () => {
   const products = useProducts((state: any) => state.products);
 
-  if (!products) return "Loading...";
+  // if (!products) return "Loading...";
 
-  return (
-    <div>
-      {products.map((product: ProductType, index: number) => {
+  const getShopList = () => {
+    if (products.length != 0) {
+      return products.map((product: ProductType, index: number) => {
         return (
           <>
             <h3>{product.title}</h3>
             <img src={product.thumbnail} alt={product.title} />
           </>
         );
-      })}
-    </div>
-  );
+      });
+    } else {
+      return <div>Loading...</div>;
+    }
+  };
+
+  return <div>{getShopList()}</div>;
 };
