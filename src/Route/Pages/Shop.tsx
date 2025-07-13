@@ -1,15 +1,22 @@
-// import { UseFetchData } from "../../api/ApiActions/FetchProducts";
-
 import { useProducts } from "../../Store/useProducts";
 import loadingSpinner from "/public/loadingSpinner.svg";
 import type { ProductType } from "../../type";
 import { useError } from "../../Store/useError";
 import { NavLink } from "react-router-dom";
 import { PageSection } from "../../Components/PageSection";
+import { useState } from "react";
+import { ShopItems } from "../../Components/Shop/ShopItems";
 
 export const Shop = () => {
   const products = useProducts((state: any) => state.products);
   const apiError = useError((state) => state.apiError);
+
+  const shopListCategory = [
+    "All",
+    ...new Set(products.map((product: any) => product.category)),
+  ];
+
+  const [categorySelect, setCategorySelect] = useState(shopListCategory[0]);
 
   if (apiError !== "")
     return (
@@ -33,32 +40,36 @@ export const Shop = () => {
       </div>
     );
 
+  const shopList =
+    categorySelect == shopListCategory[0]
+      ? products
+      : products.filter((product) => product.category == categorySelect);
+
+  const categorySelectHandler = (event) => {
+    setCategorySelect(event.target.value);
+  };
+
   return (
     <section>
       <PageSection>Shop</PageSection>
-      <ul className="flex flex-wrap gap-5 justify-center">
-        {products.map((product: ProductType, index: number) => {
-          const { title, thumbnail, price, rating } = product;
-          return (
-            <li
-              className="bg-linear-to-r from-cyan-500 to-blue-500"
-              key={index}
-            >
-              <div>
-                <img src={thumbnail} alt={title} />
-              </div>
-              <div className="flex flex-col gap-1 text-center">
-                <h3 className="font-semibold text-xl">{title}</h3>
-                <p className="font-semibold text-xl">${price}</p>
-                <p className="font-semibold text-xl"> {rating} </p>
-                <button className="w-full  py-2 border-2 border-black		rounded-full">
-                  Add to card
-                </button>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="flex flex-col items-center py-5">
+        <div className="w-full max-w-screen-lg flex justify-between">
+          <div className="flex">
+            <p>Showing 1 - {shopList.length} results</p>
+          </div>
+          <select name="category-filter" onChange={categorySelectHandler}>
+            <option value="">Please filter category</option>
+            {shopListCategory.map((category: any, index: number) => {
+              return (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              );
+            })}
+          </select>
+        </div>
+      </div>
+      <ShopItems shopList={shopList} />
     </section>
   );
 };
