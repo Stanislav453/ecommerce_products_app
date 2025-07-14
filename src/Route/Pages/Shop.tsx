@@ -1,22 +1,16 @@
 import { useProducts } from "../../Store/useProducts";
 import loadingSpinner from "/public/loadingSpinner.svg";
-import type { ProductType } from "../../type";
 import { useError } from "../../Store/useError";
 import { NavLink } from "react-router-dom";
-import { PageSection } from "../../Components/PageSection";
 import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
+import { ShopFilter } from "../../Components/Shop/ShopFilter";
+import { PageSection } from "../../Components/PageSection";
 
 export const Shop = () => {
   const products = useProducts((state: any) => state.products);
   const apiError = useError((state) => state.apiError);
-
-  const shopListCategory = [
-    "All",
-    ...new Set(products.map((product: any) => product.category)),
-  ];
-
-  const [categorySelect, setCategorySelect] = useState(shopListCategory[0]);
+  const [shopList, setShopList] = useState(products);
 
   if (apiError !== "")
     return (
@@ -40,15 +34,6 @@ export const Shop = () => {
       </div>
     );
 
-  const shopList =
-    categorySelect == shopListCategory[0]
-      ? products
-      : products.filter((product) => product.category == categorySelect);
-
-  const categorySelectHandler = (event) => {
-    setCategorySelect(event.target.value);
-  };
-
   return (
     <section>
       <PageSection>Shop</PageSection>
@@ -57,16 +42,7 @@ export const Shop = () => {
           <div className="flex">
             <p>Showing 1 - {shopList.length} results</p>
           </div>
-          <select name="category-filter" onChange={categorySelectHandler}>
-            <option value="">Please filter category</option>
-            {shopListCategory.map((category: any, index: number) => {
-              return (
-                <option key={index} value={category}>
-                  {category}
-                </option>
-              );
-            })}
-          </select>
+          <ShopFilter setShopList={setShopList} />
         </div>
       </div>
       <ShopItems shopList={shopList} />
