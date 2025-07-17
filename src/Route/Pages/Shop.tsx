@@ -38,7 +38,7 @@ export const Shop = () => {
     <section>
       <PageSection>Shop</PageSection>
       <div className="flex flex-col items-center py-5">
-        <div className="w-full max-w-screen-lg flex justify-between">
+        <div className="w-full max-w-screen-lg flex justify-between px-3">
           <div className="flex">
             <p>Showing 1 - {shopList.length} results</p>
           </div>

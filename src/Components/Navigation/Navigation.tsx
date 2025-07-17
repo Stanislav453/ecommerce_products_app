@@ -1,5 +1,5 @@
 import { FetchProducts } from "../../api/ApiActions/FetchProducts";
-import {  NavLink, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 import {
   IoSearchOutline,
   IoPersonOutline,
@@ -12,7 +12,7 @@ export const Navigation = () => {
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className=" w-full max-w-screen-lg flex justify-between py-5">
+        <div className=" w-full max-w-screen-lg flex justify-between items-center py-5 px-3">
           <NavLink className="font-bold text-2xl" to="/">
             Glowzy.
           </NavLink>
@@ -29,17 +29,17 @@ export const Navigation = () => {
               </li>
             </ul>
             <ul className="flex gap-3">
-              <li>
+              <li className="flex" >
                 <button>
                   <IoSearchOutline />
                 </button>
               </li>
-              <li>
+              <li className="flex" >
                 <button>
                   <IoPersonOutline />
                 </button>
               </li>
-              <li>
+              <li className="flex" >
                 <button>
                   <IoBagOutline />
                 </button>
