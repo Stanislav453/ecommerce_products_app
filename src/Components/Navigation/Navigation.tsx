@@ -1,13 +1,19 @@
+import { useState } from "react";
 import { FetchProducts } from "../../api/ApiActions/FetchProducts";
 import { NavLink, Outlet } from "react-router";
 import {
   IoSearchOutline,
   IoPersonOutline,
   IoBagOutline,
+  IoAppsSharp,
 } from "react-icons/io5";
 
 export const Navigation = () => {
   FetchProducts();
+
+  const [isActive, setIsActive] = useState(false);
+
+  const navActive = isActive ? "top-[65px]" : "top-[-350px]";
 
   return (
     <>
@@ -16,31 +22,51 @@ export const Navigation = () => {
           <NavLink className="font-bold text-2xl" to="/">
             Glowzy.
           </NavLink>
-          <nav className="flex gap-5">
-            <ul className="flex gap-3">
+          <button onClick={() => setIsActive(!isActive)} className="sm:hidden ">
+            <IoAppsSharp className="text-[2rem]" />
+          </button>
+          <nav
+            className={`absolute ${navActive} sm:relative sm:top-0 z-50 w-full left-0 sm:flex gap-5 sm:justify-end bg-page-sections sm:bg-white transition-[top] duration-300`}
+          >
+            <ul className="flex flex-col text-center sm:flex-row sm:gap-3">
               <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink
+                  className="block w-full py-3 border-t-2 sm:border-0 "
+                  to="/"
+                >
+                  Home
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/Shop">Shop</NavLink>
+                <NavLink
+                  className="block w-full py-3 border-t-2 sm:border-0 "
+                  to="/Shop"
+                >
+                  Shop
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/Blog">Blog</NavLink>
+                <NavLink
+                  className="block w-full py-3 border-t-2 sm:border-0 "
+                  to="/Blog"
+                >
+                  Blog
+                </NavLink>
               </li>
             </ul>
-            <ul className="flex gap-3">
-              <li className="flex" >
-                <button>
+            <ul className="flex justify-center gap-3 border-t-2 sm:border-0 ">
+              <li className="flex">
+                <button className="p-3 sm:p-0">
                   <IoSearchOutline />
                 </button>
               </li>
-              <li className="flex" >
-                <button>
+              <li className="flex">
+                <button className="p-3 sm:p-0">
                   <IoPersonOutline />
                 </button>
               </li>
-              <li className="flex" >
-                <button>
+              <li className="flex">
+                <button className="p-3 sm:p-0">
                   <IoBagOutline />
                 </button>
               </li>
