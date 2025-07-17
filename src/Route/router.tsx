@@ -4,6 +4,7 @@ import { NotFoundPage } from "./Pages/NotFoundPage";
 import { Navigation } from "../Components/Navigation/Navigation";
 import { Shop } from "./Pages/Shop";
 import { Blog } from "./Pages/Blog";
+import { ProductDetail } from "./Pages/ProductDetail";
 
 export const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ export const router = createBrowserRouter([
       {
         path: "/Blog",
         element: <Blog />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "/Product-detail/:productName",
+        element: <ProductDetail />,
         errorElement: <NotFoundPage />,
       },
     ],

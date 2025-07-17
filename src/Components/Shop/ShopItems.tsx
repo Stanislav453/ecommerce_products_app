@@ -1,11 +1,17 @@
 import React from "react";
 import type { ProductType } from "../../type";
+import { NavLink } from "react-router";
 
 interface shopListType {
   shopList: ProductType[];
 }
 
 export const ShopItems = ({ shopList }: shopListType) => {
+  const data = {
+    name: "karol",
+    age: 25,
+  };
+
   return (
     <div className="flex flex-col items-center py-5">
       <div className="w-full max-w-screen-lg flex justify-between px-3">
@@ -25,6 +31,13 @@ export const ShopItems = ({ shopList }: shopListType) => {
                     <h3 className="font-semibold text-xl">{title}</h3>
                     <p className="font-semibold text-xl">${price}</p>
                     <p className="font-semibold text-xl"> {rating} </p>
+                    <NavLink
+                      to={`/Product-detail/${title.replaceAll(" ", "-")}`}
+                      state={data}
+                      className="w-full  py-2 border-2 border-black		rounded-full"
+                    >
+                      Show detail
+                    </NavLink>
                     <button className="w-full  py-2 border-2 border-black		rounded-full">
                       Add to card
                     </button>
