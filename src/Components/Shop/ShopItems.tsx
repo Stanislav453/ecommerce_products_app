@@ -13,7 +13,7 @@ export const ShopItems = ({ shopList }: shopListType) => {
         return (
           <li className="bg-linear-to-r from-cyan-500 to-blue-500" key={index}>
             <div>
-              <img src={thumbnail} alt={title} />
+              <img width={300} height={300} src={thumbnail} alt={title} />
             </div>
             <div className="flex flex-col gap-1 text-center">
               <h3 className="font-semibold text-xl">{title}</h3>
