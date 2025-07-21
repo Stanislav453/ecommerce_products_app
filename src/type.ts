@@ -37,3 +37,9 @@ export interface ProductType {
   images: string[];
   thumbnail: string;
 }
+
+export interface ProductOrderType {
+  name: string;
+  price: number;
+  desc: string;
+}
