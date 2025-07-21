@@ -1,5 +1,5 @@
-import React from "react";
-import type { ProductType } from "../../type";
+import { useState } from "react";
+import type { ProductOrderType, ProductType } from "../../type";
 import { NavLink } from "react-router";
 
 interface shopListType {
@@ -7,10 +7,25 @@ interface shopListType {
 }
 
 export const ShopItems = ({ shopList }: shopListType) => {
-  const data = {
-    name: "karol",
-    age: 25,
+  const [productOrder, setProductOrder] = useState<ProductOrderType[]>([]);
+
+  const createProductOrder = (name: string, price: number, desc: string) => {
+    const newProductOrder = {
+      name: name,
+      price: price,
+      desc: desc,
+    };
+
+    setProductOrder((prevState) => {
+      const uniProduct = prevState.filter(
+        (product) => product.name !== newProductOrder.name
+      );
+
+      return [...uniProduct, newProductOrder];
+    });
   };
+
+  console.log(productOrder);
 
   return (
     <div className="flex flex-col items-center py-5">
@@ -18,7 +33,7 @@ export const ShopItems = ({ shopList }: shopListType) => {
         <div className="flex">
           <ul className="flex flex-wrap gap-5 justify-between">
             {shopList.map((product: ProductType, index: number) => {
-              const { title, thumbnail, price, rating } = product;
+              const { title, thumbnail, price, rating, description } = product;
               return (
                 <li
                   className="bg-linear-to-r from-cyan-500 to-blue-500"
@@ -33,12 +48,17 @@ export const ShopItems = ({ shopList }: shopListType) => {
                     <p className="font-semibold text-xl"> {rating} </p>
                     <NavLink
                       to={`/Product-detail/${title.replaceAll(" ", "-")}`}
-                      state={data}
+                      state={product}
                       className="w-full  py-2 border-2 border-black		rounded-full"
                     >
                       Show detail
                     </NavLink>
-                    <button className="w-full  py-2 border-2 border-black		rounded-full">
+                    <button
+                      onClick={() =>
+                        createProductOrder(title, price, description)
+                      }
+                      className="w-full  py-2 border-2 border-black		rounded-full"
+                    >
                       Add to card
                     </button>
                   </div>
