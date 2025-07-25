@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import type { ProductType } from "../type";
 
 interface useError {
   apiError: string;

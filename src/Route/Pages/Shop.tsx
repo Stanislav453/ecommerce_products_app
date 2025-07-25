@@ -6,9 +6,10 @@ import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { ShopFilter } from "../../Components/Shop/ShopFilter";
 import { PageSection } from "../../Components/PageSection";
+import type { useProductsType } from "../../Store/useProducts";
 
 export const Shop = () => {
-  const products = useProducts((state: any) => state.products);
+  const products = useProducts((state: useProductsType) => state.products);
   const apiError = useError((state) => state.apiError);
   const [shopList, setShopList] = useState(products);
 

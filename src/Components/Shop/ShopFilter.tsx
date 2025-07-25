@@ -35,7 +35,7 @@ export const ShopFilter = ({ setShopList }: shopFilterType) => {
   return (
     <select name="category-filter" onChange={categorySelectHandler}>
       <option value="">Please filter category</option>
-      {shopListCategory.map((category: any, index: number) => {
+      {shopListCategory.map((category: string, index: number) => {
         return (
           <option key={index} value={category}>
             {category}
