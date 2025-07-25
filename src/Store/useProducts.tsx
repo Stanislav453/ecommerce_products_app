@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { ProductType } from "../type";
 
-interface useProductsType {
+export interface useProductsType {
   products: ProductType[];
   setProducts: (products: ProductType[]) => void;
 }

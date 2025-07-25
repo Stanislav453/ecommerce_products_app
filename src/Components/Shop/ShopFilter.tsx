@@ -1,29 +1,32 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ChangeEvent } from "react";
 import { useProducts } from "../../Store/useProducts";
 import type { ProductType } from "../../type";
+import type { useProductsType } from "../../Store/useProducts";
 
 interface shopFilterType {
-  setShopList: (product: ProductType) => void;
+  setShopList: (product: ProductType[]) => void;
 }
 
 export const ShopFilter = ({ setShopList }: shopFilterType) => {
-  const products = useProducts((state: any) => state.products);
+  const products = useProducts((state: useProductsType) => state.products);
 
   const shopListCategory = [
     "All",
-    ...new Set(products.map((product: any) => product.category)),
+    ...new Set(products.map((product: ProductType) => product.category)),
   ];
 
   const [categorySelect, setCategorySelect] = useState(shopListCategory[0]);
 
-  const categorySelectHandler = (event: any) => {
+  const categorySelectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     setCategorySelect(event.target.value);
   };
 
   const filterList =
     categorySelect == shopListCategory[0]
       ? products
-      : products.filter((product: any) => product.category == categorySelect);
+      : products.filter(
+          (product: ProductType) => product.category == categorySelect
+        );
 
   useEffect(() => {
     setShopList(filterList);
