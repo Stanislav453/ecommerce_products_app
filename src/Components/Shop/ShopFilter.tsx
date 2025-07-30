@@ -28,7 +28,7 @@ export const ShopFilter = ({ setShopList }: ShopFilterProps) => {
       ? "/products?select=id,title,thumbnail,price,rating,description"
       : `/products/category/${actualFilterValue}?select=id,title,thumbnail,price,rating,description`;
 
-  const { data: response, loading } =
+  const { data: response} =
     UseFetchData<ProductSummaryResponse>(categoriesURL);
 
   const categorySelectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
