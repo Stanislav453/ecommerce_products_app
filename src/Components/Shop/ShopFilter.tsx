@@ -11,7 +11,9 @@ interface shopFilterType {
 }
 
 export const ShopFilter = ({ setShopList }: shopFilterType) => {
-  const [actualFilterValue, setActualFilterValue] = useState("");
+  const [actualFilterValue, setActualFilterValue] = useState<string | null>(
+    null
+  );
 
   const shopListCategory = [
     "All",
