@@ -1,11 +1,11 @@
 import type { ProductSummary} from "../../type";
 import { NavLink } from "react-router";
 
-interface shopListType {
+interface ShopListProps {
   shopList: ProductSummary[];
 }
 
-export const ShopItems = ({ shopList }: shopListType) => {
+export const ShopItems = ({ shopList }: ShopListProps) => {
   const createProductOrder = (name: string, price: number, desc: string) => {
     const newProductOrder = {
       name: name,
