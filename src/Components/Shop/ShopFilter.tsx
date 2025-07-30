@@ -6,13 +6,13 @@ import type {
 } from "../../type";
 import { UseFetchData } from "../../api/ApiActions/UseFetchData";
 
-interface shopFilterType {
+interface ShopFilterProps {
   setShopList: (product: ProductSummary[]) => void;
 }
 
-export const ShopFilter = ({ setShopList }: shopFilterType) => {
+export const ShopFilter = ({ setShopList }: ShopFilterProps) => {
   const [actualFilterValue, setActualFilterValue] = useState<string | null>(
-    null
+    "All"
   );
 
   const shopListCategory = [

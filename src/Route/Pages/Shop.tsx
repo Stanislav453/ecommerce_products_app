@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
 import { UseFetchData } from "../../api/ApiActions/UseFetchData";
-import type {
-  ProductSummary,
-  ProductSummaryResponse,
-} from "../../type";
+import type { ProductSummary, ProductSummaryResponse } from "../../type";
 import { ShopFilter } from "../../Components/Shop/ShopFilter";
 
 export const Shop = () => {
