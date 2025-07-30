@@ -8,8 +8,6 @@ import { ShopFilter } from "../../Components/Shop/ShopFilter";
 export const Shop = () => {
   const [shopList, setShopList] = useState<ProductSummary[]>([]);
 
-
-
   if (shopList == null)
     return (
       <div className="flex flex-col w-full items-center mt-28">

@@ -44,8 +44,6 @@ export const ShopFilter = ({ setShopList }: ShopFilterProps) => {
     }
   }, [response, setShopList]);
 
-  console.log("This is loading", loading);
-
   return (
     <select name="category-filter" onChange={categorySelectHandler}>
       <option value="">Please filter category</option>

@@ -12,7 +12,7 @@ export const UseFetchData = <T>(params: string, id?: string) => {
         const { data: response } = await axios.get<T>(
           `${API_URL}${params}${id ?? ""}`
         );
-        setData(response);        
+        setData(response);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           console.error(error.response);
