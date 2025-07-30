@@ -28,7 +28,7 @@ export const ShopFilter = ({ setShopList }: ShopFilterProps) => {
       ? "/products?select=id,title,thumbnail,price,rating,description"
       : `/products/category/${actualFilterValue}?select=id,title,thumbnail,price,rating,description`;
 
-  const { data: response } =
+  const { data: response, loading } =
     UseFetchData<ProductSummaryResponse>(categoriesURL);
 
   const categorySelectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
@@ -42,7 +42,9 @@ export const ShopFilter = ({ setShopList }: ShopFilterProps) => {
     if (response) {
       setShopList(response.products);
     }
-  }, [response]);
+  }, [response, setShopList]);
+
+  console.log("This is loading", loading);
 
   return (
     <select name="category-filter" onChange={categorySelectHandler}>
