@@ -1,12 +1,12 @@
 import { create } from "zustand";
-import type { ProductType } from "../type";
+import type { Product } from "../type";
 
 export interface useProductsType {
-  products: ProductType[];
-  setProducts: (products: ProductType[]) => void;
+  products: Product[];
+  setProducts: (products: Product[]) => void;
 }
 
 export const useProducts = create<useProductsType>((set) => ({
   products: [],
-  setProducts: (products: ProductType[]) => set(() => ({ products: products })),
+  setProducts: (products: Product[]) => set(() => ({ products: products })),
 }));

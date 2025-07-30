@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { FetchProducts } from "../../api/ApiActions/FetchProducts";
 import { NavLink, Outlet } from "react-router";
 import {
   IoSearchOutline,
@@ -9,7 +8,6 @@ import {
 } from "react-icons/io5";
 
 export const Navigation = () => {
-  FetchProducts();
 
   const [isActive, setIsActive] = useState(false);
 

@@ -1,14 +1,11 @@
-import { useState } from "react";
-import type { ProductOrderType, ProductType } from "../../type";
+import type { ProductSummary} from "../../type";
 import { NavLink } from "react-router";
 
 interface shopListType {
-  shopList: ProductType[];
+  shopList: ProductSummary[];
 }
 
 export const ShopItems = ({ shopList }: shopListType) => {
-  const [productOrder, setProductOrder] = useState<ProductOrderType[]>([]);
-
   const createProductOrder = (name: string, price: number, desc: string) => {
     const newProductOrder = {
       name: name,
@@ -16,23 +13,15 @@ export const ShopItems = ({ shopList }: shopListType) => {
       desc: desc,
     };
 
-    setProductOrder((prevState) => {
-      const uniProduct = prevState.filter(
-        (product) => product.name !== newProductOrder.name
-      );
-
-      return [...uniProduct, newProductOrder];
-    });
+    console.log(newProductOrder);
   };
-
-  console.log(productOrder);
 
   return (
     <div className="flex flex-col items-center py-5">
       <div className="w-full max-w-screen-lg flex justify-between px-3">
         <div className="flex">
           <ul className="flex flex-wrap gap-5 justify-between">
-            {shopList.map((product: ProductType, index: number) => {
+            {shopList?.map((product: ProductSummary, index: number) => {
               const { title, thumbnail, price, rating, description } = product;
               return (
                 <li
