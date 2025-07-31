@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
         errorElement: <NotFoundPage />,
       },
       {
-        path: "/Product-detail/:productName",
+        path: "/Product-detail",
         element: <ProductDetail />,
         errorElement: <NotFoundPage />,
       },
