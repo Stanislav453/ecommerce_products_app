@@ -20,7 +20,7 @@ interface Meta {
 }
 
 export enum Category {
-  All = "All",
+  all = "all",
   beauty = "beauty",
   fragrances = "fragrances",
   furniture = "furniture",
