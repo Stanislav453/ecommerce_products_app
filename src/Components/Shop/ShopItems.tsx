@@ -1,4 +1,4 @@
-import type { ProductSummary} from "../../type";
+import type { ProductSummary } from "../../type";
 import { NavLink } from "react-router";
 
 interface ShopListProps {

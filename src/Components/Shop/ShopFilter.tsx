@@ -4,7 +4,9 @@ import type {
   ProductSummary,
   ProductSummaryResponse,
 } from "../../type";
-import { UseFetchData } from "../../api/ApiActions/UseFetchData";
+import { useFetchData } from "../../api/ApiActions/UseFetchData";
+// import { useFetchData } from "../../api/ApiActions/useFetchData";
+
 
 interface ShopFilterProps {
   setShopList: (product: ProductSummary[]) => void;
@@ -28,8 +30,8 @@ export const ShopFilter = ({ setShopList }: ShopFilterProps) => {
       ? "/products?select=id,title,thumbnail,price,rating,description"
       : `/products/category/${actualFilterValue}?select=id,title,thumbnail,price,rating,description`;
 
-  const { data: response} =
-    UseFetchData<ProductSummaryResponse>(categoriesURL);
+  const { data: response } =
+    useFetchData<ProductSummaryResponse>(categoriesURL);
 
   const categorySelectHandler = (event: ChangeEvent<HTMLSelectElement>) => {
     setActualFilterValue(event.target.value);
