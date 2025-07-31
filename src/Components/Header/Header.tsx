@@ -5,7 +5,7 @@ import headerBanner from "/public/header-banner.webp";
 export const Header = () => {
   return (
     <header className="w-full flex justify-center bg-purple-100 py-20">
-      <div className="w-full max-w-screen-lg flex items-center justify-between">
+      <div className="w-full max-w-screen-xl flex items-center justify-between">
         <div className="flex flex-1 flex-col gap-3">
           <h2>SKINCARE</h2>
           <h1 className="font-bold text-5xl">
