@@ -1,6 +1,5 @@
 import type { ProductSummary } from "../../type";
 import { NavLink } from "react-router";
-import starsRating from "../../../public/5-stars-rating.svg";
 import { Rating } from "./Rating";
 
 interface ShopListProps {

@@ -1,4 +1,4 @@
-import { useFetchData } from "../../api/ApiActions/useFetchData";
+import { useFetchData } from "../../api/ApiActions/UseFetchData";
 import { useSearchParams } from "react-router";
 import type { ProductDetailResponse } from "../../type";
 import { PageSection } from "../../Components/PageSection";

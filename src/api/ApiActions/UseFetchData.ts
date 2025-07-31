@@ -5,6 +5,7 @@ import { API_URL } from "../apiUrl";
 export const useFetchData = <T>(params: string, id?: string) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -15,8 +16,10 @@ export const useFetchData = <T>(params: string, id?: string) => {
         setData(response);
       } catch (error) {
         if (axios.isAxiosError(error)) {
+          setError(error.message);
           console.error(error.response);
         } else {
+          setError("An unexpected error occurred");
           console.error(error);
         }
       } finally {
@@ -27,5 +30,5 @@ export const useFetchData = <T>(params: string, id?: string) => {
     fetchData();
   }, [params, id]);
 
-  return { data, loading };
+  return { data, loading, error };
 };
