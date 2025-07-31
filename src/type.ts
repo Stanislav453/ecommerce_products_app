@@ -39,9 +39,9 @@ export interface ProductSummaryResponse {
   products: ProductSummary[];
 }
 
-export interface Product {
+export interface Product extends ProductSummary {
   description: string;
-  category: string;
+  category: Category;
   discountPercentage: number;
   stock: number;
   tags: string[];
@@ -57,6 +57,11 @@ export interface Product {
   minimumOrderQuantity: number;
   meta: Meta[];
   images: string[];
+}
+
+export interface ProductDetailResponse extends ProductSummary {
+  tags: string[];
+  category: Category;
 }
 
 export interface Order {
