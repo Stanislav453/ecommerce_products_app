@@ -8,7 +8,6 @@ import {
 } from "react-icons/io5";
 
 export const Navigation = () => {
-
   const [isActive, setIsActive] = useState(false);
 
   const navActive = isActive ? "top-[65px]" : "top-[-350px]";
@@ -16,7 +15,7 @@ export const Navigation = () => {
   return (
     <>
       <div className="flex flex-col items-center">
-        <div className=" w-full max-w-screen-lg flex justify-between items-center py-5 px-3">
+        <div className=" w-full max-w-screen-xl flex justify-between items-center py-5 px-3">
           <NavLink className="font-bold text-2xl" to="/">
             Glowzy.
           </NavLink>
