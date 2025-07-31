@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_URL } from "../apiUrl";
 
-export const UseFetchData = <T>(params: string, id?: string) => {
+export const useFetchData = <T>(params: string, id?: string) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
 
