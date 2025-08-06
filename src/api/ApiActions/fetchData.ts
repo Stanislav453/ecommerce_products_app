@@ -22,10 +22,6 @@ export const fetchData = async <T>({
 }: fetchDataProps<T>) => {
   const fetchURL = selectedVariant({ params, id, selectedValue });
 
-  console.log("This is selectedValue", selectedValue);
-  console.log("This is patams", params);
-  console.log("This is id", id);
-
   try {
     const { data: response } = await axios.get<T>(`${API_URL}${fetchURL}`);
     setData(response);

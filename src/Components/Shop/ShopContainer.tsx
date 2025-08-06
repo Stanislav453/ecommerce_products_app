@@ -4,7 +4,7 @@ import { PageSection } from "../../Components/PageSection";
 import { Category, type ProductSummaryResponse } from "../../type";
 import { useFetchData } from "../../api/ApiActions/useFetchData";
 import { NavLink } from "react-router";
-import { ShopFilterFetcher } from "./ShopFilterFetcher";
+import { ShopFilter } from "./ShopFilter";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
@@ -47,7 +47,7 @@ export const ShopContainer = () => {
           <div className="flex">
             <p>Showing 1 - {response.products.length} results</p>
           </div>
-          <ShopFilterFetcher setselectedValue={setselectedValue} />
+          <ShopFilter setselectedValue={setselectedValue} />
         </div>
       </div>
       <ShopItems shopList={response.products} />
