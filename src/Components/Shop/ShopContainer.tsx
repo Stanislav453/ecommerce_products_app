@@ -1,14 +1,27 @@
-import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
-import type { ProductSummary } from "../../type";
-import { ShopFilterFetcher } from "../../Components/Shop/ShopFilterFetcher";
+import { Category, type ProductSummaryResponse } from "../../type";
+import { useFetchData } from "../../api/ApiActions/useFetchData";
+import { NavLink } from "react-router";
+import { ShopFilterFetcher } from "./ShopFilterFetcher";
 
 export const ShopContainer = () => {
-  const [shopList, setShopList] = useState<ProductSummary[]>([]);
+  const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
-  if (shopList == null)
+  const {
+    data: response,
+    loading,
+    error,
+  } = useFetchData<ProductSummaryResponse>({
+    selectedValue: selectedValue,
+  });
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error)
     return (
       <div className="flex flex-col w-full items-center mt-28">
         <p className="text-red-600">Something is wrong.</p>
@@ -22,6 +35,8 @@ export const ShopContainer = () => {
       </div>
     );
 
+  if (response === null) return null;
+
   return (
     <section>
       <PageSection>
@@ -30,12 +45,12 @@ export const ShopContainer = () => {
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
-            <p>Showing 1 - {shopList?.length} results</p>
+            <p>Showing 1 - {response.products.length} results</p>
           </div>
-          <ShopFilterFetcher setShopList={setShopList} />
+          <ShopFilterFetcher setselectedValue={setselectedValue} />
         </div>
       </div>
-      <ShopItems shopList={shopList} />
+      <ShopItems shopList={response.products} />
     </section>
   );
 };

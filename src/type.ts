@@ -20,11 +20,11 @@ interface Meta {
 }
 
 export enum Category {
-  All = "All",
-  beauty = "beauty",
-  fragrances = "fragrances",
-  furniture = "furniture",
-  groceries = "groceries",
+  All = "all",
+  Beauty = "beauty",
+  Fragrances = "fragrances",
+  Furniture = "furniture",
+  Groceries = "groceries",
 }
 
 export interface ProductSummary {

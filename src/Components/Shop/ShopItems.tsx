@@ -4,7 +4,7 @@ import starsRating from "../../../public/5-stars-rating.svg";
 import { Rating } from "./Rating";
 
 interface ShopListProps {
-  shopList: ProductSummary[];
+  shopList: any;
 }
 
 export const ShopItems = ({ shopList }: ShopListProps) => {
