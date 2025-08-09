@@ -60,6 +60,7 @@ export interface Product extends ProductSummary {
 }
 
 export interface ProductDetailResponse extends ProductSummary {
+  images: string;
   tags: string[];
   category: Category;
 }

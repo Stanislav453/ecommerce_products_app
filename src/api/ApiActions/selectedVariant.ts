@@ -20,7 +20,7 @@ export const selectedVariant = ({
       fetchURL = `/products/category/${selectedValue}?select=id,title,thumbnail,price,rating,description`;
     }
   } else if (id) {
-    fetchURL = `/products/${id}?select=id,title,thumbnail,price,rating,description,category,tags,reviews`;
+    fetchURL = `/products/${id}?select=id,title,images,price,rating,description,category,tags,reviews`;
   } else if (params) {
     fetchURL = `${params}`;
   }
