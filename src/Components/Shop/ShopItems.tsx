@@ -1,10 +1,9 @@
 import type { ProductSummary } from "../../type";
 import { NavLink } from "react-router";
-import starsRating from "../../../public/5-stars-rating.svg";
 import { Rating } from "./Rating";
 
 interface ShopListProps {
-  shopList: any;
+  shopList: ProductSummary[];
 }
 
 export const ShopItems = ({ shopList }: ShopListProps) => {
@@ -14,8 +13,6 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
       price: price,
       desc: desc,
     };
-
-    console.log(newProductOrder);
   };
 
   return (

@@ -20,7 +20,7 @@ export const ShopFilter = ({
       name="category-filter"
       onChange={(e) => setselectedValue(e.target.value as Category)}
     >
-      <option value="">Please selected filter category</option>
+      <option value="">category</option>
       {shopListCategory.map((category: string, index: number) => {
         return (
           <option key={index} value={category}>

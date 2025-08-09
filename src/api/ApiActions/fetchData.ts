@@ -7,9 +7,9 @@ interface fetchDataProps<T> {
   setData: (response: T | null) => void;
   setLoading: (state: boolean) => void;
   setError: (error: AxiosError) => void;
-  params?: string;
-  id?: string;
-  selectedValue?: Category;
+  params?: string | null;
+  id?: string | null;
+  selectedValue?: Category | null;
 }
 
 export const fetchData = async <T>({

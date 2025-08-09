@@ -1,9 +1,9 @@
 import type { Category } from "../../type";
 
 interface selectedValueProps {
-  params?: string;
-  id?: string;
-  selectedValue?: Category;
+  params?: string | null;
+  id?: string | null;
+  selectedValue?: Category | null;
 }
 
 export const selectedVariant = ({
@@ -19,8 +19,8 @@ export const selectedVariant = ({
     } else {
       fetchURL = `/products/category/${selectedValue}?select=id,title,thumbnail,price,rating,description`;
     }
-  } else if (params && id) {
-    fetchURL = `${params}${id}`;
+  } else if (id) {
+    fetchURL = `/products/${id}?select=id,title,thumbnail,price,rating,description,category,tags,reviews`;
   } else if (params) {
     fetchURL = `${params}`;
   }

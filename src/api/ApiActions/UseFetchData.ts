@@ -8,9 +8,9 @@ export const useFetchData = <T>({
   selectedValue,
   id,
 }: {
-  params?: string;
-  selectedValue?: Category;
-  id?: string;
+  params?: string | null;
+  selectedValue?: Category | null;
+  id?: string | null;
 }) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
