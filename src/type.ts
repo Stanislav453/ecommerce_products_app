@@ -19,6 +19,11 @@ interface Meta {
   qrCode: string;
 }
 
+export enum ProdNav {
+  Description = "description",
+  Reviews = "reviews"
+}
+
 export enum Category {
   All = "all",
   Beauty = "beauty",
@@ -27,13 +32,17 @@ export enum Category {
   Groceries = "groceries",
 }
 
-export interface ProductSummary {
+export interface ProdDesc {
+  description: string;
+  reviews: Reviews[];
+}
+
+export interface ProductSummary extends ProdDesc {
   id: string;
   title: string;
   thumbnail: string;
   price: number;
   rating: number;
-  description: string;
 }
 export interface ProductSummaryResponse {
   products: ProductSummary[];
@@ -52,7 +61,6 @@ export interface Product extends ProductSummary {
   warrantyInformation: string;
   shippingInformation: string;
   availabilityStatus: string;
-  reviews: Reviews[];
   returnPolicy: string;
   minimumOrderQuantity: number;
   meta: Meta[];

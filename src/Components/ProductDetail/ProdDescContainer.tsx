@@ -1,13 +1,30 @@
+import { useState } from "react";
+import { ProdNav, type ProdDesc } from "../../type";
+import SelectedValue from "./SelectedValue";
 
-export const ProdDescContainer = () => {
+type ProdDescContainerProps = {
+  prodDesc: ProdDesc[];
+};
+
+export const ProdDescContainer = ({ prodDesc }: ProdDescContainerProps) => {
+  const [value, setValue] = useState<ProdNav>(ProdNav.Description);
+  const prodNav = [ProdNav.Description, ProdNav.Reviews];
+
   return (
     <article>
       <ul>
-        <li><button>Description</button></li>
-        <li><button>Reviews</button></li>
+        {prodNav.map((nav, index) => (
+          <li key={index}>
+            <button
+              className="border-2 border-black p-2 mt-2"
+              onClick={() => setValue(nav)}
+            >
+              {nav.toUpperCase()}
+            </button>
+          </li>
+        ))}
       </ul>
-
+      <SelectedValue value={value} prodDesc={prodDesc} />
     </article>
-  )
-}
-
+  );
+};

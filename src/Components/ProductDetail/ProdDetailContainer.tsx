@@ -1,5 +1,5 @@
 import { NavLink, useSearchParams } from "react-router";
-import type { ProductDetailResponse } from "../../type";
+import type { ProdDesc, ProductDetailResponse } from "../../type";
 import { PageSection } from "../PageSection";
 import { useFetchData } from "../../api/ApiActions/useFetchData";
 import { ProdDescContainer } from "./ProdDescContainer";
@@ -36,7 +36,9 @@ export const ProdDetailContainer = () => {
     );
   if (data === null) return null;
 
-  const { title } = data;
+  const { title, description, reviews } = data;
+
+  const prodDesc: ProdDesc[] = [{ description, reviews }];
 
   return (
     <section>
@@ -45,7 +47,7 @@ export const ProdDetailContainer = () => {
       </PageSection>
       <div className="flex flex-col items-center">
         <ProdDetailViews data={data} />
-        <ProdDescContainer />
+        <ProdDescContainer prodDesc={prodDesc} />
       </div>
     </section>
   );
