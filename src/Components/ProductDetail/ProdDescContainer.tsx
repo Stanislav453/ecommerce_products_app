@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ProdNav, type ProdDesc } from "../../type";
+import { ProdNav, ProdDesc } from "../../type";
 import SelectedValue from "./SelectedValue";
 
 type ProdDescContainerProps = {

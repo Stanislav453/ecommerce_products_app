@@ -1,4 +1,4 @@
-import type { Category } from "../../type";
+import { Category } from "../../type";
 
 interface selectedValueProps {
   params?: string | null;

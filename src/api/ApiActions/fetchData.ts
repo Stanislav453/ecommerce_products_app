@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { API_URL } from "../apiUrl";
-import type { Category } from "../../type";
+import { Category } from "../../type";
 import { selectedVariant } from "./selectedVariant";
 
 interface fetchDataProps<T> {

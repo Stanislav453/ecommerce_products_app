@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchData } from "./fetchData";
-import type { AxiosError } from "axios";
-import type { Category } from "../../type";
+import { AxiosError } from "axios";
+import { Category } from "../../type";
 
 export const useFetchData = <T>({
   params,

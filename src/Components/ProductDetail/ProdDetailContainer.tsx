@@ -1,5 +1,5 @@
 import { NavLink, useSearchParams } from "react-router";
-import type { ProdDesc, ProductDetailResponse } from "../../type";
+import { ProdDesc, ProductDetailResponse } from "../../type";
 import { PageSection } from "../PageSection";
 import { useFetchData } from "../../api/ApiActions/useFetchData";
 import { ProdDescContainer } from "./ProdDescContainer";

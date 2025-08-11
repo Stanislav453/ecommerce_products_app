@@ -1,4 +1,4 @@
-import type { ProductSummary } from "../../type";
+import { ProductSummary } from "../../type";
 import { NavLink } from "react-router";
 import { Rating } from "./Rating";
 

@@ -1,4 +1,4 @@
-import type { ProductDetailResponse } from "../type";
+import { ProductDetailResponse } from "../../type";
 
 interface ProductDetailViewsProps {
   data: ProductDetailResponse | null;
