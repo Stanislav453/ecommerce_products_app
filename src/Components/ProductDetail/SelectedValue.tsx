@@ -5,7 +5,7 @@ interface SelectedValueProps {
   value: ProdNav;
 }
 
-const SelectedValue = ({ prodDesc, value }: SelectedValueProps) => {
+export const SelectedValue = ({ prodDesc, value }: SelectedValueProps) => {
   const { description, reviews } = prodDesc[0];
 
   switch (value) {
@@ -28,4 +28,3 @@ const SelectedValue = ({ prodDesc, value }: SelectedValueProps) => {
   }
 };
 
-export default SelectedValue;
