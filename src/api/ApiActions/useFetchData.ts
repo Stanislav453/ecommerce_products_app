@@ -3,6 +3,7 @@ import { fetchData } from "./fetchData";
 import { AxiosError } from "axios";
 import { Category } from "../../type";
 
+
 export const useFetchData = <T>({
   params,
   selectedValue,
@@ -22,3 +23,5 @@ export const useFetchData = <T>({
 
   return { data, loading, error };
 };
+
+
