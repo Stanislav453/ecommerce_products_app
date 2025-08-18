@@ -15,6 +15,7 @@ export const Navigation = () => {
   return (
     <>
       <div className="flex flex-col items-center">
+        
         <div className=" w-full max-w-screen-xl flex justify-between items-center py-5 px-3">
           <NavLink className="font-bold text-2xl" to="/">
             Glowzy.
