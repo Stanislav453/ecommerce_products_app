@@ -11,12 +11,12 @@ export const ProdDescContainer = ({ prodDesc }: ProdDescContainerProps) => {
   const prodNav = [ProdNav.Description, ProdNav.Reviews];
 
   return (
-    <article>
-      <ul>
+    <article className="w-full max-w-screen-xl flex gap-12 justify-between items-center py-5 px-3 ">
+      <ul className="flex-initial w-72">
         {prodNav.map((nav, index) => (
           <li key={index}>
             <button
-              className="border-2 border-black p-2 mt-2"
+              className="w-full text-left py-5 pl-4 bg-page-sections"
               onClick={() => setValue(nav)}
             >
               {nav.toUpperCase()}
@@ -24,7 +24,9 @@ export const ProdDescContainer = ({ prodDesc }: ProdDescContainerProps) => {
           </li>
         ))}
       </ul>
-      <SelectedValue value={value} prodDesc={prodDesc} />
+      <div className="flex-initial w-full">
+        <SelectedValue value={value} prodDesc={prodDesc} />
+      </div>
     </article>
   );
 };

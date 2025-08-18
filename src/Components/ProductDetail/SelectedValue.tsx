@@ -27,4 +27,3 @@ export const SelectedValue = ({ prodDesc, value }: SelectedValueProps) => {
       null;
   }
 };
-
