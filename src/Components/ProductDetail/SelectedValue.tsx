@@ -1,12 +1,16 @@
-import { ProdNav, type ProdDesc } from "../../type";
+import { ProdNav, type Reviews } from "../../type";
 
 interface SelectedValueProps {
-  prodDesc: ProdDesc[];
   value: ProdNav;
+  description: string;
+  reviews: Reviews[];
 }
 
-export const SelectedValue = ({ prodDesc, value }: SelectedValueProps) => {
-  const { description, reviews } = prodDesc[0];
+export const SelectedValue = ({
+  description,
+  reviews,
+  value,
+}: SelectedValueProps) => {
 
   switch (value) {
     case ProdNav.Description:
