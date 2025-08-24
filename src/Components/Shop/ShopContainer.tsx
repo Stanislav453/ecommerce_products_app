@@ -2,40 +2,39 @@ import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
 import { Category, type ProductSummaryResponse } from "../../type";
-import { useFetchData } from "../../api/ApiActions/useFetchData";
 import { NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
-  const {
-    data: response,
-    loading,
-    error,
-  } = useFetchData<ProductSummaryResponse>({
-    selectedValue: selectedValue,
-  });
+  // const {
+  //   data: response,
+  //   loading,
+  //   error,
+  // } = useFetchData<ProductSummaryResponse>({
+  //   selectedValue: selectedValue,
+  // });
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  if (error)
-    return (
-      <div className="flex flex-col w-full items-center mt-28">
-        <p className="text-red-600">Something is wrong.</p>
-        <p>
-          Please go to
-          <NavLink to="/" className="font-bold underline	">
-            Home
-          </NavLink>
-          and try it later.
-        </p>
-      </div>
-    );
+  // if (error)
+  //   return (
+  //     <div className="flex flex-col w-full items-center mt-28">
+  //       <p className="text-red-600">Something is wrong.</p>
+  //       <p>
+  //         Please go to
+  //         <NavLink to="/" className="font-bold underline	">
+  //           Home
+  //         </NavLink>
+  //         and try it later.
+  //       </p>
+  //     </div>
+  //   );
 
-  if (response === null) return null;
+  // if (response === null) return null;
 
   return (
     <section>
@@ -45,12 +44,13 @@ export const ShopContainer = () => {
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
-            <p>Showing 1 - {response.products.length} results</p>
+            This is products
+            {/* <p>Showing 1 - {response.products.length} results</p> */}
           </div>
           <ShopFilter setselectedValue={setselectedValue} />
         </div>
       </div>
-      <ShopItems shopList={response.products} />
+      {/* <ShopItems shopList={response.products} /> */}
     </section>
   );
 };
