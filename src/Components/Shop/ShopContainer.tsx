@@ -12,7 +12,12 @@ export const ShopContainer = () => {
   // useFetch({ kind: "category" });
 
   // const { data } = useFetch({ kind: "categories" });
-  const { data } = useFetch({kind: "detail", id: "4"})
+  const { data } = useFetch({
+    kind: "product",
+    id: "4",
+    query:
+      "/?select=id,title,images,price,rating,description,category,tags,reviews",
+  });
 
   console.log("This is data", data);
 
