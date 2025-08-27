@@ -4,10 +4,20 @@ import { PageSection } from "../PageSection";
 // import { useFetchData } from "../../api/ApiActions/useFetch";
 import { ProdDescContainer } from "./ProdDescContainer";
 import { ProdDetailViews } from "./ProdDetailViews";
+import { useFetch } from "../../api/ApiActions/useFetch";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
+
+  // useFetch({kind: "categories"})
+
+  // useFetch({kind: "categories"})
+
+  // useFetch({ kind: "detail", id: 1 });
+
+  // useFetch({ kind: "categories" });
+
 
   // const { data, loading, error } = useFetchData<ProductDetailResponse | null>({
   //   id: id,

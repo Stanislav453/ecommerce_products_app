@@ -4,9 +4,17 @@ import { PageSection } from "../../Components/PageSection";
 import { Category, type ProductSummaryResponse } from "../../type";
 import { NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
+import { useFetch } from "../../api/ApiActions/useFetch";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
+
+  // useFetch({ kind: "category" });
+
+  // const { data } = useFetch({ kind: "categories" });
+  const { data } = useFetch({kind: "detail", id: "4"})
+
+  console.log("This is data", data);
 
   // const {
   //   data: response,
