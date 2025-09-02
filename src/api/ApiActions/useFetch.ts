@@ -1,31 +1,38 @@
 import { useEffect, useState } from "react";
-import { fetchData } from "./fetchData";
 import axios, { AxiosError } from "axios";
-import { Category } from "../../type";
 import { API_URL } from "../apiUrl";
-
-const QueryVariant = {
-  product: "",
-  productDetail: ""
-
-} as const
 
 const FetchVariant = {
   Products: "products",
+  product: "product",
   Categories: "categories",
   Category: "category",
-  Detail: "detail",
   Query: "query",
 } as const;
+
+type ProductQuery = "" | "/?select=id,title,thumbnail,price,rating,description";
+
+type CategoryQuery =
+  | ""
+  | "/?select=id,title,images,price,rating,description,category,tags,reviews";
+
+type CategoriesQuery = "";
+
+type DetailQuery =
+  | ""
+  | "/?select=id,title,images,price,rating,description,category,tags,reviews";
 
 type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
 
 type FetchProps =
-  | { kind: typeof FetchVariant.Products }
-  | { kind: typeof FetchVariant.Categories }
-  | { kind: typeof FetchVariant.Category; name: CategoryNames }
-  | { kind: typeof FetchVariant.Detail; id: string }
-  | { kind: typeof FetchVariant.Query; query: string };
+  | { kind: typeof FetchVariant.Products; query: ProductQuery }
+  | { kind: typeof FetchVariant.Categories; query: CategoriesQuery }
+  | {
+      kind: typeof FetchVariant.Category;
+      name: CategoryNames;
+      query: CategoryQuery;
+    }
+  | { kind: typeof FetchVariant.product; id: string; query: DetailQuery };
 
 export const useFetch = <T>(args: FetchProps) => {
   const [data, setData] = useState<T | null>(null);
@@ -43,11 +50,8 @@ export const useFetch = <T>(args: FetchProps) => {
     case FetchVariant.Category:
       path = `${FetchVariant.Category}/${args.name}`;
       break;
-    case FetchVariant.Detail:
+    case FetchVariant.product:
       path = args.id;
-      break;
-    case FetchVariant.Query:
-      path = args.query;
       break;
     default:
       throw new Error("Missing corectly endpoint");
