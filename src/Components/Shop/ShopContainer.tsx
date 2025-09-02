@@ -12,9 +12,16 @@ export const ShopContainer = () => {
   // useFetch({ kind: "category" });
 
   // const { data } = useFetch({ kind: "categories" });
+  // const { data } = useFetch({
+  //   kind: "product",
+  //   id: "4",
+  //   query:
+  //     "/?select=id,title,images,price,rating,description,category,tags,reviews",
+  // });
+
   const { data } = useFetch({
     kind: "product",
-    id: "4",
+    id: "1",
     query:
       "/?select=id,title,images,price,rating,description,category,tags,reviews",
   });
