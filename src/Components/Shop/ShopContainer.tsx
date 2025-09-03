@@ -11,6 +11,8 @@ export const ShopContainer = () => {
 
   // useFetch({ kind: "category" });
 
+  useFetch({kind: "products", query: ""})
+
   // const { data } = useFetch({ kind: "categories" });
   // const { data } = useFetch({
   //   kind: "product",
