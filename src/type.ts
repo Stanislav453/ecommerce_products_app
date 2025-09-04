@@ -21,7 +21,7 @@ interface Meta {
 
 export enum ProdNav {
   Description = "description",
-  Reviews = "reviews"
+  Reviews = "reviews",
 }
 
 export enum Category {
@@ -78,3 +78,37 @@ export interface Order {
   price: number;
   desc: string;
 }
+
+export const FetchVariant = {
+  Products: "products",
+  product: "product",
+  Categories: "categories",
+  Category: "category",
+  Query: "query",
+} as const;
+
+export type ProductQuery =
+  | ""
+  | "/?select=id,title,thumbnail,price,rating,description";
+
+export type CategoryQuery =
+  | ""
+  | "/?select=id,title,images,price,rating,description,category,tags,reviews";
+
+export type CategoriesQuery = "";
+
+export type DetailQuery =
+  | ""
+  | "/?select=id,title,images,price,rating,description,category,tags,reviews";
+
+export type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
+
+export type FetchOptions =
+  | { kind: typeof FetchVariant.Products; query: ProductQuery }
+  | { kind: typeof FetchVariant.Categories; query: CategoriesQuery }
+  | {
+      kind: typeof FetchVariant.Category;
+      name: CategoryNames;
+      query: CategoryQuery;
+    }
+  | { kind: typeof FetchVariant.product; id: string; query: DetailQuery };

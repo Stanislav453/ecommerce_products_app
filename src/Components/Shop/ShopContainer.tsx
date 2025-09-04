@@ -19,12 +19,14 @@ export const ShopContainer = () => {
   //     "/?select=id,title,images,price,rating,description,category,tags,reviews",
   // });
 
-  const { data } = useFetch({
-    kind: "product",
-    id: "1",
-    query:
-      "/?select=id,title,images,price,rating,description,category,tags,reviews",
-  });
+  // const { data } = useFetch({
+  //   kind: "product",
+  //   id: "1",
+  //   query:
+  //     "/?select=id,title,images,price,rating,description,category,tags,reviews",
+  // });
+
+  const { data, loading, error } = useFetch({ kind: "products", query: "" });
 
   console.log("This is data", data);
 
