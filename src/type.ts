@@ -89,17 +89,17 @@ export const FetchVariant = {
 
 export type ProductQuery =
   | ""
-  | "/?select=id,title,thumbnail,price,rating,description";
+  | "?select=id,title,thumbnail,price,rating,description";
 
 export type CategoryQuery =
   | ""
-  | "/?select=id,title,images,price,rating,description,category,tags,reviews";
+  | "?select=id,title,images,price,rating,description,category,tags,reviews";
 
 export type CategoriesQuery = "";
 
 export type DetailQuery =
   | ""
-  | "/?select=id,title,images,price,rating,description,category,tags,reviews";
+  | "?select=id,title,images,price,rating,description,category,tags,reviews";
 
 export type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
 
