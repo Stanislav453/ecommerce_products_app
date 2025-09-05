@@ -1,6 +1,6 @@
 import { ProductSummary } from "../../type";
 import { NavLink } from "react-router";
-import { Rating } from "./Rating";
+import { RatingContainer } from "./RatingContainer";
 
 interface ShopListProps {
   shopList: ProductSummary[];
@@ -34,9 +34,8 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                   <div className="flex flex-col gap-1 text-center mt-3">
                     <h3 className="text-xl font-medium truncate">{title}</h3>
                     <p className="text-xl font-bold">${price}</p>
-                    <Rating />
+                    <RatingContainer rating={rating} />
 
-                    <p className="text-xl font-bold"> {rating} </p>
                     <NavLink
                       to={`/Product-detail?id=${id}`}
                       className="w-full  py-2 border-[1px] border-black		rounded-full mb-1 mt-3"

@@ -9,54 +9,30 @@ import { useFetch } from "../../api/ApiActions/useFetch";
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
-  // useFetch({ kind: "category" });
+  const { data, loading, error } = useFetch<ProductSummaryResponse>({
+    kind: "products",
+    query: "?select=id,title,thumbnail,price,rating,description",
+  });
 
-  // const { data } = useFetch({ kind: "categories" });
-  // const { data } = useFetch({
-  //   kind: "product",
-  //   id: "4",
-  //   query:
-  //     "/?select=id,title,images,price,rating,description,category,tags,reviews",
-  // });
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-  // const { data } = useFetch({
-  //   kind: "product",
-  //   id: "1",
-  //   query:
-  //     "/?select=id,title,images,price,rating,description,category,tags,reviews",
-  // });
+  if (error)
+    return (
+      <div className="flex flex-col w-full items-center mt-28">
+        <p className="text-red-600">Something is wrong.</p>
+        <p>
+          Please go to
+          <NavLink to="/" className="font-bold underline	">
+            Home
+          </NavLink>
+          and try it later.
+        </p>
+      </div>
+    );
 
-  const { data, loading, error } = useFetch({ kind: "products", query: "" });
-
-  console.log("This is data", data);
-
-  // const {
-  //   data: response,
-  //   loading,
-  //   error,
-  // } = useFetchData<ProductSummaryResponse>({
-  //   selectedValue: selectedValue,
-  // });
-
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // if (error)
-  //   return (
-  //     <div className="flex flex-col w-full items-center mt-28">
-  //       <p className="text-red-600">Something is wrong.</p>
-  //       <p>
-  //         Please go to
-  //         <NavLink to="/" className="font-bold underline	">
-  //           Home
-  //         </NavLink>
-  //         and try it later.
-  //       </p>
-  //     </div>
-  //   );
-
-  // if (response === null) return null;
+  if (data === null) return null;
 
   return (
     <section>
@@ -72,7 +48,8 @@ export const ShopContainer = () => {
           <ShopFilter setselectedValue={setselectedValue} />
         </div>
       </div>
-      {/* <ShopItems shopList={response.products} /> */}
+      //
+      <ShopItems shopList={data.products} />
     </section>
   );
 };
