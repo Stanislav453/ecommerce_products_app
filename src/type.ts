@@ -93,7 +93,7 @@ export type ProductQuery =
 
 export type CategoryQuery =
   | ""
-  | "?select=id,title,images,price,rating,description,category,tags,reviews";
+  | "?select=id,title,thumbnail,price,rating,description";
 
 export type CategoriesQuery = "";
 
@@ -103,20 +103,20 @@ export type DetailQuery =
 
 export type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
 
-type FetchProducts = {
+export type FetchProducts = {
   kind: typeof FetchVariant.Products;
   query: ProductQuery;
 };
-type FetchProduct = {
+export type FetchProduct = {
   kind: typeof FetchVariant.product;
   id: string;
   query: DetailQuery;
 };
-type FetchCategories = {
+export type FetchCategories = {
   kind: typeof FetchVariant.Categories;
   query: CategoriesQuery;
 };
-type FetchCategory = {
+export type FetchCategory = {
   kind: typeof FetchVariant.Category;
   name: CategoryNames;
   query: CategoryQuery;
@@ -127,3 +127,5 @@ export type FetchOptions =
   | FetchProduct
   | FetchCategories
   | FetchCategory;
+
+export type ArgsOptions = FetchProducts | FetchCategory;
