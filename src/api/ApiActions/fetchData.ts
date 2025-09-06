@@ -14,6 +14,8 @@ export const fetchData = async <T>({
   setError,
   setLoading,
 }: FetchDataProps<T>) => {
+  console.log(`${API_URL}/products/${path}`);
+
   try {
     const { data: response } = await axios.get<T>(
       `${API_URL}/products/${path}`
