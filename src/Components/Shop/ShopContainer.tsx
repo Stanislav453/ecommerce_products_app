@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
-import { Category, type ProductSummaryResponse } from "../../type";
+import {  Category, ProductSummaryResponse } from "../../type";
 import { NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/useFetch";
