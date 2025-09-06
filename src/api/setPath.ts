@@ -1,7 +1,6 @@
 import { FetchOptions, FetchVariant } from "../type";
 
 export const setPath = (args: FetchOptions) => {
-
   let path = "";
   switch (args.kind) {
     case FetchVariant.Products:
@@ -11,7 +10,7 @@ export const setPath = (args: FetchOptions) => {
       path = FetchVariant.Categories;
       break;
     case FetchVariant.Category:
-      path = `${FetchVariant.Category}/${args.name}`;
+      path = `${FetchVariant.Category}/${args.name}/${args.query}`;
       break;
     case FetchVariant.product:
       path = `${args.id}/${args.query}`;
@@ -19,7 +18,6 @@ export const setPath = (args: FetchOptions) => {
     default:
       throw new Error("Missing corectly endpoint");
   }
-
 
   return { path };
 };
