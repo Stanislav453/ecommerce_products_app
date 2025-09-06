@@ -12,7 +12,7 @@ export const useFetch = <T>(args: FetchOptions) => {
 
   useEffect(() => {
     fetchData({ path, setData, setError, setLoading });
-  }, []);
+  }, [path]);
 
   return { data, loading, error };
 };
