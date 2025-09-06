@@ -5,29 +5,14 @@ import { Category, type ProductSummaryResponse } from "../../type";
 import { NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/useFetch";
+import { fetchArgs } from "../../fetchArgs";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
-  // const { data, loading, error } = useFetch<ProductSummaryResponse>({
-  //   kind: "products",
-  //   query: "?select=id,title,thumbnail,price,rating,description",
-  // });
-  
+  const { args } = fetchArgs({ selectedValue });
 
-  // useFetch({kind: "category", query: "?select=id,title,images,price,rating,description,category,tags,reviews"})
-  const { loading, error, data } = useFetch({
-    kind: "category",
-    name: "beauty",
-    query:
-      "?select=id,title,images,price,rating,description,category,tags,reviews",
-  });
-
-  console.log("This is data from CAATEGORY", data);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  const { data, loading, error } = useFetch<ProductSummaryResponse>(args);
 
   if (error)
     return (
@@ -42,6 +27,10 @@ export const ShopContainer = () => {
         </p>
       </div>
     );
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   if (data === null) return null;
 
