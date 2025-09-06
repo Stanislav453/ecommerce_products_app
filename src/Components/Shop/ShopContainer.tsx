@@ -9,10 +9,21 @@ import { useFetch } from "../../api/ApiActions/useFetch";
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
-  const { data, loading, error } = useFetch<ProductSummaryResponse>({
-    kind: "products",
-    query: "?select=id,title,thumbnail,price,rating,description",
+  // const { data, loading, error } = useFetch<ProductSummaryResponse>({
+  //   kind: "products",
+  //   query: "?select=id,title,thumbnail,price,rating,description",
+  // });
+  
+
+  // useFetch({kind: "category", query: "?select=id,title,images,price,rating,description,category,tags,reviews"})
+  const { loading, error, data } = useFetch({
+    kind: "category",
+    name: "beauty",
+    query:
+      "?select=id,title,images,price,rating,description,category,tags,reviews",
   });
+
+  console.log("This is data from CAATEGORY", data);
 
   if (loading) {
     return <div>Loading...</div>;

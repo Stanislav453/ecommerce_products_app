@@ -103,12 +103,27 @@ export type DetailQuery =
 
 export type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
 
+type FetchProducts = {
+  kind: typeof FetchVariant.Products;
+  query: ProductQuery;
+};
+type FetchProduct = {
+  kind: typeof FetchVariant.product;
+  id: string;
+  query: DetailQuery;
+};
+type FetchCategories = {
+  kind: typeof FetchVariant.Categories;
+  query: CategoriesQuery;
+};
+type FetchCategory = {
+  kind: typeof FetchVariant.Category;
+  name: CategoryNames;
+  query: CategoryQuery;
+};
+
 export type FetchOptions =
-  | { kind: typeof FetchVariant.Products; query: ProductQuery }
-  | { kind: typeof FetchVariant.Categories; query: CategoriesQuery }
-  | {
-      kind: typeof FetchVariant.Category;
-      name: CategoryNames;
-      query: CategoryQuery;
-    }
-  | { kind: typeof FetchVariant.product; id: string; query: DetailQuery };
+  | FetchProducts
+  | FetchProduct
+  | FetchCategories
+  | FetchCategory;
