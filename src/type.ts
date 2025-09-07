@@ -20,16 +20,16 @@ interface Meta {
 }
 
 export enum ProdNav {
-  Description = "description",
-  Reviews = "reviews",
+  Description = "Description",
+  Reviews = "Reviews",
 }
 
 export enum Category {
-  All = "all",
-  Beauty = "beauty",
-  Fragrances = "fragrances",
-  Furniture = "furniture",
-  Groceries = "groceries",
+  All = "All",
+  Beauty = "Beauty",
+  Fragrances = "Fragrances",
+  Furniture = "Furniture",
+  Groceries = "Groceries",
 }
 
 export interface ProdDesc {
