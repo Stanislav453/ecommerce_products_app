@@ -109,7 +109,7 @@ export type FetchProducts = {
 };
 export type FetchProduct = {
   kind: typeof FetchVariant.product;
-  id: string;
+  id: string | null;
   query: DetailQuery;
 };
 export type FetchCategories = {
