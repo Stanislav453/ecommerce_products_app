@@ -6,7 +6,8 @@ export default {
       colors: {
         "page-sections": "#F5F4F4",
         "theme-gray-font": "#696869",
-        "theme-gray-border": "#D7D7D6"
+        "theme-gray-border": "#D7D7D6",
+        "des-nav-color": "#F4F4F5",
       },
     },
   },
