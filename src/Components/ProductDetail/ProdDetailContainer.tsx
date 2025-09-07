@@ -1,64 +1,57 @@
 import { NavLink, useSearchParams } from "react-router";
-import { ProdDesc, ProductDetailResponse } from "../../type";
+import { ProductDetailResponse } from "../../type";
 import { PageSection } from "../PageSection";
-// import { useFetchData } from "../../api/ApiActions/useFetch";
 import { ProdDescContainer } from "./ProdDescContainer";
 import { ProdDetailViews } from "./ProdDetailViews";
 import { useFetch } from "../../api/ApiActions/useFetch";
+import loadingSpinner from "../../../public/loadingSpinner.svg";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  // useFetch({kind: "categories"})
+  const { data, loading, error } = useFetch<ProductDetailResponse>({
+    kind: "product",
+    id: id,
+    query:
+      "?select=id,title,images,price,rating,description,category,tags,reviews",
+  });
 
-  // useFetch({kind: "categories"})
+  if (error)
+    return (
+      <div className="flex flex-col w-full items-center mt-28">
+        <p className="text-red-600">Something is wrong.</p>
+        <p>
+          Please go to
+          <NavLink to="/" className="font-bold underline	">
+            Home
+          </NavLink>
+          and try it later.
+        </p>
+      </div>
+    );
 
-  // useFetch({ kind: "detail", id: 1 });
+  if (loading) {
+    return (
+      <div className="flex justify-center">
+        <img className="w-11" src={loadingSpinner} alt="loadingSpinner" />
+      </div>
+    );
+  }
 
-  // useFetch({ kind: "categories" });
-
-
-  // const { data, loading, error } = useFetchData<ProductDetailResponse | null>({
-  //   id: id,
-  // });
-
-  // if (loading) {
-  //   return (
-  //     <div>
-  //       <p>Loading...</p>
-  //     </div>
-  //   );
-  // }
-
-  // if (error)
-  //   return (
-  //     <div className="flex flex-col w-full items-center mt-28">
-  //       <p className="text-red-600">Something is wrong.</p>
-  //       <p>
-  //         Please go to
-  //         <NavLink to="/" className="font-bold underline	">
-  //           Home
-  //         </NavLink>
-  //         and try it later.
-  //       </p>
-  //     </div>
-  //   );
-  // if (data === null) return null;
-
-  // const { title, description, reviews } = data;
-
-  // const prodDesc: ProdDesc[] = [{ description, reviews }];
+  if (data === null) return null;
 
   return (
     <section>
       <PageSection>
-        HightText
-        {/* <h1 className="font-medium">{title}x</h1> */}
+        <h1 className="font-medium">{data.title}</h1>
       </PageSection>
       <div className="flex flex-col items-center">
-        {/* <ProdDetailViews data={data} /> */}
-        {/* <ProdDescContainer prodDesc={prodDesc} /> */}
+        <ProdDetailViews data={data} />
+        <ProdDescContainer
+          description={data.description}
+          reviews={data.reviews}
+        />
       </div>
     </section>
   );

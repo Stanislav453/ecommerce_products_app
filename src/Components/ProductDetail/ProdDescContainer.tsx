@@ -1,12 +1,16 @@
 import { useState } from "react";
-import { ProdNav, ProdDesc } from "../../type";
+import { ProdNav, ProdDesc, Reviews } from "../../type";
 import { SelectedValue } from "./SelectedValue";
 
 type ProdDescContainerProps = {
-  prodDesc: ProdDesc[];
+  reviews: Reviews[];
+  description: string;
 };
 
-export const ProdDescContainer = ({ prodDesc }: ProdDescContainerProps) => {
+export const ProdDescContainer = ({
+  reviews,
+  description,
+}: ProdDescContainerProps) => {
   const [value, setValue] = useState<ProdNav>(ProdNav.Description);
 
   return (
@@ -26,8 +30,8 @@ export const ProdDescContainer = ({ prodDesc }: ProdDescContainerProps) => {
       <div className="flex-initial w-full">
         <SelectedValue
           value={value}
-          description={prodDesc[0].description}
-          reviews={prodDesc[0].reviews}
+          description={description}
+          reviews={reviews}
         />
       </div>
     </article>

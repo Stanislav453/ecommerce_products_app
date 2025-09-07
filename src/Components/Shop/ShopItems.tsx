@@ -34,7 +34,7 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                   <div className="flex flex-col gap-1 text-center mt-3">
                     <h3 className="text-xl font-medium truncate">{title}</h3>
                     <p className="text-xl font-bold">${price}</p>
-                    <RatingContainer rating={rating} />
+                    <RatingContainer rating={rating} className="justify-center" />
 
                     <NavLink
                       to={`/Product-detail?id=${id}`}

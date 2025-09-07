@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
-import {  Category, ProductSummaryResponse } from "../../type";
+import { Category, ProductSummaryResponse } from "../../type";
 import { NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/useFetch";
@@ -43,12 +43,11 @@ export const ShopContainer = () => {
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
             This is products
-            {/* <p>Showing 1 - {response.products.length} results</p> */}
+            <p>Showing 1 - {data.products.length} results</p>
           </div>
           <ShopFilter setselectedValue={setselectedValue} />
         </div>
       </div>
-      //
       <ShopItems shopList={data.products} />
     </section>
   );
