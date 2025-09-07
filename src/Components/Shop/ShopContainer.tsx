@@ -6,6 +6,7 @@ import { NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/useFetch";
 import { fetchArgs } from "../../fetchArgs";
+import loadingSpinner from "../../../public/loadingSpinner.svg";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
@@ -29,7 +30,11 @@ export const ShopContainer = () => {
     );
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex justify-center">
+        <img className="w-11" src={loadingSpinner} alt="loadingSpinner" />
+      </div>
+    );
   }
 
   if (data === null) return null;
