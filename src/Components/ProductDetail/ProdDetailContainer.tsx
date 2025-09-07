@@ -49,6 +49,7 @@ export const ProdDetailContainer = () => {
       <div className="flex flex-col items-center">
         <ProdDetailViews data={data} />
         <ProdDescContainer
+        title={data.title}
           description={data.description}
           reviews={data.reviews}
         />
