@@ -1,39 +1,55 @@
 import { useState } from "react";
-import { ProdNav, ProdDesc, Reviews } from "../../type";
+import { ProdNav, Reviews } from "../../type";
 import { SelectedValue } from "./SelectedValue";
 
 type ProdDescContainerProps = {
+  title: string;
   reviews: Reviews[];
   description: string;
 };
 
 export const ProdDescContainer = ({
+  title,
   reviews,
   description,
 }: ProdDescContainerProps) => {
   const [value, setValue] = useState<ProdNav>(ProdNav.Description);
 
+  const getButtonClass = (buttonValue: ProdNav) =>
+    value === buttonValue ? "bg-des-nav-color" : "bg-white border-b-[1px] border-theme-gray-border";
+
   return (
-    <article className="w-full max-w-screen-xl flex gap-12 justify-between items-center py-5 px-3 ">
-      <ul className="flex-initial w-72">
+    <article className="w-full max-w-screen-xl flex  gap-12 justify-between items-start py-5 px-3 ">
+      <ul className=" w-72">
         <li>
-          <button onClick={() => setValue(ProdNav.Description)}>
+          <button
+            className={`w-full text-left text-lg font-medium py-4 px-2 ${getButtonClass(
+              ProdNav.Description
+            )}`}
+            onClick={() => setValue(ProdNav.Description)}
+          >
             {ProdNav.Description}
           </button>
         </li>
         <li>
-          <button onClick={() => setValue(ProdNav.Reviews)}>
-            {ProdNav.Reviews}
+          <button
+            className={`w-full text-left text-lg font-medium py-4 px-2  ${getButtonClass(
+              ProdNav.Reviews
+            )}`}
+            onClick={() => setValue(ProdNav.Reviews)}
+          >
+            {ProdNav.Reviews} ({reviews.length})
           </button>
         </li>
       </ul>
-      <div className="flex-initial w-full">
+      <ul className="  w-full">
         <SelectedValue
           value={value}
+          title={title}
           description={description}
           reviews={reviews}
         />
-      </div>
+      </ul>
     </article>
   );
 };
