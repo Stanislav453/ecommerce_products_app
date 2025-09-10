@@ -44,12 +44,18 @@ export const ProdDetailContainer = () => {
   return (
     <section>
       <PageSection>
+        <NavLink to="/" className="font-bold underline	">
+          Home
+        </NavLink>/
+        <NavLink to="/" className="font-bold underline	">
+          {data.category}
+        </NavLink>/
         <h1 className="font-medium">{data.title}</h1>
       </PageSection>
       <div className="flex flex-col items-center">
         <ProdDetailViews data={data} />
         <ProdDescContainer
-        title={data.title}
+          title={data.title}
           description={data.description}
           reviews={data.reviews}
         />
