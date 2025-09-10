@@ -6,6 +6,7 @@ import {
   IoBagOutline,
   IoAppsSharp,
 } from "react-icons/io5";
+import { Footer } from "../Footer/Footer";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
@@ -73,6 +74,7 @@ export const Navigation = () => {
         </div>
       </div>
       <Outlet />
+      <Footer />
     </>
   );
 };
