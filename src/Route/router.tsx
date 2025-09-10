@@ -30,6 +30,11 @@ export const router = createBrowserRouter([
         element: <ProductDetail />,
         errorElement: <NotFoundPage />,
       },
+      {
+        path: "/Category`",
+        element: <ProductDetail />,
+        errorElement: <NotFoundPage />,
+      },
     ],
   },
 ]);
