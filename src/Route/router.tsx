@@ -5,6 +5,7 @@ import { Navigation } from "../Components/Navigation/Navigation";
 import { Shop } from "./Pages/Shop";
 import { Blog } from "./Pages/Blog";
 import { ProductDetail } from "./Pages/ProductDetail";
+import {CategoryPage }from "./Pages/CategoryPage";
 
 export const router = createBrowserRouter([
   {
@@ -31,8 +32,8 @@ export const router = createBrowserRouter([
         errorElement: <NotFoundPage />,
       },
       {
-        path: "/Category`",
-        element: <ProductDetail />,
+        path: "/category/:categoryName",
+        element: <CategoryPage />,
         errorElement: <NotFoundPage />,
       },
     ],
