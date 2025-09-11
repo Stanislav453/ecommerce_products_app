@@ -44,13 +44,18 @@ export const ProdDetailContainer = () => {
   return (
     <section>
       <PageSection>
-        <NavLink to="/" className="font-bold underline	">
+        <NavLink to="/" className="text-theme-gray-font underline">
           Home
-        </NavLink>/
-        <NavLink to="/" className="font-bold underline	">
+        </NavLink>
+        <span> / </span>
+        <NavLink
+          to={`/Category/${data.category}`}
+          className="text-theme-gray-font underline"
+        >
           {data.category}
-        </NavLink>/
-        <h1 className="font-medium">{data.title}</h1>
+        </NavLink>
+        <span> / </span>
+        <h1 className="inline">{data.title}</h1>
       </PageSection>
       <div className="flex flex-col items-center">
         <ProdDetailViews data={data} />
