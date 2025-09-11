@@ -23,13 +23,25 @@ export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
         <div>
           <h1 className="font-bold text-3xl">{title}</h1>
           <p className="font-bold text-xl my-4">${price}</p>
+          <div>
           <RatingContainer rating={rating} />
+
+          </div>
           <p className="my-2 text-theme-gray-font ">{description}</p>
           <div className="mb-2">PLACE FOR COUNT MANAGER</div>
           <div className="border-t border-theme-gray-border"></div>
           <div className="flex mt-2">
-            <p>CATEGORY: {category} </p>
-            <p className="pl-2">TAGS: {tags.map((tag: string) => tag + " ")}</p>
+            <p>
+              {" "}
+              <span className="font-medium">CATEGORY: </span>
+              <span className="text-theme-gray-font">{category}</span>
+            </p>
+            <p className="pl-2">
+              <span className="font-medium">TAGS: </span>{" "}
+              <span className="text-theme-gray-font">
+                {tags.map((tag: string) => tag + " ")}
+              </span>
+            </p>
           </div>
         </div>
       </article>
