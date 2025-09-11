@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
 import { Category, ProductSummaryResponse } from "../../type";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/useFetch";
 import { fetchArgs } from "../../fetchArgs";
@@ -41,7 +41,17 @@ export const ShopContainer = () => {
 
   return (
     <section>
-      <PageSection>
+      <PageSection> 
+        <ul className="flex gap-2 mb-3">
+          <li>
+            <Link to="/">
+              <span className="underline text-theme-gray-font">Home</span> /{" "}
+            </Link>
+          </li>
+          <li>
+            <Link to="/shop">Shop</Link>
+          </li>
+        </ul>
         <h1 className="font-bold text-3xl">Shop</h1>
       </PageSection>
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">
