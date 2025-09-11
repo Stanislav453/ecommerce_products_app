@@ -1,11 +1,3 @@
-import React from 'react'
+import { CategoryContainer } from "../../Components/CategoryContainer";
 
-const CategoryPage = () => {
-  return (
-    <div>
-      this is category
-    </div>
-  )
-}
-
-export default CategoryPage
+export const CategoryPage = () => <CategoryContainer />;
