@@ -42,14 +42,14 @@ export const ProdDescContainer = ({
           </button>
         </li>
       </ul>
-      <ul className="  w-full">
+      <div className="  w-full">
         <SelectedValue
           value={value}
           title={title}
           description={description}
           reviews={reviews}
         />
-      </ul>
+      </div>
     </article>
   );
 };
