@@ -1,4 +1,4 @@
-import { ArgsOptions, Category } from "./type";
+import { ArgsOptions, Category } from "../../type";
 
 type FetchArgsProps = {
   selectedValue: Category;
