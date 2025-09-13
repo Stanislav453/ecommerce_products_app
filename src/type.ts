@@ -25,11 +25,11 @@ export enum ProdNav {
 }
 
 export enum Category {
-  All = "All",
-  Beauty = "Beauty",
-  Fragrances = "Fragrances",
-  Furniture = "Furniture",
-  Groceries = "Groceries",
+  All = "all",
+  Beauty = "beauty",
+  Fragrances = "fragrances",
+  Furniture = "furniture",
+  Groceries = "groceries",
 }
 
 export interface ProdDesc {

@@ -5,8 +5,8 @@ import { Category, ProductSummaryResponse } from "../../type";
 import { Link, NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/useFetch";
-import { fetchArgs } from "../../fetchArgs";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
+import { fetchArgs } from "./fetchArgs";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
