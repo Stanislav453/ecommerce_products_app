@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { API_URL } from "../apiUrl";
+import { API_URL } from "../../apiUrl";
 
 type FetchDataProps<T> = {
   path: string;

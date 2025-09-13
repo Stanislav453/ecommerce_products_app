@@ -4,7 +4,7 @@ import { PageSection } from "../../Components/PageSection";
 import { Category, ProductSummaryResponse } from "../../type";
 import { Link, NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
-import { useFetch } from "../../api/ApiActions/useFetch";
+import { useFetch } from "../../api/ApiActions/fetchData/useFetch";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
 import { fetchShopArgs } from "./fetchShopArgs";
 

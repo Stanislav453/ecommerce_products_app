@@ -1,6 +1,6 @@
 import { Link, NavLink, useParams } from "react-router-dom";
 import { ShopItems } from "./Shop/ShopItems";
-import { useFetch } from "../api/ApiActions/useFetch";
+import { useFetch } from "../api/ApiActions/fetchData/useFetch";
 import { CategoryNames, ProductSummaryResponse } from "../type";
 import loadingSpinner from "../../public/loadingSpinner.svg";
 import { PageSection } from "./PageSection";

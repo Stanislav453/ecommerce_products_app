@@ -3,7 +3,7 @@ import { ProductDetailResponse } from "../../type";
 import { PageSection } from "../PageSection";
 import { ProdDescContainer } from "./ProdDescContainer";
 import { ProdDetailViews } from "./ProdDetailViews";
-import { useFetch } from "../../api/ApiActions/useFetch";
+import { useFetch } from "../../api/ApiActions/fetchData/useFetch";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
 
 export const ProdDetailContainer = () => {

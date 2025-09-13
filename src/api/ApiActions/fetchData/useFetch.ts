@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AxiosError } from "axios";
-import { FetchOptions } from "../../type";
-import { setPath } from "../setPath";
+import { FetchOptions } from "../../../type";
+import { setPath } from "../../setPath";
 import { fetchData } from "./fetchData";
 
 export const useFetch = <T>(args: FetchOptions) => {
