@@ -6,12 +6,12 @@ import { Link, NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/useFetch";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
-import { fetchArgs } from "./fetchArgs";
+import { fetchShopArgs } from "./fetchShopArgs";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
-  const { args } = fetchArgs({ selectedValue });
+  const { args } = fetchShopArgs({ selectedValue });
 
   const { data, loading, error } = useFetch<ProductSummaryResponse>(args);
 
@@ -41,7 +41,7 @@ export const ShopContainer = () => {
 
   return (
     <section>
-      <PageSection> 
+      <PageSection>
         <ul className="flex gap-2 mb-3">
           <li>
             <Link to="/">

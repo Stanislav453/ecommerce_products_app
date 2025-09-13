@@ -4,7 +4,7 @@ type FetchArgsProps = {
   selectedValue: Category;
 };
 
-export const fetchArgs = ({ selectedValue }: FetchArgsProps) => {
+export const fetchShopArgs = ({ selectedValue }: FetchArgsProps) => {
   const args: ArgsOptions =
     selectedValue === Category.All
       ? {
