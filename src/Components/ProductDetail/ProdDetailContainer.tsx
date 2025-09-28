@@ -5,6 +5,7 @@ import { ProdDescContainer } from "./ProdDescContainer";
 import { ProdDetailViews } from "./ProdDetailViews";
 import { useFetch } from "../../api/ApiActions/fetchData/useFetch";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
+import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbs";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
@@ -43,8 +44,10 @@ export const ProdDetailContainer = () => {
 
   return (
     <section>
-      <PageSection>
-        <NavLink to="/" className="text-theme-gray-font underline">
+      <BreadCrumbs />
+
+      {/* <PageSection> */}
+      {/* <NavLink to="/" className="text-theme-gray-font underline">
           Home
         </NavLink>
         <span> / </span>
@@ -55,8 +58,8 @@ export const ProdDetailContainer = () => {
           {data.category}
         </NavLink>
         <span> / </span>
-        <h1 className="inline">{data.title}</h1>
-      </PageSection>
+        <h1 className="inline">{data.title}</h1> */}
+      {/* </PageSection> */}
       <div className="flex flex-col items-center">
         <ProdDetailViews data={data} />
         <ProdDescContainer

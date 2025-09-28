@@ -7,6 +7,7 @@ import {
   IoAppsSharp,
 } from "react-icons/io5";
 import { Footer } from "../Footer/Footer";
+import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbs";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
@@ -16,7 +17,6 @@ export const Navigation = () => {
   return (
     <>
       <div className="flex flex-col items-center">
-        
         <div className=" w-full max-w-screen-xl flex justify-between items-center py-5 px-3">
           <NavLink className="font-bold text-2xl" to="/">
             Glowzy.
@@ -73,6 +73,7 @@ export const Navigation = () => {
           </nav>
         </div>
       </div>
+      <BreadCrumbs />
       <Outlet />
       <Footer />
     </>
