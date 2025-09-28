@@ -7,13 +7,28 @@ import { ShopFilter } from "./ShopFilter";
 import { useFetch } from "../../api/ApiActions/fetchData/useFetch";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
 import { fetchShopArgs } from "./fetchShopArgs";
+import { fetchProducts } from "../../api/fetchProducts";
+import { useQuery } from "@tanstack/react-query";
+import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbs";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
   const { args } = fetchShopArgs({ selectedValue });
 
-  const { data, loading, error } = useFetch<ProductSummaryResponse>(args);
+  // const { data, loading, error } = useFetch<ProductSummaryResponse>(args);
+
+  const { data, error, isLoading } = useQuery({
+    queryKey: ["products"],
+    queryFn: fetchProducts,
+    staleTime: 1000 * 60 * 5,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
+
+  if (data == null) return null;
+
+  console.log(data?.data.products);
 
   if (error)
     return (
@@ -29,7 +44,7 @@ export const ShopContainer = () => {
       </div>
     );
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="flex justify-center">
         <img className="w-11" src={loadingSpinner} alt="loadingSpinner" />
@@ -42,6 +57,7 @@ export const ShopContainer = () => {
   return (
     <section>
       <PageSection>
+        <BreadCrumbs />
         <ul className="flex gap-2 mb-3">
           <li>
             <Link to="/">
@@ -58,12 +74,12 @@ export const ShopContainer = () => {
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
             This is products
-            <p>Showing 1 - {data.products.length} results</p>
+            <p>Showing 1 - {data.data.products.length} results</p>
           </div>
           <ShopFilter setselectedValue={setselectedValue} />
         </div>
       </div>
-      <ShopItems shopList={data.products} />
+      <ShopItems shopList={data.data.products} />
     </section>
   );
 };
