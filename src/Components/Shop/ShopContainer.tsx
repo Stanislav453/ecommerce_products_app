@@ -4,12 +4,10 @@ import { PageSection } from "../../Components/PageSection";
 import { Category, ProductSummaryResponse } from "../../type";
 import { Link, NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
-import { useFetch } from "../../api/ApiActions/fetchData/useFetch";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
 import { fetchShopArgs } from "./fetchShopArgs";
 import { fetchProducts } from "../../api/fetchProducts";
 import { useQuery } from "@tanstack/react-query";
-import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbs";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
@@ -57,8 +55,7 @@ export const ShopContainer = () => {
   return (
     <section>
       <PageSection>
-        <BreadCrumbs />
-        <ul className="flex gap-2 mb-3">
+        {/* <ul className="flex gap-2 mb-3">
           <li>
             <Link to="/">
               <span className="underline text-theme-gray-font">Home</span> /{" "}
@@ -67,7 +64,7 @@ export const ShopContainer = () => {
           <li>
             <Link to="/shop">Shop</Link>
           </li>
-        </ul>
+        </ul> */}
         <h1 className="font-bold text-3xl">Shop</h1>
       </PageSection>
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">

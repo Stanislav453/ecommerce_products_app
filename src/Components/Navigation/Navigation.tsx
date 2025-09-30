@@ -7,7 +7,7 @@ import {
   IoAppsSharp,
 } from "react-icons/io5";
 import { Footer } from "../Footer/Footer";
-import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbs";
+import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbsContainer";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
