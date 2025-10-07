@@ -7,6 +7,8 @@ import { ShopFilter } from "./ShopFilter";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
 import { fetchShopArgs } from "./fetchShopArgs";
 import { ShopRepository } from "../../api/ShopRepository";
+import { ApiCallError } from "../ui/ApiCallError";
+import { ApiCallLoading } from "../ui/ApiCallLoading";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
@@ -16,29 +18,11 @@ export const ShopContainer = () => {
   const { data, error, isLoading } =
     ShopRepository.ShopProductsSummury.useQuery();
 
-  if (error)
-    return (
-      <div className="flex flex-col w-full items-center mt-28">
-        <p className="text-red-600">Something is wrong.</p>
-        <p>
-          Please go to
-          <NavLink to="/" className="font-bold underline	">
-            Home
-          </NavLink>
-          and try it later.
-        </p>
-      </div>
-    );
+  if (error) return <ApiCallError />;
 
-  if (isLoading) {
-    return (
-      <div className="flex justify-center">
-        <img className="w-11" src={loadingSpinner} alt="loadingSpinner" />
-      </div>
-    );
-  }
+  if (isLoading) return <ApiCallLoading />;
 
-  if (!data) return <p>No data</p>;
+  if (!data) return <ApiCallError />;
 
   if (data === null) return null;
 
