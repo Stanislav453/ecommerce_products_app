@@ -1,32 +1,20 @@
 import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
-import { Category, ProductSummaryResponse } from "../../type";
+import { Category } from "../../type";
 import { Link, NavLink } from "react-router";
 import { ShopFilter } from "./ShopFilter";
 import loadingSpinner from "../../../public/loadingSpinner.svg";
 import { fetchShopArgs } from "./fetchShopArgs";
-import { fetchProducts } from "../../api/fetchProducts";
-import { useQuery } from "@tanstack/react-query";
+import { ShopRepository } from "../../api/ShopRepository";
 
 export const ShopContainer = () => {
   const [selectedValue, setselectedValue] = useState<Category>(Category.All);
 
   const { args } = fetchShopArgs({ selectedValue });
 
-  // const { data, loading, error } = useFetch<ProductSummaryResponse>(args);
-
-  const { data, error, isLoading } = useQuery({
-    queryKey: ["products"],
-    queryFn: fetchProducts,
-    staleTime: 1000 * 60 * 5,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-  });
-
-  if (data == null) return null;
-
-  console.log(data?.data.products);
+  const { data, error, isLoading } =
+    ShopRepository.ShopProductsSummury.useQuery();
 
   if (error)
     return (
@@ -50,33 +38,25 @@ export const ShopContainer = () => {
     );
   }
 
+  if (!data) return <p>No data</p>;
+
   if (data === null) return null;
 
   return (
     <section>
       <PageSection>
-        {/* <ul className="flex gap-2 mb-3">
-          <li>
-            <Link to="/">
-              <span className="underline text-theme-gray-font">Home</span> /{" "}
-            </Link>
-          </li>
-          <li>
-            <Link to="/shop">Shop</Link>
-          </li>
-        </ul> */}
         <h1 className="font-bold text-3xl">Shop</h1>
       </PageSection>
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
             This is products
-            <p>Showing 1 - {data.data.products.length} results</p>
+            <p>Showing 1 - {data.products.length} results</p>
           </div>
           <ShopFilter setselectedValue={setselectedValue} />
         </div>
       </div>
-      <ShopItems shopList={data.data.products} />
+      <ShopItems shopList={data.products} />
     </section>
   );
 };
