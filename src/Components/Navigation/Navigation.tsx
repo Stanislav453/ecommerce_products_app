@@ -7,7 +7,6 @@ import {
   IoAppsSharp,
 } from "react-icons/io5";
 import { Footer } from "../Footer/Footer";
-import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbsContainer";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
@@ -73,7 +72,6 @@ export const Navigation = () => {
           </nav>
         </div>
       </div>
-      <BreadCrumbs />
       <Outlet />
       <Footer />
     </>
