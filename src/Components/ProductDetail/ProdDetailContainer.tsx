@@ -1,63 +1,29 @@
-import { NavLink, useSearchParams } from "react-router";
-import { ProductDetailResponse } from "../../type";
-import { PageSection } from "../PageSection";
+import { useSearchParams } from "react-router";
 import { ProdDescContainer } from "./ProdDescContainer";
 import { ProdDetailViews } from "./ProdDetailViews";
-import { useFetch } from "../../api/ApiActions/fetchData/useFetch";
-import loadingSpinner from "../../../public/loadingSpinner.svg";
-import { BreadCrumbs } from "../BreadCrumbs/BreadCrumbsContainer";
+import { shopRepository } from "../../api/shopRepository";
+import { ApiCallError } from "../ui/ApiCallError";
+import { ApiCallLoading } from "../ui/ApiCallLoading";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  const { data, loading, error } = useFetch<ProductDetailResponse>({
-    kind: "product",
-    id: id,
-    query:
-      "?select=id,title,images,price,rating,description,category,tags,reviews",
-  });
+  if (id === null) return <ApiCallError />;
 
-  if (error)
-    return (
-      <div className="flex flex-col w-full items-center mt-28">
-        <p className="text-red-600">Something is wrong.</p>
-        <p>
-          Please go to
-          <NavLink to="/" className="font-bold underline	">
-            Home
-          </NavLink>
-          and try it later.
-        </p>
-      </div>
-    );
+  const { data, isLoading, error } =
+    shopRepository.shopProductDetail.useQuery(id);
 
-  if (loading) {
-    return (
-      <div className="flex justify-center">
-        <img className="w-11" src={loadingSpinner} alt="loadingSpinner" />
-      </div>
-    );
-  }
+  if (error) return <ApiCallError />;
+
+  if (isLoading) return <ApiCallLoading />;
 
   if (data === null) return null;
 
+  if (!data) return <ApiCallError />;
+
   return (
     <section>
-      {/* <PageSection> */}
-      {/* <NavLink to="/" className="text-theme-gray-font underline">
-          Home
-        </NavLink>
-        <span> / </span>
-        <NavLink
-          to={`/Category/${data.category}`}
-          className="text-theme-gray-font underline"
-        >
-          {data.category}
-        </NavLink>
-        <span> / </span>
-        <h1 className="inline">{data.title}</h1> */}
-      {/* </PageSection> */}
       <div className="flex flex-col items-center">
         <ProdDetailViews data={data} />
         <ProdDescContainer
