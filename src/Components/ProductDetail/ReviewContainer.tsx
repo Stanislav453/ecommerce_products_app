@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { putData } from "../../api/PutAction/putData";
 
 export const ReviewContainer = () => {

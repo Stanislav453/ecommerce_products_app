@@ -1,8 +1,6 @@
 import { ProdNav, type Reviews } from "../../type";
 import { RatingContainer } from "../Shop/RatingContainer";
 import defaultAvatar from "../../../public/default-avatar.jpg";
-import { useState } from "react";
-import { putData } from "../../api/PutAction/putData";
 import { ReviewContainer } from "./ReviewContainer";
 
 interface SelectedValueProps {
@@ -18,10 +16,6 @@ export const SelectedValue = ({
   reviews,
   value,
 }: SelectedValueProps) => {
-
-
-
-
   switch (value) {
     case ProdNav.Description:
       return (
@@ -66,6 +60,6 @@ export const SelectedValue = ({
       );
 
     default:
-      null;
+      return null;
   }
 };
