@@ -1,12 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import { getSummuryProducts } from "./ShopApiCalls";
+import { getProductDetail, getSummuryProducts } from "./shopApiCalls";
 
-export const ShopRepository = {
-  ShopProductsSummury: {
+export const shopRepository = {
+  shopProductsSummury: {
     useQuery: () =>
       useQuery({
         queryKey: ["products"],
         queryFn: () => getSummuryProducts(),
+      }),
+  },
+  shopProductDetail: {
+    useQuery: (id: string | null) =>
+      useQuery({
+        queryKey: ["productDetail"],
+        queryFn: () => getProductDetail(id),
       }),
   },
 };
