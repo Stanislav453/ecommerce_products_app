@@ -1,20 +1,12 @@
-import { useState } from "react";
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
-import { Category } from "../../type";
-import { ShopFilter } from "./ShopFilter";
-import { fetchShopArgs } from "./fetchShopArgs";
-import { ShopRepository } from "../../api/ShopRepository";
+import { shopRepository } from "../../api/shopRepository";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 
 export const ShopContainer = () => {
-  const [selectedValue, setselectedValue] = useState<Category>(Category.All);
-
-  const { args } = fetchShopArgs({ selectedValue });
-
   const { data, error, isLoading } =
-    ShopRepository.ShopProductsSummury.useQuery();
+    shopRepository.shopProductsSummury.useQuery();
 
   if (error) return <ApiCallError />;
 
@@ -35,7 +27,6 @@ export const ShopContainer = () => {
             This is products
             <p>Showing 1 - {data.products.length} results</p>
           </div>
-          <ShopFilter setselectedValue={setselectedValue} />
         </div>
       </div>
       <ShopItems shopList={data.products} />
