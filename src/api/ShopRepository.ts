@@ -1,12 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductDetail, getSummuryProducts } from "./shopApiCalls";
+import { getProductDetail } from "./shopApiCalls";
+import { ProductSummaryResponse } from "../type";
 
 export const shopRepository = {
   shopProductsSummury: {
-    useQuery: () =>
+    useQuery: (fetchData: Promise<ProductSummaryResponse>) =>
       useQuery({
         queryKey: ["products"],
-        queryFn: () => getSummuryProducts(),
+        queryFn: () => fetchData,
       }),
   },
   shopProductDetail: {
