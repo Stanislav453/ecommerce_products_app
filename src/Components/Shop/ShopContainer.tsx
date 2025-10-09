@@ -3,10 +3,18 @@ import { PageSection } from "../../Components/PageSection";
 import { shopRepository } from "../../api/shopRepository";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
+import { ShopFilter } from "./ShopFilter";
+import { useState } from "react";
+import { fetchShopArgs } from "./fetchShopArgs";
+import { Category } from "../../type";
 
 export const ShopContainer = () => {
-  const { data, error, isLoading } =
-    shopRepository.shopProductsSummury.useQuery();
+  const [selectFilterValue, setselectedValue] = useState(Category.All);
+
+  const { args } = fetchShopArgs({ selectedValue: selectFilterValue });
+
+  const { data, error, isLoading, refetch } =
+    shopRepository.shopProductsSummury.useQuery(args);
 
   if (error) return <ApiCallError />;
 
@@ -20,12 +28,19 @@ export const ShopContainer = () => {
     <section>
       <PageSection>
         <h1 className="font-bold text-3xl">Shop</h1>
+        <button onClick={() => refetch()}>Refetch</button>
       </PageSection>
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
             This is products
             <p>Showing 1 - {data.products.length} results</p>
+          </div>
+          <div>
+            <ShopFilter
+              refetchCache={refetch}
+              setselectedValue={setselectedValue}
+            />
           </div>
         </div>
       </div>
