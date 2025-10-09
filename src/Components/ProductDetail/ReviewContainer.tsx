@@ -2,7 +2,6 @@ import { useState } from "react";
 import { putData } from "../../api/PutAction/putData";
 
 export const ReviewContainer = () => {
-    
   const [review, setReview] = useState({
     comment: "",
     author: "",
@@ -10,10 +9,8 @@ export const ReviewContainer = () => {
     saveUserInfo: false,
   });
 
-  const handlerSubmit = (e: any) => {
+  const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log("submit review");
 
     console.log(review);
 
@@ -100,4 +97,3 @@ export const ReviewContainer = () => {
     </div>
   );
 };
-
