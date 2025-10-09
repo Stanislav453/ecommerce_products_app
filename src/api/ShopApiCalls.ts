@@ -1,10 +1,24 @@
 import axios from "axios";
-import { ProductDetailResponse, ProductSummaryResponse } from "../type";
+import {
+  Category,
+  ProductDetailResponse,
+  ProductSummaryResponse,
+} from "../type";
 
 export const getSummuryProducts = async (): Promise<ProductSummaryResponse> => {
   return (
     await axios.get(
       "https://dummyjson.com/products?select=title,price,rating,thumbnail"
+    )
+  ).data;
+};
+
+export const getSummuryProductsCategory = async (
+  category: Category
+): Promise<ProductSummaryResponse> => {
+  return (
+    await axios.get(
+      `https://dummyjson.com/products/category/${category}?select=title,price,rating,thumbnail`
     )
   ).data;
 };
