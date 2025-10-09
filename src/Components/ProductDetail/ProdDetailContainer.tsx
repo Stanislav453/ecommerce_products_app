@@ -11,12 +11,12 @@ export const ProdDetailContainer = () => {
 
   if (id === null) return <ApiCallError />;
 
-  const { data, isLoading, error } =
+  const { data, isLoading, error, isFetching } =
     shopRepository.shopProductDetail.useQuery(id);
 
   if (error) return <ApiCallError />;
 
-  if (isLoading) return <ApiCallLoading />;
+  if (isLoading || isFetching) return <ApiCallLoading />;
 
   if (data === null) return null;
 

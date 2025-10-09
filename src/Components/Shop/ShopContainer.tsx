@@ -13,12 +13,12 @@ export const ShopContainer = () => {
 
   const { args } = fetchShopArgs({ selectedValue: selectFilterValue });
 
-  const { data, error, isLoading, refetch } =
+  const { data, error, isLoading, isFetching, refetch } =
     shopRepository.shopProductsSummury.useQuery(args);
 
   if (error) return <ApiCallError />;
 
-  if (isLoading) return <ApiCallLoading />;
+  if (isLoading || isFetching) return <ApiCallLoading />;
 
   if (!data) return <ApiCallError />;
 
