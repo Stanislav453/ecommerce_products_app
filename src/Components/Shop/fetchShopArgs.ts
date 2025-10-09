@@ -1,21 +1,18 @@
-import { ArgsOptions, Category } from "../../type";
+import { Category, ProductSummaryResponse } from "../../type";
+import {
+  getSummuryProducts,
+  getSummuryProductsCategory,
+} from "../../api/shopApiCalls";
 
 type FetchArgsProps = {
   selectedValue: Category;
 };
 
 export const fetchShopArgs = ({ selectedValue }: FetchArgsProps) => {
-  const args: ArgsOptions =
+  const args: Promise<ProductSummaryResponse>  =
     selectedValue === Category.All
-      ? {
-          kind: "products",
-          query: "?select=id,title,thumbnail,price,rating,description",
-        }
-      : {
-          kind: "category",
-          name: selectedValue,
-          query: "?select=id,title,thumbnail,price,rating,description",
-        };
+      ? getSummuryProducts()
+      : getSummuryProductsCategory(selectedValue);
 
   return { args };
 };
