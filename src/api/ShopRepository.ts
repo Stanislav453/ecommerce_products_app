@@ -9,10 +9,6 @@ export const shopRepository = {
       useQuery({
         queryKey: ["products", category],
         queryFn: () => fetchShopArgs(category),
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: false,
-        retry: 1,
-        staleTime: 10 * 60 * 1000,
       }),
   },
   shopProductDetail: {
@@ -20,6 +16,7 @@ export const shopRepository = {
       useQuery({
         queryKey: ["productDetail"],
         queryFn: () => getProductDetail(id),
+        refetchOnMount: "always",
       }),
   },
 };
