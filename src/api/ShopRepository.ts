@@ -14,9 +14,9 @@ export const shopRepository = {
   shopProductDetail: {
     useQuery: (id: string | null) =>
       useQuery({
-        queryKey: ["productDetail"],
+        queryKey: ["productDetail", id],
         queryFn: () => getProductDetail(id),
-        refetchOnMount: "always",
+        enabled: !!id,
       }),
   },
 };
