@@ -2,7 +2,6 @@ import { Category } from "../../type";
 
 interface ShopFilterFetcherProps {
   setselectedValue: (category: Category) => void;
-  refetchCache: () => void
 }
 
 const shopListCategory = [
@@ -13,18 +12,14 @@ const shopListCategory = [
   Category.Groceries,
 ];
 
-export const ShopFilter = ({
-  setselectedValue,
-  refetchCache
-}: ShopFilterFetcherProps) => {
+export const ShopFilter = ({ setselectedValue }: ShopFilterFetcherProps) => {
   return (
     <select
       name="category-filter"
       onChange={(e) => setselectedValue(e.target.value as Category)}
-      onClick={ () => refetchCache() }
     >
       <option value="">category</option>
-      {shopListCategory.map((category: string, index: number) => {
+      {shopListCategory.map((category: Category, index: number) => {
         return (
           <option key={index} value={category}>
             {category}

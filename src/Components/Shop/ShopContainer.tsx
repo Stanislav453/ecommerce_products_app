@@ -34,10 +34,7 @@ export const ShopContainer = () => {
             <p>Showing 1 - {data.products.length} results</p>
           </div>
           <div>
-            <ShopFilter
-              refetchCache={refetch}
-              setselectedValue={setselectedValue}
-            />
+            <ShopFilter setselectedValue={setselectedValue} />
           </div>
         </div>
       </div>
