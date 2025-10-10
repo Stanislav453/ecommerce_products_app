@@ -5,16 +5,13 @@ import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
 import { useState } from "react";
-import { fetchShopArgs } from "./fetchShopArgs";
 import { Category } from "../../type";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState(Category.All);
 
-  const { args } = fetchShopArgs({ selectedValue: selectFilterValue });
-
   const { data, error, isLoading, isFetching, refetch } =
-    shopRepository.shopProductsSummury.useQuery(args);
+    shopRepository.shopProductsSummury.useQuery(selectFilterValue);
 
   if (error) return <ApiCallError />;
 

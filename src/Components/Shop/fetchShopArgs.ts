@@ -4,15 +4,11 @@ import {
   getSummuryProductsCategory,
 } from "../../api/shopApiCalls";
 
-type FetchArgsProps = {
-  selectedValue: Category;
-};
 
-export const fetchShopArgs = ({ selectedValue }: FetchArgsProps) => {
-  const args: Promise<ProductSummaryResponse>  =
-    selectedValue === Category.All
-      ? getSummuryProducts()
-      : getSummuryProductsCategory(selectedValue);
-
-  return { args };
+export const fetchShopArgs = (
+  selectedValue: Category
+): Promise<ProductSummaryResponse> => {
+  return selectedValue === Category.All
+    ? getSummuryProducts()
+    : getSummuryProductsCategory(selectedValue);
 };
