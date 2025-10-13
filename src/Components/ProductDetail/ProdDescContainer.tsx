@@ -3,12 +3,14 @@ import { ProdNav, Reviews } from "../../type";
 import { SelectedValue } from "./SelectedValue";
 
 type ProdDescContainerProps = {
+  id: string
   title: string;
   reviews: Reviews[];
   description: string;
 };
 
 export const ProdDescContainer = ({
+  id,
   title,
   reviews,
   description,
@@ -48,6 +50,7 @@ export const ProdDescContainer = ({
           title={title}
           description={description}
           reviews={reviews}
+          id={id}
         />
       </div>
     </article>
