@@ -129,3 +129,11 @@ export type FetchOptions =
   | FetchCategory;
 
 export type ArgsOptions = FetchProducts | FetchCategory;
+
+export type UserReview = {
+  id: string;
+  comment: string;
+  author: string;
+  email: string;
+  saveUserInfo: boolean;
+};
