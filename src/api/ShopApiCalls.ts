@@ -3,6 +3,7 @@ import {
   Category,
   ProductDetailResponse,
   ProductSummaryResponse,
+  UserReview,
 } from "../type";
 
 export const getSummuryProducts = async (): Promise<ProductSummaryResponse> => {
@@ -29,6 +30,15 @@ export const getProductDetail = async (
   return (
     await axios.get(
       `https://dummyjson.com/products/${id}?select=id,title,images,price,rating,description,category,tags,reviews`
+    )
+  ).data;
+};
+
+export const updateReviews = async (newRelease: UserReview) => {
+  return (
+    await axios.put(
+      `https://dummyjson.com/products/${newRelease.id}`,
+      newRelease
     )
   ).data;
 };
