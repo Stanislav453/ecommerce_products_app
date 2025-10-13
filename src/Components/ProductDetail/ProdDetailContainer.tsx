@@ -30,6 +30,7 @@ export const ProdDetailContainer = () => {
           title={data.title}
           description={data.description}
           reviews={data.reviews}
+          id={id}
         />
       </div>
     </section>
