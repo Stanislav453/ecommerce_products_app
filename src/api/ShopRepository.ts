@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
-import { getProductDetail } from "./shopApiCalls";
-import { Category } from "../type";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getProductDetail, updateReviews } from "./shopApiCalls";
+import { Category, UserReview } from "../type";
 import { fetchShopArgs } from "../Components/Shop/fetchShopArgs";
+import { queryClient } from "../queryClient";
 
 export const shopRepository = {
   shopProductsSummury: {
@@ -17,6 +18,16 @@ export const shopRepository = {
         queryKey: ["productDetail", id],
         queryFn: () => getProductDetail(id),
         enabled: !!id,
+      }),
+  },
+  updateProductReviews: {
+    useMutation: (id: string) =>
+      useMutation({
+        mutationKey: ["updateProductReviews", id],
+        mutationFn: (newReview: UserReview) => updateReviews(newReview),
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: ["productDetail", id] });
+        },
       }),
   },
 };
