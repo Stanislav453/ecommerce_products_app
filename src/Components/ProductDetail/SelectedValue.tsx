@@ -4,6 +4,7 @@ import defaultAvatar from "../../../public/default-avatar.jpg";
 import { ReviewContainer } from "./ReviewContainer";
 
 interface SelectedValueProps {
+  id: string,
   title: string;
   value: ProdNav;
   description: string;
@@ -11,6 +12,7 @@ interface SelectedValueProps {
 }
 
 export const SelectedValue = ({
+  id,
   title,
   description,
   reviews,
@@ -55,7 +57,7 @@ export const SelectedValue = ({
               );
             })}
           </ul>
-          <ReviewContainer />
+          <ReviewContainer id={id} />
         </>
       );
 
