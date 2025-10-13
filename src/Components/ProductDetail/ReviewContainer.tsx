@@ -1,20 +1,24 @@
 import { useState } from "react";
-import { putData } from "../../api/PutAction/putData";
+import { shopRepository } from "../../api/shopRepository";
+import { Toast } from "../Toast/Toast";
 
-export const ReviewContainer = () => {
+type ReviewContainerProps = {
+  id: string;
+};
+
+export const ReviewContainer = ({ id }: ReviewContainerProps) => {
   const [review, setReview] = useState({
+    id: id,
     comment: "",
     author: "",
     email: "",
     saveUserInfo: false,
   });
+  const { mutate } = shopRepository.updateProductReviews.useMutation(id);
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    console.log(review);
-
-    putData();
+    mutate(review);
   };
 
   return (
