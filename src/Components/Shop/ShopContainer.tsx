@@ -11,7 +11,7 @@ export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState(Category.All);
 
   const { data, error, isLoading, isFetching } =
-    shopRepository.shopProductsSummury.useQuery(selectFilterValue);
+    shopRepository.shopProductsSummury(selectFilterValue);
 
   if (error) return <ApiCallError />;
 
