@@ -44,8 +44,17 @@ export interface ProductSummary extends ProdDesc {
   price: number;
   rating: number;
 }
+
+export type ProductView = {
+  id: string;
+  title: string;
+  thumbnail: string;
+  price: number;
+  rating: number;
+};
+
 export interface ProductSummaryResponse {
-  products: ProductSummary[];
+  products: ProductView[];
 }
 
 export interface Product extends ProductSummary {
@@ -67,10 +76,8 @@ export interface Product extends ProductSummary {
   images: string[];
 }
 
-export interface ProductDetailResponse extends ProductSummary {
-  images: string;
-  tags: string[];
-  category: Category;
+export interface ProductDetailResponse {
+  products: ProductSummary[];
 }
 
 export interface Order {
@@ -91,15 +98,15 @@ export type ProductQuery =
   | ""
   | "?select=id,title,thumbnail,price,rating,description";
 
-export type CategoryQuery =
-  | ""
-  | "?select=id,title,thumbnail,price,rating,description";
+export type CategoryQuery = {
+  select: "id,title,thumbnail,price,rating";
+};
 
 export type CategoriesQuery = "";
 
-export type DetailQuery =
-  | ""
-  | "?select=id,title,images,price,rating,description,category,tags,reviews";
+export type DetailQuery = {
+  select: "id,title,images,price,rating,description,category,tags,reviews";
+};
 
 export type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
 
@@ -137,3 +144,5 @@ export type UserReview = {
   email: string;
   saveUserInfo: boolean;
 };
+
+export type ParamsType = DetailQuery | CategoryQuery;

@@ -13,12 +13,14 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
     email: "",
     saveUserInfo: false,
   });
-  const { mutate } = shopRepository.updateProductReviews.useMutation(id);
+  const { mutate, status } = shopRepository.updateProductReviews(id);
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutate(review);
   };
+
+  console.log("useMutation", status);
 
   return (
     <div>

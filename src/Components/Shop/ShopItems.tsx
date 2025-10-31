@@ -1,9 +1,9 @@
-import { ProductSummary } from "../../type";
+import { ProductView } from "../../type";
 import { NavLink } from "react-router";
 import { RatingContainer } from "./RatingContainer";
 
 interface ShopListProps {
-  shopList: ProductSummary[];
+  shopList: ProductView[];
 }
 
 export const ShopItems = ({ shopList }: ShopListProps) => {
@@ -12,9 +12,8 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
       <div className="w-full max-w-screen-xl flex justify-between px-3">
         <div className="w-full flex">
           <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {shopList?.map((product: ProductSummary, index: number) => {
-              const { id, title, thumbnail, price, rating } =
-                product;
+            {shopList?.map((product: ProductView, index: number) => {
+              const { id, title, thumbnail, price, rating } = product;
               return (
                 <li
                   className="w-full bg-linear-to-r from-cyan-500 to-blue-500"

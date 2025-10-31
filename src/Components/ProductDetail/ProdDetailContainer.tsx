@@ -4,6 +4,7 @@ import { ProdDetailViews } from "./ProdDetailViews";
 import { shopRepository } from "../../api/shopRepository";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
+import { fetchBuilder } from "../../fetchBuilder";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
@@ -12,7 +13,7 @@ export const ProdDetailContainer = () => {
   if (id === null) return <ApiCallError />;
 
   const { data, isLoading, error, isFetching } =
-    shopRepository.shopProductDetail(id)
+    shopRepository.shopProductDetail(id);
 
   if (error) return <ApiCallError />;
 
