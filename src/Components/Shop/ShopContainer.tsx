@@ -1,11 +1,11 @@
 import { ShopItems } from "../../Components/Shop/ShopItems";
 import { PageSection } from "../../Components/PageSection";
-import { shopRepository } from "../../api/shopRepository";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
 import { useState } from "react";
 import { Category } from "../../type";
+import { shopRepository } from "../../api/shopRepository";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState(Category.All);
@@ -21,7 +21,7 @@ export const ShopContainer = () => {
 
   if (data === null) return null;
 
-  
+  console.log("data from ShopRepository", data);
 
   return (
     <section>

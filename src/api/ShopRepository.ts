@@ -13,12 +13,11 @@ export const shopRepository = {
     useQuery({
       queryKey: ["products", category],
       queryFn: () =>
-        fetchBuilder({
+        fetchBuilder<ProductSummaryResponse>({
           method: "GET",
-          category,
-          params: {
-            select: "id,title,thumbnail,price,rating",
-          },
+          variant: "category",
+          categoryName: "beauty",
+          params: "id,title,thumbnail,price,rating",
         }),
     }),
   shopProductDetail: (id: string) =>
@@ -27,11 +26,10 @@ export const shopRepository = {
       queryFn: () =>
         fetchBuilder<ProductDetailResponse>({
           method: "GET",
-          id,
-          params: {
-            select:
-              "id,title,images,price,rating,description,category,tags,reviews",
-          },
+          variant: "product",
+          id: id,
+          params:
+            "id,title,images,price,rating,description,category,tags,reviews",
         }),
       enabled: !!id,
     }),
