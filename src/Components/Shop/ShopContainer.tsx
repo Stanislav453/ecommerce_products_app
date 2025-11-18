@@ -13,15 +13,11 @@ export const ShopContainer = () => {
   const { data, error, isLoading, isFetching } =
     shopRepository.shopProductsSummury(selectFilterValue);
 
-  if (error) return <ApiCallError />;
+  if (error) return <ApiCallError error={error} />;
 
   if (isLoading || isFetching) return <ApiCallLoading />;
 
-  if (!data) return <ApiCallError />;
-
-  if (data === null) return null;
-
-  console.log("data from ShopRepository", data);
+  if (!data) return null;
 
   return (
     <section>
