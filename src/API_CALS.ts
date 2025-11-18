@@ -1,0 +1,1 @@
+export const API_CALS_PRODUCT = "https://dummyjson.com/products"
