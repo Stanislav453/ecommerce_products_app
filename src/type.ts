@@ -4,6 +4,49 @@ interface Dimensions {
   depth: number;
 }
 
+interface FetchMethod {
+  method: "GET" | "POST" | "PUT" | "DELETE" | "";
+}
+
+interface GetActionProduct extends FetchMethod {
+  method: "GET";
+  variant: "product";
+  id: string;
+  params?:
+    | "id,title,images,price,rating,description,category,tags,reviews"
+    | "";
+}
+
+interface GetActionProducts extends FetchMethod {
+  method: "GET";
+  variant: "products";
+  params?: "Karol" | "lenka" | "";
+}
+
+interface GetActionCategory extends FetchMethod {
+  method: "GET";
+  variant: "category";
+  categoryName: "all" | "beauty" | "fragrances" | "furniture" | "groceries";
+  params?: "id,title,thumbnail,price,rating" | "";
+}
+type GetActions = GetActionProduct | GetActionProducts | GetActionCategory;
+
+interface PostAction extends FetchMethod {
+  method: "POST";
+  body: any;
+}
+
+interface PutAction extends FetchMethod {
+  method: "PUT";
+  id: string;
+  body: any;
+}
+
+interface DeleteAction extends FetchMethod {
+  method: "DELETE";
+  id: string;
+}
+
 export interface Reviews {
   rating: number;
   comment: string;
@@ -111,29 +154,25 @@ export type DetailQuery = {
 export type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
 
 export type FetchProducts = {
-  kind: typeof FetchVariant.Products;
+  method: typeof FetchVariant.Products;
   query: ProductQuery;
 };
 export type FetchProduct = {
-  kind: typeof FetchVariant.product;
+  method: typeof FetchVariant.product;
   id: string | null;
   query: DetailQuery;
 };
 export type FetchCategories = {
-  kind: typeof FetchVariant.Categories;
+  method: typeof FetchVariant.Categories;
   query: CategoriesQuery;
 };
 export type FetchCategory = {
-  kind: typeof FetchVariant.Category;
+  method: typeof FetchVariant.Category;
   name: CategoryNames;
   query: CategoryQuery;
 };
 
-export type FetchOptions =
-  | FetchProducts
-  | FetchProduct
-  | FetchCategories
-  | FetchCategory;
+export type FetchOptions = GetActions | PostAction | PutAction | DeleteAction;
 
 export type ArgsOptions = FetchProducts | FetchCategory;
 
