@@ -16,7 +16,7 @@ export const shopRepository = {
         fetchBuilder<ProductSummaryResponse>({
           method: "GET",
           variant: "category",
-          categoryName: "beauty",
+          categoryName: category,
           params: "id,title,thumbnail,price,rating",
         }),
     }),
