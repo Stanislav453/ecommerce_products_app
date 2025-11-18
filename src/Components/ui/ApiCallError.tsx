@@ -1,7 +1,16 @@
+import { AxiosError } from "axios";
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-export const ApiCallError = () => {
+type ApiCallErrorProps = {
+  error: Error | AxiosError;
+};
+
+export const ApiCallError = ({ error }: ApiCallErrorProps) => {
+  if (error) {
+    throw error;
+  }
+
   return (
     <div className="flex flex-col w-full items-center mt-28">
       <p className="text-red-600">Something is wrong.</p>
@@ -15,4 +24,3 @@ export const ApiCallError = () => {
     </div>
   );
 };
-
