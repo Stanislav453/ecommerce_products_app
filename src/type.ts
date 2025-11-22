@@ -4,11 +4,7 @@ interface Dimensions {
   depth: number;
 }
 
-interface FetchMethod {
-  method: "GET" | "POST" | "PUT" | "DELETE" | "";
-}
-
-interface GetActionProduct extends FetchMethod {
+interface GetActionProduct {
   method: "GET";
   variant: "product";
   id: string;
@@ -17,13 +13,12 @@ interface GetActionProduct extends FetchMethod {
     | "";
 }
 
-interface GetActionProducts extends FetchMethod {
+interface GetActionProducts {
   method: "GET";
   variant: "products";
-  params?: "Karol" | "lenka" | "";
+  params?: "id,title,thumbnail,price,rating" | "";
 }
-
-interface GetActionCategory extends FetchMethod {
+interface GetActionCategory {
   method: "GET";
   variant: "category";
   categoryName: "all" | "beauty" | "fragrances" | "furniture" | "groceries";
@@ -31,18 +26,18 @@ interface GetActionCategory extends FetchMethod {
 }
 type GetActions = GetActionProduct | GetActionProducts | GetActionCategory;
 
-interface PostAction extends FetchMethod {
+interface PostAction {
   method: "POST";
   body: any;
 }
 
-interface PutAction extends FetchMethod {
+interface PutAction {
   method: "PUT";
   id: string;
   body: any;
 }
 
-interface DeleteAction extends FetchMethod {
+interface DeleteAction {
   method: "DELETE";
   id: string;
 }
