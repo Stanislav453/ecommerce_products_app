@@ -24,7 +24,7 @@ export enum ProdNav {
   Reviews = "Reviews",
 }
 
-type Category = "all" | "beauty" | "fragrances" | "furniture" | "groceries";
+export type Category = "all" | "beauty" | "fragrances" | "furniture" | "groceries";
 
 export interface ProdDesc {
   description: string;
