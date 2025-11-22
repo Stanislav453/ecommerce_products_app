@@ -4,44 +4,6 @@ interface Dimensions {
   depth: number;
 }
 
-interface GetActionProduct {
-  method: "GET";
-  variant: "product";
-  id: string;
-  params?:
-    | "id,title,images,price,rating,description,category,tags,reviews"
-    | "";
-}
-
-interface GetActionProducts {
-  method: "GET";
-  variant: "products";
-  params?: "id,title,thumbnail,price,rating" | "";
-}
-interface GetActionCategory {
-  method: "GET";
-  variant: "category";
-  categoryName: "all" | "beauty" | "fragrances" | "furniture" | "groceries";
-  params?: "id,title,thumbnail,price,rating" | "";
-}
-type GetActions = GetActionProduct | GetActionProducts | GetActionCategory;
-
-interface PostAction {
-  method: "POST";
-  body: any;
-}
-
-interface PutAction {
-  method: "PUT";
-  id: string;
-  body: any;
-}
-
-interface DeleteAction {
-  method: "DELETE";
-  id: string;
-}
-
 export interface Reviews {
   rating: number;
   comment: string;
@@ -62,13 +24,7 @@ export enum ProdNav {
   Reviews = "Reviews",
 }
 
-export enum Category {
-  All = "all",
-  Beauty = "beauty",
-  Fragrances = "fragrances",
-  Furniture = "furniture",
-  Groceries = "groceries",
-}
+type Category = "all" | "beauty" | "fragrances" | "furniture" | "groceries";
 
 export interface ProdDesc {
   description: string;
@@ -124,53 +80,6 @@ export interface Order {
   desc: string;
 }
 
-export const FetchVariant = {
-  Products: "products",
-  product: "product",
-  Categories: "categories",
-  Category: "category",
-  Query: "query",
-} as const;
-
-export type ProductQuery =
-  | ""
-  | "?select=id,title,thumbnail,price,rating,description";
-
-export type CategoryQuery = {
-  select: "id,title,thumbnail,price,rating";
-};
-
-export type CategoriesQuery = "";
-
-export type DetailQuery = {
-  select: "id,title,images,price,rating,description,category,tags,reviews";
-};
-
-export type CategoryNames = "beauty" | "fragrances" | "furniture" | "groceries";
-
-export type FetchProducts = {
-  method: typeof FetchVariant.Products;
-  query: ProductQuery;
-};
-export type FetchProduct = {
-  method: typeof FetchVariant.product;
-  id: string | null;
-  query: DetailQuery;
-};
-export type FetchCategories = {
-  method: typeof FetchVariant.Categories;
-  query: CategoriesQuery;
-};
-export type FetchCategory = {
-  method: typeof FetchVariant.Category;
-  name: CategoryNames;
-  query: CategoryQuery;
-};
-
-export type FetchOptions = GetActions | PostAction | PutAction | DeleteAction;
-
-export type ArgsOptions = FetchProducts | FetchCategory;
-
 export type UserReview = {
   id: string;
   comment: string;
@@ -178,5 +87,3 @@ export type UserReview = {
   email: string;
   saveUserInfo: boolean;
 };
-
-export type ParamsType = DetailQuery | CategoryQuery;
