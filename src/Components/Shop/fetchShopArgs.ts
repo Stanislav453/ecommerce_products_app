@@ -1,4 +1,4 @@
-import { Category, ProductSummaryResponse } from "../../type";
+import {  Category, ProductSummaryResponse } from "../../type";
 import {
   getSummuryProducts,
   getSummuryProductsCategory,
@@ -8,7 +8,7 @@ import {
 export const fetchShopArgs = (
   selectedValue: Category
 ): Promise<ProductSummaryResponse> => {
-  return selectedValue === Category.All
+  return selectedValue === "all"
     ? getSummuryProducts()
     : getSummuryProductsCategory(selectedValue);
 };
