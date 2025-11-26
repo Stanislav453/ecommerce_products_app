@@ -4,31 +4,24 @@ import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
 import { useState } from "react";
+import { UseGetCategoryQuery } from "../../api/ApiActions/UseGetQuery/UseGetCategoryQuery";
+import { Category } from "../../type";
 // import { shopRepository } from "../../api/shopRepository";
 
 export const ShopContainer = () => {
-  const [selectFilterValue, setselectedValue] = useState("all");
+  const [selectFilterValue, setselectedValue] = useState<Category>("all");
 
-  // const { data, error, isLoading, isFetching } =
-  //   shopRepository.shopProductsSummury(selectFilterValue);
+  const { data, error, isLoading, isFetching } =
+    UseGetCategoryQuery(selectFilterValue);
 
-  // if (error) return <ApiCallError error={error} />;
+  if (error) return <ApiCallError error={error} />;
 
-  // if (isLoading || isFetching) return <ApiCallLoading />;
+  if (isLoading || isFetching) return <ApiCallLoading />;
 
-  // if (!data) return null;
+  if (!data) return null;
 
-
-  //  useQuery({
-  //     queryKey: ["products", category],
-  //     queryFn: () =>
-  //       fetchBuilder<ProductSummaryResponse>({
-  //         method: "GET",
-  //         variant: "category",
-  //         categoryName: category,
-  //         params: "id,title,thumbnail,price,rating",
-  //       }),
-  //   })
+  console.log(data);
+  
 
   return (
     <section>
@@ -39,14 +32,14 @@ export const ShopContainer = () => {
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
             This is products
-            {/* <p>Showing 1 - {data.products.length} results</p> */}
+            <p>Showing 1 - {data.length} results</p>
           </div>
           <div>
             <ShopFilter setselectedValue={setselectedValue} />
           </div>
         </div>
       </div>
-      {/* <ShopItems shopList={data.products} /> */}
+      <ShopItems shopList={data} />
     </section>
   );
 };

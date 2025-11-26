@@ -20,7 +20,7 @@ export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
             alt={title}
           />
         </div>
-        <div>
+      <div>
           <h1 className="font-bold text-3xl">{title}</h1>
           <p className="font-bold text-xl my-4">${price}</p>
           <div>

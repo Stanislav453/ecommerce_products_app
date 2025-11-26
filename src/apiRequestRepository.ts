@@ -1,8 +1,13 @@
 import axios from "axios";
-import { API_URL } from "./api/apiUrl";
+import { Category, ProductView } from "./type";
+import { setCategoryUrl } from "./setCategoryUrl";
 
-export const getProduct = async (id: string) => {
-  const response = await axios.get(`${API_URL}/${id}`);
+export const getProductsCategory = async (
+  category: Category
+): Promise<ProductView[]> => {
+  const url = setCategoryUrl(category);
 
-  return response;
+  const response = await axios.get(url);
+
+  return response.data.products;
 };
