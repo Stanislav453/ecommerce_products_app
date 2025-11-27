@@ -1,0 +1,27 @@
+import axios from "axios";
+import { Category, Product, ProductView } from "../type";
+// import { setCategoryUrl } from "./setCategoryUrl";
+import { API_URL } from "./apiUrl";
+import { setCategoryUrl } from "./ApiActions/UseGetQuery/setCategoryUrl";
+
+export const getProduct = async (id: string): Promise<Product> => {
+  const response = await axios.get(`${API_URL}/${id}`);
+
+  return response.data.product;
+};
+
+export const getProducts = async (): Promise<Product> => {
+  const response = await axios.get(API_URL);
+
+  return response.data.prodct;
+};
+
+export const getProductsCategory = async (
+  category: Category
+): Promise<ProductView[]> => {
+  const url = setCategoryUrl(category);
+
+  const response = await axios.get(url);
+
+  return response.data.products;
+};
