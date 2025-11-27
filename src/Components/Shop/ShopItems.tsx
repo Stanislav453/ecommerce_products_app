@@ -12,7 +12,7 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
       <div className="w-full max-w-screen-xl flex justify-between px-3">
         <div className="w-full flex">
           <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {shopList?.map((product: ProductView, index: number) => {
+            {shopList.map((product: ProductView, index: number) => {
               const { id, title, thumbnail, price, rating } = product;
               return (
                 <li

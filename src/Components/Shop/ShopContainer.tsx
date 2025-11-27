@@ -4,9 +4,8 @@ import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
 import { useState } from "react";
-import { UseGetCategoryQuery } from "../../api/ApiActions/UseGetQuery/UseGetCategoryQuery";
+import { UseGetCategoryQuery } from "../../querys/UseGetQuery/UseGetCategoryQuery";
 import { Category } from "../../type";
-// import { shopRepository } from "../../api/shopRepository";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState<Category>("all");
@@ -21,7 +20,6 @@ export const ShopContainer = () => {
   if (!data) return null;
 
   console.log(data);
-  
 
   return (
     <section>
