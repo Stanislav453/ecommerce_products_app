@@ -1,8 +1,8 @@
-import { ProductDetailResponse } from "../../type";
+import { ProductSummary } from "../../type";
 import { RatingContainer } from "../Shop/RatingContainer";
 
 interface ProductDetailViewsProps {
-  data: ProductDetailResponse | null;
+  data: ProductSummary | null;
 }
 
 export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
@@ -20,12 +20,11 @@ export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
             alt={title}
           />
         </div>
-      <div>
+        <div>
           <h1 className="font-bold text-3xl">{title}</h1>
           <p className="font-bold text-xl my-4">${price}</p>
           <div>
-          <RatingContainer rating={rating} />
-
+            <RatingContainer rating={rating} />
           </div>
           <p className="my-2 text-theme-gray-font ">{description}</p>
           <div className="mb-2">PLACE FOR COUNT MANAGER</div>

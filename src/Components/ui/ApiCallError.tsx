@@ -3,7 +3,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 
 type ApiCallErrorProps = {
-  error: Error | AxiosError;
+  error: Error | AxiosError | null;
 };
 
 export const ApiCallError = ({ error }: ApiCallErrorProps) => {

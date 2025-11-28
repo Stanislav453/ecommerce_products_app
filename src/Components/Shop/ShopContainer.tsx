@@ -4,8 +4,8 @@ import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
 import { useState } from "react";
-import { UseGetCategoryQuery } from "../../querys/UseGetQuery/UseGetCategoryQuery";
 import { Category } from "../../type";
+import { UseGetCategoryQuery } from "../../querys/UseGetQuery/UseGetCategoryQuery";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState<Category>("all");

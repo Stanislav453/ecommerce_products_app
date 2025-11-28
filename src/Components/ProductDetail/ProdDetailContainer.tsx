@@ -1,19 +1,17 @@
 import { useSearchParams } from "react-router";
 import { ProdDescContainer } from "./ProdDescContainer";
 import { ProdDetailViews } from "./ProdDetailViews";
-// import { shopRepository } from "../../api/shopRepository";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
-import { getProduct } from "../../api/apiRequestRepository";
+import { UseGetProduct } from "../../querys/UseGetProduct/UseGetProduct";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  if (id === null) return <ApiCallError error={error} />;
+  if (id === null) return null;
 
-  const { data, isLoading, error, isFetching } =
-    getProduct(id);
+  const { data, isLoading, error, isFetching } = UseGetProduct(id);
 
   if (error) return <ApiCallError error={error} />;
 
