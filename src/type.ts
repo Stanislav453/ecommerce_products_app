@@ -24,7 +24,12 @@ export enum ProdNav {
   Reviews = "Reviews",
 }
 
-export type Category = "all" | "beauty" | "fragrances" | "furniture" | "groceries";
+export type Category =
+  | "all"
+  | "beauty"
+  | "fragrances"
+  | "furniture"
+  | "groceries";
 
 export interface ProdDesc {
   description: string;
@@ -37,6 +42,9 @@ export interface ProductSummary extends ProdDesc {
   thumbnail: string;
   price: number;
   rating: number;
+  category: Category;
+  tags: string[];
+  images: string[];
 }
 
 export type ProductView = {
@@ -56,7 +64,6 @@ export interface Product extends ProductSummary {
   category: Category;
   discountPercentage: number;
   stock: number;
-  tags: string[];
   brand: string;
   sku: string;
   weight: number;
@@ -67,11 +74,10 @@ export interface Product extends ProductSummary {
   returnPolicy: string;
   minimumOrderQuantity: number;
   meta: Meta[];
-  images: string[];
 }
 
 export interface ProductDetailResponse {
-  products: ProductSummary[];
+  products: ProductSummary;
 }
 
 export interface Order {
