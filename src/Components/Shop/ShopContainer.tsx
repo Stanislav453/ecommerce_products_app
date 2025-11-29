@@ -19,8 +19,6 @@ export const ShopContainer = () => {
 
   if (!data) return null;
 
-  console.log(data);
-
   return (
     <section>
       <PageSection>
