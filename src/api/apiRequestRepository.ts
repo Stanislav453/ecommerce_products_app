@@ -1,11 +1,13 @@
 import axios from "axios";
-import { Category, Product,  ProductSummary, ProductView } from "../type";
+import { Category, Product, ProductSummary, ProductView } from "../type";
 // import { setCategoryUrl } from "./setCategoryUrl";
 import { API_URL } from "./apiUrl";
 import { setCategoryUrl } from "../querys/UseGetQuery/setCategoryUrl";
 
 export const getProduct = async (id: string): Promise<ProductSummary> => {
-  const response = await axios.get(`${API_URL}/${id}`);
+  const response = await axios.get(
+    `${API_URL}/${id}?select=images,tags,category,rating,price,thumbnail,title,reviews,description`
+  );
 
   return response.data;
 };
