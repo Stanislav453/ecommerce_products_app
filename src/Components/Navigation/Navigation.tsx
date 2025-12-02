@@ -7,9 +7,11 @@ import {
   IoAppsSharp,
 } from "react-icons/io5";
 import { Footer } from "../Footer/Footer";
+import { CartContainer } from "../Cart/CartContainer";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
+  const [isCartActive, setIsCartActive] = useState(true)
 
   const navActive = isActive ? "top-[65px]" : "top-[-350px]";
 
@@ -64,7 +66,7 @@ export const Navigation = () => {
                 </button>
               </li>
               <li className="flex">
-                <button className="p-3 sm:p-0">
+                <button onClick={ () => setIsCartActive(true) } className="p-3 sm:p-0">
                   <IoBagOutline />
                 </button>
               </li>
@@ -72,6 +74,7 @@ export const Navigation = () => {
           </nav>
         </div>
       </div>
+      <CartContainer isCartActive={isCartActive} setIsCartActive={setIsCartActive} />
       <Outlet />
       <Footer />
     </>
