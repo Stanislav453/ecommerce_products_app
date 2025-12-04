@@ -5,6 +5,7 @@ import { API_URL } from "./apiUrl";
 import { setCategoryUrl } from "../querys/UseGetQuery/setCategoryUrl";
 
 export const getProduct = async (id: string): Promise<ProductSummary> => {
+
   const response = await axios.get(
     `${API_URL}/${id}?select=images,tags,category,rating,price,thumbnail,title,reviews,description`
   );
