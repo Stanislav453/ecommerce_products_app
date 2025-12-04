@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getProductsCategory } from "../../api/apiRequestRepository";
+import { getProductsCategory } from "../../Api/apiRequestRepository";
 import { Category } from "../../type";
 
 export const UseGetCategoryQuery = (category: Category) => {

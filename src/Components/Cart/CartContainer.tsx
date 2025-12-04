@@ -1,4 +1,7 @@
+import { useContext } from "react";
 import { FaRegTimesCircle } from "react-icons/fa";
+import { CartContext } from "../../Features/CartProvider";
+import { CartItem } from "../../type";
 
 type CartContainer = {
   isCartActive: boolean;
@@ -11,6 +14,10 @@ export const CartContainer = ({
 }: CartContainer) => {
   const active = isCartActive ? "w-full sm:w-96" : "w-0 overflow-hidden";
 
+  const { cart } = useContext(CartContext);
+
+  console.log("This is CART", cart);
+
   return (
     <aside
       className={`fixed top-0 right-0 ${active} z-50 bg-block-color h-full shadow-black shadow-xl transition-all `}
@@ -20,7 +27,11 @@ export const CartContainer = ({
           <FaRegTimesCircle className="w-[2.1875rem] h-[2.1875rem] " />
         </button>
       </div>
-      <div>This is cartCOntinaer</div>
+      <ul>
+        {cart.map((item: CartItem, index) => {
+          return <li key={index}>{item.title}</li>;
+        })}
+      </ul>
     </aside>
   );
 };

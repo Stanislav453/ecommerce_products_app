@@ -93,3 +93,22 @@ export type UserReview = {
   email: string;
   saveUserInfo: boolean;
 };
+
+export interface CartItem  {
+  id: string;
+  title: string;
+  price: number;
+  quantity: number;
+  thumbnail: string;
+}
+
+export type CartAction =
+  | { type: "Add"; product: CartItem }
+  | { type: "Remove"; id: string }
+  | { type: "Increase"; id: string }
+  | { type: "Decrease"; id: string };
+
+export type CartContextType = {
+  cart: CartItem[];
+  dispatch: React.Dispatch<CartAction>;
+};

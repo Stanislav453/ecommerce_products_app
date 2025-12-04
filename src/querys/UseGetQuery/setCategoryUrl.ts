@@ -1,5 +1,5 @@
 import { Category } from "../../type";
-import { API_URL } from "../../api/apiUrl";
+import { API_URL } from "../../Api/apiUrl";
 
 export const setCategoryUrl = (category: Category) => {
   const params = "?select=id,title,thumbnail,price,rating";
