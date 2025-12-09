@@ -5,13 +5,13 @@ import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
 import { useState } from "react";
 import { Category } from "../../type";
-import { UseGetCategoryQuery } from "../../querys/UseGetQuery/UseGetCategoryQuery";
+import { useGetCategoryQuery } from "../../querys/useGetQuery/useGetCategoryQuery";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState<Category>("all");
 
   const { data, error, isLoading, isFetching } =
-    UseGetCategoryQuery(selectFilterValue);
+    useGetCategoryQuery(selectFilterValue);
 
   if (error) return <ApiCallError error={error} />;
 
