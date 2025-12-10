@@ -7,17 +7,16 @@ import { useGetProduct } from "../../querys/useGetProduct/useGetProduct";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
-  const { data, isLoading, error, isFetching } = useGetProduct(id);
-  
   const id = searchParams.get("id");
-  
+  const { data, isLoading, error, isFetching } = useGetProduct(id);
+
   if (id === null) return null;
-  
+
   if (error) return <ApiCallError error={error} />;
 
   if (isLoading || isFetching) return <ApiCallLoading />;
 
-  if (data === null) return null;
+  if (data === undefined) return null;
 
   if (!data) return <ApiCallError error={error} />;
 
