@@ -11,7 +11,7 @@ import { CartContainer } from "../Cart/CartContainer";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
-  const [isCartActive, setIsCartActive] = useState(true)
+  const [isCartActive, setIsCartActive] = useState(false)
 
   const navActive = isActive ? "top-[65px]" : "top-[-350px]";
 
