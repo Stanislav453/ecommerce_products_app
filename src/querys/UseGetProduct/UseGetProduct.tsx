@@ -6,10 +6,14 @@ export const useGetProduct = (id: string | null) => {
     queryKey: ["product", id],
     enabled: !!id,
     queryFn: () => {
-      if (!id) {
-        throw new Error("Product ID is missing!!");
+      try {
+        if (!id) {
+          throw new Error("Product ID is missing!!");
+        }
+        return getProduct(id);
+      } catch (e) {
+        console.error(e, "Error fetching product data");
       }
-      return getProduct(id);
     },
   });
 };

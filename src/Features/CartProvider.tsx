@@ -3,7 +3,7 @@ import { CartReducer } from "./CartReducer";
 import { CartContextType } from "../type";
 
 
-type ContextProfiverProps = {
+type ContextProviverProps = {
   children: React.ReactNode;
 };
 
@@ -13,7 +13,7 @@ export const CartContext = createContext<CartContextType>({
 });
 
 
-export const CartProvider = ({ children }: ContextProfiverProps)=> {
+export const CartProvider = ({ children }: ContextProviverProps)=> {
   const [cart, dispatch] = useReducer(CartReducer, []);
   return (
     <CartContext.Provider value={{ cart, dispatch }}>{children}</CartContext.Provider>
