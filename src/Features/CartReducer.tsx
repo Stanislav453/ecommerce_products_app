@@ -12,14 +12,22 @@ export const CartReducer = (
       return state.filter((item) => item.id !== action.id);
 
     case "Increase":
-      const IndexI = state.findIndex((p) => p.id === action.id);
-      state[IndexI].quantity += 1;
-      return [...state];
+      return state.map((item) =>
+        item.id === action.id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
 
     case "Decrease":
-      const IndexD = state.findIndex((p) => p.id === action.id);
-      state[IndexD].quantity -= 1;
-      return [...state];
+      return state.map((item) => {
+        if (item.id !== action.id) return item;
+        const newQuantity = item.quantity - 1;
+        if (newQuantity <= 0) {
+          // Remove item if quantity reaches 0
+          return null;
+        }
+        return { ...item, quantity: newQuantity };
+      }).filter((item): item is CartItem => item !== null);
 
     default:
       return state;
