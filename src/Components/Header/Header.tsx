@@ -1,5 +1,7 @@
 import { NavLink } from "react-router";
 import headerBanner from "/public/header-banner.webp";
+// ✅ FIXED: Import route constants instead of using magic strings
+import { ROUTES } from "../../constants/routes";
 
 export const Header = () => {
   return (
@@ -18,7 +20,7 @@ export const Header = () => {
           <div className="mt-3">
             <NavLink
               className="bg-black text-white px-4 py-2  rounded-full"
-              to="/Shop"
+              to={ROUTES.SHOP}
             >
               Shop Now
             </NavLink>

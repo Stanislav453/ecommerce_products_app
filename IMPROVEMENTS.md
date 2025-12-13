@@ -69,12 +69,14 @@ queryFn: async () => {
 
 **Recommendation:** Add null check before passing `id` to `ProdDescContainer` or make the prop optional.
 
-### 9. Unused queryClient.ts File
+### ✅ 9. Unused queryClient.ts File - FIXED
 **File:** `src/queryClient.ts`
 
-**Issue:** A separate `queryClient.ts` exists but isn't used - `main.tsx` creates its own QueryClient.
-
-**Recommendation:** Either use the centralized `queryClient.ts` or remove it to avoid confusion.
+**Status:** ✅ Fixed - Centralized QueryClient configuration
+- Moved QueryClient configuration from `main.tsx` to `queryClient.ts`
+- `main.tsx` now imports and uses the centralized QueryClient
+- Single source of truth for query configuration
+- Easier to maintain and test
 
 ## Code Quality and Best Practices
 
@@ -90,21 +92,13 @@ queryFn: async () => {
 - ✅ Fixed: `ContextProviverProps` → `ContextProviderProps` in `CartProvider.tsx`
 - ✅ Fixed: `CartContainer` type → `CartContainerProps` in `CartContainer.tsx`
 
-### 12. Magic Strings and Hardcoded Values
-**Issues:**
-- Route paths like `"/Shop"`, `"/Blog"` should be constants
-- Category values in `ShopFilter` should come from the `Category` type/enum
-
-**Recommendation:** Create a constants file:
-```typescript
-// src/constants/routes.ts
-export const ROUTES = {
-  HOME: '/',
-  SHOP: '/shop',
-  BLOG: '/blog',
-  PRODUCT_DETAIL: '/product-detail',
-} as const;
-```
+### ✅ 12. Magic Strings and Hardcoded Values - FIXED
+**Status:** ✅ Fixed - Route constants created and implemented
+- Created `src/constants/routes.ts` with all route paths
+- Replaced all hardcoded route strings with `ROUTES` constants
+- Updated files: `router.tsx`, `Navigation.tsx`, `Header.tsx`, `ShopItems.tsx`
+- Type-safe route usage with TypeScript
+- Single source of truth for all routes
 
 ### 13. Missing Accessibility
 **Issues:**
@@ -199,26 +193,21 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-### 25. Route Naming Inconsistency
-**Issue:** Routes use capital letters (`/Shop`, `/Blog`) but should follow REST conventions (`/shop`, `/blog`)
+### ✅ 25. Route Naming Inconsistency - FIXED
+**Status:** ✅ Fixed - All routes updated to lowercase (REST conventions)
+- Changed `/Shop` → `/shop`
+- Changed `/Blog` → `/blog`
+- Changed `/Product-detail` → `/product-detail`
+- All routes now follow REST API naming conventions
+- Updated in `router.tsx` and all components using routes
 
-**Files:** `src/routes/router.tsx`
-
-**Recommendation:** Update routes to lowercase and ensure backward compatibility if needed.
-
-### 26. Query Key Inconsistency
-**Issue:** Query keys could be more specific and consistent
-
-**Current:**
-- `useGetCategoryQuery`: `["product", category]`
-- `useGetProduct`: `["product", id]`
-
-**Recommendation:**
-```typescript
-// More specific and consistent:
-["products", "category", category]
-["products", "detail", id]
-```
+### ✅ 26. Query Key Inconsistency - FIXED
+**Status:** ✅ Fixed - Standardized query keys with simple, consistent structure
+- Changed `["product", category]` → `["products", category]` (consistency: singular → plural)
+- Changed `["product", id]` → `["products", id]` (consistency: singular → plural)
+- Updated all query hooks to use consistent inline key structure
+- Simple flat structure: `["products", ...]` - appropriate for small codebase
+- No over-engineering: Kept it simple without unnecessary hierarchy
 
 ## Security and Best Practices
 
@@ -283,23 +272,28 @@ class ErrorBoundary extends React.Component {
 - ✅ #1, #2, #3 (Critical bugs: duplicate id, import path, query error handling)
 - ✅ #4 (State mutation in CartReducer)
 - ✅ #5 (API typo)
+- ✅ #9 (Unused queryClient.ts - centralized configuration)
 - ✅ #10 (Console.log removal)
 - ✅ #11 (Naming conventions - fully fixed: setselectedValue, ContextProviverProps, CartContainer type)
+- ✅ #12 (Magic strings - route constants)
 - ✅ #15 (Key prop issue)
 - ✅ #18 (Placeholder text removal)
 - ✅ #19 (Button text typo)
+- ✅ #20 (Empty states for better UX)
 - ✅ #21 (Incomplete features - fully fixed: rating component, quantity manager, add to cart)
+- ✅ #25 (Route naming consistency - REST conventions)
+- ✅ #26 (Query key consistency - simplified to flat structure)
 - ✅ #35 (React Hooks rules violation)
 
 ### High Priority (Next Steps)
 - All high priority items completed! 🎉
 
 ### Medium Priority
-- #6, #7, #8 (Type safety improvements)
-- #9 (Unused queryClient.ts file)
-- #12 (Magic strings - route constants)
-- #25 (Route naming consistency)
-- #26 (Query key consistency)
+- ✅ #9 (Unused queryClient.ts file) - FIXED
+- ✅ #12 (Magic strings - route constants) - FIXED
+- ✅ #25 (Route naming consistency) - FIXED
+- ✅ #26 (Query key consistency) - FIXED
+- #6, #7, #8 (Type safety improvements - mostly addressed, minor remaining)
 
 ### Low Priority (Nice to Have)
 - #13 (Accessibility improvements)

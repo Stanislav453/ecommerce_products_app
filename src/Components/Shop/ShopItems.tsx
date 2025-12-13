@@ -3,6 +3,8 @@ import { ProductView, CartItem, CartAction } from "../../type";
 import { NavLink } from "react-router";
 import { RatingContainer } from "./RatingContainer";
 import { CartContext } from "../../features/CartProvider";
+// ✅ FIXED: Import route constants instead of using magic strings
+import { ROUTES } from "../../constants/routes";
 
 interface ShopListProps {
   shopList: ProductView[];
@@ -124,7 +126,7 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                     />
 
                     <NavLink
-                      to={`/Product-detail?id=${id}`}
+                      to={`${ROUTES.PRODUCT_DETAIL}?id=${id}`}
                       className="w-full  py-2 border-[1px] border-black		rounded-full mb-1 mt-3"
                     >
                       Show detail

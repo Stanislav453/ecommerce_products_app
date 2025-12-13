@@ -8,6 +8,8 @@ import {
 } from "react-icons/io5";
 import { Footer } from "../footer/Footer";
 import { CartContainer } from "../cart/CartContainer";
+// ✅ FIXED: Import route constants instead of using magic strings
+import { ROUTES } from "../../constants/routes";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
@@ -32,7 +34,7 @@ export const Navigation = () => {
               <li>
                 <NavLink
                   className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/"
+                  to={ROUTES.HOME}
                 >
                   Home
                 </NavLink>
@@ -40,7 +42,7 @@ export const Navigation = () => {
               <li>
                 <NavLink
                   className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/Shop"
+                  to={ROUTES.SHOP}
                 >
                   Shop
                 </NavLink>
@@ -48,7 +50,7 @@ export const Navigation = () => {
               <li>
                 <NavLink
                   className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/Blog"
+                  to={ROUTES.BLOG}
                 >
                   Blog
                 </NavLink>

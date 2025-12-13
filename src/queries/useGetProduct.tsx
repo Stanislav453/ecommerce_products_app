@@ -40,7 +40,11 @@ import { getProduct } from "../api/apiRequestRepository";
  */
 export const useGetProduct = (id: string | null) => {
   return useQuery({
-    queryKey: ["product", id],
+    // ✅ FIXED: Standardized query key for consistency
+    // Changed from ["product", id] to ["products", id]
+    // - Uses plural "products" for consistency with other product queries
+    // - Simple structure: ["products", id] is clear and straightforward
+    queryKey: ["products", id],
     // ✅ This prevents the query from running when id is null
     // No need to check id inside queryFn - it will never be null here
     enabled: !!id,
