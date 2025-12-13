@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Category, Product, ProductSummary, ProductView } from "../type";
-import { setCategoryUrl } from "../querys/useGetQuery/setCategoryUrl";
+import { setCategoryUrl } from "./setCategoryUrl";
 import { API_URL } from "./apiUrl";
 
 export const getProduct = async (id: string): Promise<ProductSummary> => {

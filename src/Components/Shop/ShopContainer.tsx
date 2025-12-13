@@ -1,21 +1,21 @@
-import { ShopItems } from "../../Components/Shop/ShopItems";
-import { PageSection } from "../../Components/PageSection";
+import { useState } from "react";
+import { useGetCategoryQuery } from "../../queries/useGetCategoryQuery";
+import { Category } from "../../type";
+import { PageSection } from "../PageSection";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
-import { useState } from "react";
-import { Category } from "../../type";
-import { useGetCategoryQuery } from "../../querys/useGetQuery/useGetCategoryQuery";
+import { ShopItems } from "./ShopItems";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState<Category>("all");
 
-  const { data, error, isLoading, isFetching } =
+  const { data, error, isFetching } =
     useGetCategoryQuery(selectFilterValue);
 
   if (error) return <ApiCallError error={error} />;
 
-  if (isLoading || isFetching) return <ApiCallLoading />;
+  if (isFetching) return <ApiCallLoading />;
 
   if (!data) return null;
 

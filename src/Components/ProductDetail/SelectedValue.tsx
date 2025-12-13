@@ -1,5 +1,5 @@
 import { ProdNav, type Reviews } from "../../type";
-import { RatingContainer } from "../Shop/RatingContainer";
+import { RatingContainer } from "../shop/RatingContainer";
 import defaultAvatar from "../../../public/default-avatar.jpg";
 import { ReviewContainer } from "./ReviewContainer";
 

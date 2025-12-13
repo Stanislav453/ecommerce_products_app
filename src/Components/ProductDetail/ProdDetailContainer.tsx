@@ -3,22 +3,18 @@ import { ProdDescContainer } from "./ProdDescContainer";
 import { ProdDetailViews } from "./ProdDetailViews";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
-import { useGetProduct } from "../../querys/useGetProduct/useGetProduct";
+import { useGetProduct } from "../../queries/useGetProduct";
 
 export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
-  const { data, isLoading, error, isFetching } = useGetProduct(id);
-  
-  if (id === null) return null;
+  const { data, error, isFetching } = useGetProduct(id);
 
   if (error) return <ApiCallError error={error} />;
 
-  if (isLoading || isFetching) return <ApiCallLoading />;
+  if (isFetching) return <ApiCallLoading />;
 
-  if (data === undefined) return null;
-
-  if (!data) return <ApiCallError error={error} />;
+  if (data == null || id == null) return null;
 
   return (
     <section>

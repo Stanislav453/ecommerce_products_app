@@ -13,7 +13,7 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
     email: "",
     saveUserInfo: false,
   });
-  // const { mutate, status } = shopRepository.updateProductReviews(id);
+  const { mutate, status } = shopRepository.updateProductReviews(id);
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

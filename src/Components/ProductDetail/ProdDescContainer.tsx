@@ -3,7 +3,7 @@ import { ProdNav, Reviews } from "../../type";
 import { SelectedValue } from "./SelectedValue";
 
 type ProdDescContainerProps = {
-  id: string
+  id: string;
   title: string;
   reviews: Reviews[];
   description: string;

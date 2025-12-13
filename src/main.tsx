@@ -2,10 +2,10 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import "./index.css";
-import { router } from "./Route/router.tsx";
+import { router } from "./routes/router.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { CartProvider } from "./Features/CartProvider.tsx";
+import { CartProvider } from "./features/CartProvider.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
