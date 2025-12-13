@@ -17,6 +17,26 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
               return (
                 <li
                   className="w-full bg-linear-to-r from-cyan-500 to-blue-500"
+                  // ✅ FIXED: Changed from key={index} to key={id}
+                  //
+                  // WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+                  // The original code used: key={index} where index came from map((product, index) => ...)
+                  //
+                  // PROBLEMS:
+                  // - If products are filtered or sorted, indices change but products don't
+                  // - React can't track which product is which
+                  // - Causes unnecessary re-renders and potential bugs
+                  // - See CartContainer.tsx for detailed explanation of index key problems
+                  //
+                  // WHY THE NEW IMPLEMENTATION WORKS:
+                  // - product.id is a unique, stable identifier
+                  // - Doesn't change when list is filtered/sorted
+                  // - React can properly track each product
+                  // - Better performance and correct rendering
+                  //
+                  // LEARN MORE:
+                  // - See detailed comments in CartContainer.tsx for full explanation
+                  // - React keys: https://react.dev/learn/rendering-lists#keeping-list-items-in-order-with-key
                   key={id}
                 >
                   <div className="flex justify-center bg-gradient-to-b from-slate-400 to-gray-400 rounded-3xl">
@@ -37,6 +57,20 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                       Show detail
                     </NavLink>
                     <button className="w-full  py-2 border-[1px] border-black		rounded-full">
+                      {/* ✅ FIXED: Changed from "Add to card" to "Add to cart" */}
+                      {/* 
+                        WHY THE ORIGINAL WAS INCORRECT:
+                        - Typo: "card" instead of "cart"
+                        - Poor user experience: confusing terminology
+                        - Unprofessional appearance
+                        
+                        WHY THE FIX MATTERS:
+                        - Correct terminology improves UX
+                        - Professional appearance
+                        - Clear communication with users
+                        
+                        NOTE: This button doesn't actually add to cart yet - see IMPROVEMENTS.md #21
+                      */}
                       Add to cart
                     </button>
                   </div>

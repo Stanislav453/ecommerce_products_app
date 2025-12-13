@@ -50,6 +50,37 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
         </p>
       )}
       <p>Your rating *</p>
+      {/* ✅ IMPLEMENTED: Interactive star rating component (replaced "PLACEFOR RATING" placeholder) */}
+      {/*
+        WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+        The original code had: <div>PLACEFOR RATING</div>
+        
+        PROBLEMS:
+        1. Placeholder text in production code - unprofessional
+        2. No functionality - users couldn't actually rate products
+        3. Incomplete feature - review submission would fail without rating
+        4. Poor UX - confusing for users
+        
+        WHY THE NEW IMPLEMENTATION WORKS:
+        - Interactive: Users can click stars to select rating (1-5)
+        - Visual feedback: Selected stars are yellow, unselected are gray
+        - Accessible: aria-label for screen readers
+        - State management: Updates review.rating in component state
+        - User-friendly: Shows current rating (e.g., "3 / 5")
+        - Type-safe: Rating is stored as number in state
+        
+        HOW IT WORKS:
+        1. Maps over [1,2,3,4,5] to create 5 star buttons
+        2. Each star's color depends on if star <= review.rating
+        3. Clicking a star updates review.rating via setReview
+        4. Rating is included when form is submitted
+        
+        LEARN MORE:
+        - React state updates: https://react.dev/learn/updating-objects-in-state
+        - Event handlers: https://react.dev/learn/responding-to-events
+        - Accessibility: https://react.dev/learn/accessibility
+        - Controlled components: https://react.dev/reference/react-dom/components/input#controlling-an-input-with-a-state-variable
+      */}
       <div className="flex gap-2 mb-4">
         {[1, 2, 3, 4, 5].map((star) => (
           <button
