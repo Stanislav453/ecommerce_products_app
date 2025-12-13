@@ -100,13 +100,22 @@ queryFn: async () => {
 - Type-safe route usage with TypeScript
 - Single source of truth for all routes
 
-### 13. Missing Accessibility
-**Issues:**
-- Buttons without `aria-label`
-- Some images may lack proper alt text
-- Missing keyboard navigation support
+### 13. Missing Accessibility - PARTIALLY ADDRESSED
+**Status:** Some improvements made, but more needed
+- ✅ Fixed: Some buttons have `aria-label` (Add to cart, quantity input, star ratings)
+- ❌ Missing: Navigation buttons (search, person, cart) in `Navigation.tsx` lack `aria-label`
+- ❌ Missing: Tab navigation buttons in `ProdDescContainer.tsx` (Description/Reviews) lack `aria-label`
+- ⚠️ Partial: Some images have alt text, but could be more descriptive
 
-**Recommendation:** Add ARIA labels and ensure keyboard navigation works throughout the app.
+**Files needing fixes:**
+- `src/components/navigation/Navigation.tsx` - lines 61, 66, 71 (icon buttons)
+- `src/components/productDetail/ProdDescContainer.tsx` - lines 27, 37 (tab buttons)
+
+**Recommendation:** 
+- Add `aria-label` to all icon buttons
+- Add `aria-label` or `aria-pressed` to tab buttons
+- Ensure all interactive elements are keyboard accessible
+- Add more descriptive alt text where needed
 
 ### 14. Inconsistent Import Paths
 **Issue:** Some imports use `../../components`, others use relative paths inconsistently.
@@ -177,12 +186,21 @@ queryFn: async () => {
 ### 22. Directory Casing Consistency
 **Status:** Partially fixed, but verify all imports are consistent with actual directory structure (all lowercase).
 
-### 23. Unused Code
+### 23. Unused Code - NEEDS VERIFICATION
 **Issues:**
-- `getProducts` function in `apiRequestRepository.ts` appears unused
-- `Product` interface may not be used (verify)
+- `getProducts` function in `apiRequestRepository.ts` - appears unused (only `getProductsCategory` is used)
+- `ReviewsViews.tsx` component - not imported anywhere, has broken code (undefined variables: reviews, ProdNav, title, defaultAvatar, RatingContainer)
+- `Product` interface in `type.ts` - may not be used (verify)
 
-**Recommendation:** Remove unused code or mark it for future use with comments.
+**Files to check:**
+- `src/api/apiRequestRepository.ts` - `getProducts` function
+- `src/components/productDetail/ReviewsViews.tsx` - entire component appears unused
+- `src/type.ts` - `Product` interface
+
+**Recommendation:** 
+- Remove unused `getProducts` function or mark for future use
+- Remove or fix `ReviewsViews.tsx` (has broken code with undefined variables)
+- Verify and remove unused `Product` interface if not needed
 
 ### 24. Missing Error Boundaries
 **Recommendation:** Add React error boundaries to catch component errors gracefully:
@@ -225,10 +243,18 @@ class ErrorBoundary extends React.Component {
 
 ## Configuration
 
-### 29. Package.json Typo
+### 29. Package.json Issues
 **File:** `package.json`
 
-**Issue:** `"ecomerce_products_app"` should be `"ecommerce_products_app"`
+**Issues:**
+1. Typo: `"ecomerce_products_app"` should be `"ecommerce_products_app"` (line 2)
+2. Missing useful scripts (type-check, format, test)
+3. Unused dependency: `zustand` (line 22) - not imported anywhere
+
+**Recommendation:** 
+- Fix typo in package name
+- Add scripts for type-checking, formatting, and testing
+- Remove `zustand` if not needed, or document why it's kept for future use
 
 ### 30. Missing Scripts
 **Recommendation:** Add useful scripts:
@@ -264,6 +290,40 @@ class ErrorBoundary extends React.Component {
 ### 34. Inconsistent Quote Usage
 **Recommendation:** Standardize on single or double quotes throughout the project (use ESLint rule).
 
+### 36. Missing User Feedback for Cart Actions
+**Issue:** When users add items to cart, there's no visual feedback (toast, notification, etc.)
+
+**Files:**
+- `src/components/shop/ShopItems.tsx` - line 82 has TODO comment
+- `src/components/productDetail/ProdDetailViews.tsx` - line 76 has TODO comment
+
+**Recommendation:** 
+- Add toast notifications or success messages when items are added to cart
+- Consider showing cart item count badge
+- Add animation/feedback on button click
+
+**Implementation options:**
+- Use a toast library (react-hot-toast, sonner)
+- Show inline success message
+- Animate cart icon when item added
+
+### 37. Broken/Unused ReviewsViews Component
+**File:** `src/components/productDetail/ReviewsViews.tsx`
+
+**Issues:**
+- Component is not imported or used anywhere
+- Has broken code with undefined variables:
+  - `reviews` (not passed as prop)
+  - `ProdNav` (not imported)
+  - `title` (not passed as prop)
+  - `defaultAvatar` (not imported)
+  - `RatingContainer` (not imported)
+- Duplicates functionality already in `SelectedValue.tsx`
+
+**Recommendation:**
+- Remove the component if unused
+- Or fix it properly with correct props and imports if it's meant to be used
+
 ---
 
 ## Implementation Priority
@@ -296,20 +356,22 @@ class ErrorBoundary extends React.Component {
 - #6, #7, #8 (Type safety improvements - mostly addressed, minor remaining)
 
 ### Low Priority (Nice to Have)
-- #13 (Accessibility improvements)
+- #13 (Accessibility improvements - navigation buttons, tab buttons)
 - #14 (Path aliases for imports)
 - #16 (Performance optimizations - React.memo)
 - #17 (Loading states)
-- #23 (Unused code cleanup)
+- #23 (Unused code cleanup - getProducts, ReviewsViews, Product interface)
 - #24 (Error boundaries)
 - #27 (Input validation)
 - #28 (API error handling improvements)
-- #29 (Package.json typo)
+- #29 (Package.json issues - typo, missing scripts, unused dependency)
 - #30 (Missing scripts)
-- #31 (Unused dependencies)
+- #31 (Unused dependencies - zustand)
 - #32 (Inconsistent spacing)
 - #33 (Documentation)
 - #34 (Quote usage consistency)
+- #36 (User feedback for cart actions - toast notifications)
+- #37 (Fix broken ReviewsViews component or remove it)
 
 ---
 
