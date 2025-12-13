@@ -4,7 +4,7 @@ This document contains suggestions for fixes and improvements to the ecommerce p
 
 ## Critical Bugs (High Priority)
 
-### ✅ 4. State Mutation in CartReducer - FIXED
+### ✅ 1. State Mutation in CartReducer - FIXED
 **File:** `src/Features/CartReducer.tsx`
 
 **Status:** ✅ Fixed - Now uses immutable map operations
@@ -12,12 +12,12 @@ This document contains suggestions for fixes and improvements to the ecommerce p
 - Decrease case creates new object and auto-removes when quantity <= 0
 - No direct state mutation
 
-### ✅ 5. Typo in API Response - FIXED
+### ✅ 2. Typo in API Response - FIXED
 **File:** `src/api/apiRequestRepository.ts`
 
 **Status:** ✅ Fixed - Changed `response.data.prodct` to `response.data.products`
 
-### ✅ 35. React Hooks Rules Violation - FIXED
+### ✅ 3. React Hooks Rules Violation - FIXED
 **File:** `src/components/ProductDetail/ProdDetailViews.tsx`
 
 **Status:** ✅ Fixed - Hooks moved before early return
@@ -28,12 +28,12 @@ This document contains suggestions for fixes and improvements to the ecommerce p
 
 ## TypeScript and Type Safety
 
-### ⬜ 6. Missing Null Checks
+### ⬜ 4. Missing Null Checks
 **Issue:** `useGetProduct` can return `null`, but it's used without proper checks in some places.
 
 **Recommendation:** Add proper null checks or use optional chaining where `id` might be null.
 
-### ⬜ 7. Inconsistent Error Handling
+### ⬜ 5. Inconsistent Error Handling
 **File:** `src/queries/useGetProduct.tsx`
 
 **Issue:** Errors are caught but not rethrown, which can hide issues from React Query
@@ -62,14 +62,14 @@ queryFn: async () => {
 }
 ```
 
-### ⬜ 8. Type Mismatch
+### ⬜ 6. Type Mismatch
 **File:** `src/components/productDetail/ProdDetailContainer.tsx`
 
 **Issue:** `searchParams.get("id")` returns `string | null`, but `useGetProduct` expects `string | null` (this is actually fine, but the `id` passed to `ProdDescContainer` should handle null).
 
 **Recommendation:** Add null check before passing `id` to `ProdDescContainer` or make the prop optional.
 
-### ✅ 9. Unused queryClient.ts File - FIXED
+### ✅ 7. Unused queryClient.ts File - FIXED
 **File:** `src/queryClient.ts`
 
 **Status:** ✅ Fixed - Centralized QueryClient configuration
@@ -80,19 +80,19 @@ queryFn: async () => {
 
 ## Code Quality and Best Practices
 
-### ✅ 10. Console.log Statements - FIXED
+### ✅ 8. Console.log Statements - FIXED
 **Status:** ✅ All console.log statements have been removed
 - ✅ Fixed: `src/components/cart/CartContainer.tsx` - removed console.log
 - ✅ Fixed: `src/components/productDetail/ReviewContainer.tsx` - console.log removed
 - ✅ Fixed: `src/queries/useGetProduct.tsx` - console.error removed (error handling fixed)
 
-### ✅ 11. Naming Conventions - FIXED
+### ✅ 9. Naming Conventions - FIXED
 **Status:** ✅ All naming convention issues fixed
 - ✅ Fixed: `setselectedValue` → `setSelectedValue` in `ShopContainer.tsx`
 - ✅ Fixed: `ContextProviverProps` → `ContextProviderProps` in `CartProvider.tsx`
 - ✅ Fixed: `CartContainer` type → `CartContainerProps` in `CartContainer.tsx`
 
-### ✅ 12. Magic Strings and Hardcoded Values - FIXED
+### ✅ 10. Magic Strings and Hardcoded Values - FIXED
 **Status:** ✅ Fixed - Route constants created and implemented
 - Created `src/constants/routes.ts` with all route paths
 - Replaced all hardcoded route strings with `ROUTES` constants
@@ -100,7 +100,7 @@ queryFn: async () => {
 - Type-safe route usage with TypeScript
 - Single source of truth for all routes
 
-### ⬜ 13. Missing Accessibility - PARTIALLY ADDRESSED
+### ⬜ 11. Missing Accessibility - PARTIALLY ADDRESSED
 **Status:** Some improvements made, but more needed
 - ✅ Fixed: Some buttons have `aria-label` (Add to cart, quantity input, star ratings)
 - ❌ Missing: Navigation buttons (search, person, cart) in `Navigation.tsx` lack `aria-label` (lines 61, 66, 71)
@@ -120,7 +120,7 @@ queryFn: async () => {
 - Ensure all interactive elements are keyboard accessible
 - Add more descriptive alt text where needed
 
-### ⬜ 14. Inconsistent Import Paths
+### ⬜ 12. Inconsistent Import Paths
 **Issue:** Some imports use `../../components`, others use relative paths inconsistently.
 
 **Recommendation:** Consider using path aliases in `tsconfig.json`:
@@ -139,30 +139,30 @@ queryFn: async () => {
 
 ## Performance
 
-### ✅ 15. Using Index as Key - FIXED
+### ✅ 13. Using Index as Key - FIXED
 **File:** `src/components/Shop/ShopItems.tsx`
 
 **Status:** ✅ Fixed - Now uses `key={id}` instead of `key={index}`
 
-### ⬜ 16. Missing React.memo
+### ⬜ 14. Missing React.memo
 **Recommendation:** Consider memoizing expensive components like `ShopItems`, `ProdDetailViews` if they re-render frequently.
 
-### ⬜ 17. Missing Loading States
+### ⬜ 15. Missing Loading States
 **Recommendation:** Ensure all async operations have proper loading states.
 
 ## UI/UX
 
-### ✅ 18. Placeholder Text - FIXED
+### ✅ 16. Placeholder Text - FIXED
 **File:** `src/components/Shop/ShopContainer.tsx`
 
 **Status:** ✅ Fixed - Removed "This is products" placeholder text
 
-### ✅ 19. Button Text Typo - FIXED
+### ✅ 17. Button Text Typo - FIXED
 **File:** `src/components/Shop/ShopItems.tsx`
 
 **Status:** ✅ Fixed - Changed "Add to card" to "Add to cart"
 
-### ✅ 20. Missing Empty States - FIXED
+### ✅ 18. Missing Empty States - FIXED
 **Status:** ✅ All empty states implemented
 - ✅ Fixed: Empty cart state in `CartContainer.tsx` - shows "Your cart is empty" message
 - ✅ Fixed: Empty product list in `ShopContainer.tsx` - shows "No products found" with helpful message and action button
@@ -175,7 +175,7 @@ queryFn: async () => {
 - Follows UX best practices for empty state design
 - Includes educational comments explaining why empty states matter
 
-### ✅ 21. Incomplete Features - FIXED
+### ✅ 19. Incomplete Features - FIXED
 **Status:** ✅ All incomplete features have been implemented
 - ✅ Fixed: Rating component implemented in `ReviewContainer.tsx` (replaced "PLACEFOR RATING")
 - ✅ Fixed: Quantity manager implemented in `ProdDetailViews.tsx` (replaced "PLACE FOR COUNT MANAGER")
@@ -186,10 +186,10 @@ queryFn: async () => {
 
 ## Architecture and Organization
 
-### ⬜ 22. Directory Casing Consistency
+### ⬜ 20. Directory Casing Consistency
 **Status:** Partially fixed, but verify all imports are consistent with actual directory structure (all lowercase).
 
-### ⬜ 23. Unused Code - PARTIALLY ADDRESSED
+### ⬜ 21. Unused Code - PARTIALLY ADDRESSED
 **Status:** Some items verified, one remains
 - ✅ Fixed: `ReviewsViews.tsx` - now properly implemented and integrated
 - ⚠️ Remaining: `getProducts` function in `apiRequestRepository.ts` - appears unused (only `getProductsCategory` is used)
@@ -202,7 +202,7 @@ queryFn: async () => {
 - Remove unused `getProducts` function or mark for future use with a comment
 - Keep `Product` interface as it's used by `getProducts` (even if function is unused)
 
-### ⬜ 24. Missing Error Boundaries
+### ⬜ 22. Missing Error Boundaries
 **Recommendation:** Add React error boundaries to catch component errors gracefully:
 ```typescript
 // src/components/ErrorBoundary.tsx
@@ -211,7 +211,7 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-### ✅ 25. Route Naming Inconsistency - FIXED
+### ✅ 23. Route Naming Inconsistency - FIXED
 **Status:** ✅ Fixed - All routes updated to lowercase (REST conventions)
 - Changed `/Shop` → `/shop`
 - Changed `/Blog` → `/blog`
@@ -219,7 +219,7 @@ class ErrorBoundary extends React.Component {
 - All routes now follow REST API naming conventions
 - Updated in `router.tsx` and all components using routes
 
-### ✅ 26. Query Key Inconsistency - FIXED
+### ✅ 24. Query Key Inconsistency - FIXED
 **Status:** ✅ Fixed - Standardized query keys with simple, consistent structure
 - Changed `["product", category]` → `["products", category]` (consistency: singular → plural)
 - Changed `["product", id]` → `["products", id]` (consistency: singular → plural)
@@ -229,13 +229,13 @@ class ErrorBoundary extends React.Component {
 
 ## Security and Best Practices
 
-### ⬜ 27. Missing Input Validation
+### ⬜ 25. Missing Input Validation
 **Recommendation:** Add validation for:
 - Category filter values
 - User inputs in forms
 - URL parameters
 
-### ⬜ 28. API Error Handling
+### ⬜ 26. API Error Handling
 **Recommendation:**
 - Distinguish between network errors and API errors
 - Add retry logic for transient failures
@@ -243,7 +243,7 @@ class ErrorBoundary extends React.Component {
 
 ## Configuration
 
-### ⬜ 29. Package.json Issues
+### ⬜ 27. Package.json Issues
 **File:** `package.json`
 
 **Issues:**
@@ -256,7 +256,7 @@ class ErrorBoundary extends React.Component {
 - Add scripts for type-checking, formatting, and testing
 - Remove `zustand` if not needed, or document why it's kept for future use
 
-### ⬜ 30. Missing Scripts
+### ⬜ 28. Missing Scripts
 **Recommendation:** Add useful scripts:
 ```json
 {
@@ -268,29 +268,29 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-### ⬜ 31. Unused Dependencies
+### ⬜ 29. Unused Dependencies
 **Issue:** `zustand` is in dependencies but not used
 
 **Recommendation:** Remove if not needed, or implement state management with it if intended.
 
 ## Code Style
 
-### ⬜ 32. Inconsistent Spacing
+### ⬜ 30. Inconsistent Spacing
 **Issue:** Some files have extra spaces (e.g., `"w-full  max-w-screen-xl"`)
 
 **Recommendation:** Use a formatter like Prettier to ensure consistent spacing.
 
-### ⬜ 33. Missing JSDoc Comments
+### ⬜ 31. Missing JSDoc Comments
 **Recommendation:** Add documentation for:
 - Complex functions
 - Public APIs
 - Component props
 - Custom hooks
 
-### ⬜ 34. Inconsistent Quote Usage
+### ⬜ 32. Inconsistent Quote Usage
 **Recommendation:** Standardize on single or double quotes throughout the project (use ESLint rule).
 
-### ⬜ 36. Missing User Feedback for Cart Actions
+### ⬜ 33. Missing User Feedback for Cart Actions
 **Issue:** When users add items to cart, there's no visual feedback (toast, notification, etc.)
 
 **Files:**
@@ -309,7 +309,7 @@ class ErrorBoundary extends React.Component {
 - Animate cart icon when item added
 - Display cart count badge: `{cart.length > 0 && <span className="badge">{cart.length}</span>}`
 
-### ⬜ 38. Missing Cart Functionality
+### ⬜ 34. Missing Cart Functionality
 **Issues:**
 - Cart items only show title, no other details (price, quantity, thumbnail)
 - No way to remove items from cart
@@ -327,7 +327,7 @@ class ErrorBoundary extends React.Component {
 - Add "Clear cart" functionality
 - Improve cart UI/UX
 
-### ⬜ 39. Missing Cart Item Count Badge
+### ⬜ 35. Missing Cart Item Count Badge
 **Issue:** No visual indicator of cart item count in navigation
 
 **Files:**
@@ -339,7 +339,7 @@ class ErrorBoundary extends React.Component {
 - Animate badge when items are added
 - Make it accessible with `aria-label` including count
 
-### ⬜ 40. Tab Navigation Missing Active State Indicators
+### ⬜ 36. Tab Navigation Missing Active State Indicators
 **Issue:** Tab buttons in `ProdDescContainer.tsx` don't have proper ARIA attributes for accessibility
 
 **Files:**
@@ -373,52 +373,51 @@ class ErrorBoundary extends React.Component {
 ## Implementation Priority
 
 ### ✅ Completed Fixes
-- ✅ #1, #2, #3 (Critical bugs: duplicate id, import path, query error handling)
-- ✅ #4 (State mutation in CartReducer)
-- ✅ #5 (API typo)
-- ✅ #9 (Unused queryClient.ts - centralized configuration)
-- ✅ #10 (Console.log removal)
-- ✅ #11 (Naming conventions - fully fixed: setselectedValue, ContextProviverProps, CartContainer type)
-- ✅ #12 (Magic strings - route constants)
-- ✅ #15 (Key prop issue)
-- ✅ #18 (Placeholder text removal)
-- ✅ #19 (Button text typo)
-- ✅ #20 (Empty states for better UX)
-- ✅ #21 (Incomplete features - fully fixed: rating component, quantity manager, add to cart)
-- ✅ #25 (Route naming consistency - REST conventions)
-- ✅ #26 (Query key consistency - simplified to flat structure)
-- ✅ #35 (React Hooks rules violation)
+- ✅ #1 (State mutation in CartReducer)
+- ✅ #2 (API typo)
+- ✅ #3 (React Hooks rules violation)
+- ✅ #7 (Unused queryClient.ts - centralized configuration)
+- ✅ #8 (Console.log removal)
+- ✅ #9 (Naming conventions - fully fixed: setselectedValue, ContextProviverProps, CartContainer type)
+- ✅ #10 (Magic strings - route constants)
+- ✅ #13 (Key prop issue)
+- ✅ #16 (Placeholder text removal)
+- ✅ #17 (Button text typo)
+- ✅ #18 (Empty states for better UX)
+- ✅ #19 (Incomplete features - fully fixed: rating component, quantity manager, add to cart)
+- ✅ #23 (Route naming consistency - REST conventions)
+- ✅ #24 (Query key consistency - simplified to flat structure)
 - ✅ #37 (Broken/Unused ReviewsViews Component - FIXED)
 
 ### High Priority (Next Steps)
 - All high priority items completed! 🎉
 
 ### Medium Priority
-- ✅ #9 (Unused queryClient.ts file) - FIXED
-- ✅ #12 (Magic strings - route constants) - FIXED
-- ✅ #25 (Route naming consistency) - FIXED
-- ✅ #26 (Query key consistency) - FIXED
-- ⬜ #6, #7, #8 (Type safety improvements - mostly addressed, minor remaining)
+- ✅ #7 (Unused queryClient.ts file) - FIXED
+- ✅ #10 (Magic strings - route constants) - FIXED
+- ✅ #23 (Route naming consistency) - FIXED
+- ✅ #24 (Query key consistency) - FIXED
+- ⬜ #4, #5, #6 (Type safety improvements - mostly addressed, minor remaining)
 
 ### Low Priority (Nice to Have)
-- ⬜ #13 (Accessibility improvements - navigation buttons, tab buttons, cart close button)
-- ⬜ #14 (Path aliases for imports)
-- ⬜ #16 (Performance optimizations - React.memo)
-- ⬜ #17 (Loading states)
-- ⬜ #23 (Unused code cleanup - getProducts function)
-- ⬜ #24 (Error boundaries)
-- ⬜ #27 (Input validation)
-- ⬜ #28 (API error handling improvements)
-- ⬜ #29 (Package.json issues - typo, missing scripts, unused dependency)
-- ⬜ #30 (Missing scripts)
-- ⬜ #31 (Unused dependencies - zustand)
-- ⬜ #32 (Inconsistent spacing)
-- ⬜ #33 (Documentation)
-- ⬜ #34 (Quote usage consistency)
-- ⬜ #36 (User feedback for cart actions - toast notifications)
-- ⬜ #38 (Missing cart functionality - remove items, quantity controls, better display)
-- ⬜ #39 (Missing cart item count badge)
-- ⬜ #40 (Tab navigation missing active state indicators)
+- ⬜ #11 (Accessibility improvements - navigation buttons, tab buttons, cart close button)
+- ⬜ #12 (Path aliases for imports)
+- ⬜ #14 (Performance optimizations - React.memo)
+- ⬜ #15 (Loading states)
+- ⬜ #21 (Unused code cleanup - getProducts function)
+- ⬜ #22 (Error boundaries)
+- ⬜ #25 (Input validation)
+- ⬜ #26 (API error handling improvements)
+- ⬜ #27 (Package.json issues - typo, missing scripts, unused dependency)
+- ⬜ #28 (Missing scripts)
+- ⬜ #29 (Unused dependencies - zustand)
+- ⬜ #30 (Inconsistent spacing)
+- ⬜ #31 (Documentation)
+- ⬜ #32 (Quote usage consistency)
+- ⬜ #33 (User feedback for cart actions - toast notifications)
+- ⬜ #34 (Missing cart functionality - remove items, quantity controls, better display)
+- ⬜ #35 (Missing cart item count badge)
+- ⬜ #36 (Tab navigation missing active state indicators)
 
 ---
 
