@@ -4,9 +4,9 @@ This document contains suggestions for fixes and improvements to the ecommerce p
 
 **Last Updated:** Based on current codebase review
 **Status Summary:**
-- ✅ **22 items fixed** (Critical bugs, type safety, code quality, UI/UX improvements, unused code cleanup)
-- ⬜ **15 items pending** (Accessibility, configuration, UX enhancements, code style)
-- 🎯 **Next recommended fixes:** #27 (Package.json - typo & scripts), #11 (Accessibility)
+- ✅ **24 items fixed** (Critical bugs, type safety, code quality, UI/UX improvements, unused code cleanup, configuration)
+- ⬜ **13 items pending** (Accessibility, UX enhancements, code style)
+- 🎯 **Next recommended fixes:** #11 (Accessibility), #35 (Cart count badge)
 
 ## Critical Bugs (High Priority)
 
@@ -255,44 +255,50 @@ class ErrorBoundary extends React.Component {
 
 ## Configuration
 
-### ⬜ 27. Package.json Issues - PARTIALLY FIXED
+### ✅ 27. Package.json Issues - FIXED
 **File:** `package.json`
 
-**Status:** ⚠️ **Partially fixed - 2 issues remain**
+**Status:** ✅ Fixed - All issues resolved
 
-**Issues:**
-1. ⚠️ **Remaining typo**: `"ecomerce_products_app"` should be `"ecommerce_products_app"` (line 2)
-2. ⚠️ **Remaining missing scripts**: No `type-check`, `format`, or `test` scripts
+**Fixed:**
+1. ✅ **Fixed typo**: `"ecomerce_products_app"` → `"ecommerce_products_app"`
+2. ✅ **Added scripts**: `type-check`, `format`, `format:check`, `test`
 3. ✅ **Fixed**: `zustand` dependency removed (was not imported anywhere)
 
-**Current scripts:**
+**New scripts added:**
 ```json
 {
-  "dev": "vite",
-  "build": "tsc -b && vite build",
-  "lint": "eslint .",
-  "preview": "vite preview"
+  "type-check": "tsc --noEmit",
+  "format": "prettier --write .",
+  "format:check": "prettier --check .",
+  "test": "echo \"No tests yet\" && exit 0"
 }
 ```
 
-**Recommendation:** 
-- Fix typo in package name: `"ecomerce_products_app"` → `"ecommerce_products_app"`
-- Add scripts for type-checking, formatting, and testing:
-  - `"type-check": "tsc --noEmit"`
-  - `"format": "prettier --write ."` (if using Prettier)
-  - `"test": "echo \"No tests yet\" && exit 0"` (placeholder)
+**Additional changes:**
+- ✅ Installed Prettier as dev dependency
+- ✅ Created `.prettierrc.json` configuration file
+- ✅ Created `.prettierignore` file to exclude build artifacts
 
-### ⬜ 28. Missing Scripts
-**Recommendation:** Add useful scripts:
-```json
-{
-  "scripts": {
-    "type-check": "tsc --noEmit",
-    "format": "prettier --write .",
-    "test": "echo \"No tests yet\" && exit 0"
-  }
-}
-```
+**Usage:**
+- `npm run type-check` - Check TypeScript types without building
+- `npm run format` - Format all files with Prettier
+- `npm run format:check` - Check if files are formatted (useful for CI)
+- `npm run test` - Placeholder for future tests
+
+### ✅ 28. Missing Scripts - FIXED
+**Status:** ✅ Fixed - All recommended scripts added
+
+**Added scripts:**
+- ✅ `type-check` - TypeScript type checking without building
+- ✅ `format` - Format code with Prettier
+- ✅ `format:check` - Check code formatting (CI-friendly)
+- ✅ `test` - Placeholder for future test suite
+
+**Additional:**
+- ✅ Prettier installed and configured
+- ✅ Prettier config file created (`.prettierrc.json`)
+- ✅ Prettier ignore file created (`.prettierignore`)
 
 ### ✅ 29. Unused Dependencies - FIXED
 **Status:** ✅ Fixed - `zustand` removed from dependencies
@@ -456,6 +462,8 @@ class ErrorBoundary extends React.Component {
 - ✅ #21 (Unused code cleanup - removed 9 unused items)
 - ✅ #23 (Route naming consistency - REST conventions)
 - ✅ #24 (Query key consistency - simplified to flat structure)
+- ✅ #27 (Package.json issues - typo fixed, scripts added, Prettier installed)
+- ✅ #28 (Missing scripts - all recommended scripts added)
 - ✅ #29 (Unused dependencies - zustand removed)
 - ✅ #37 (Broken/Unused ReviewsViews Component - FIXED)
 
@@ -480,8 +488,6 @@ class ErrorBoundary extends React.Component {
 - ⬜ #22 (Error boundaries)
 - ⬜ #25 (Input validation)
 - ⬜ #26 (API error handling improvements)
-- ⬜ #27 (Package.json issues - typo, missing scripts) - PARTIALLY FIXED (zustand removed)
-- ⬜ #28 (Missing scripts)
 - ⬜ #30 (Inconsistent spacing)
 - ⬜ #31 (Documentation)
 - ⬜ #32 (Quote usage consistency)
