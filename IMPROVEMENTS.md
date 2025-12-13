@@ -103,17 +103,20 @@ queryFn: async () => {
 ### 13. Missing Accessibility - PARTIALLY ADDRESSED
 **Status:** Some improvements made, but more needed
 - ✅ Fixed: Some buttons have `aria-label` (Add to cart, quantity input, star ratings)
-- ❌ Missing: Navigation buttons (search, person, cart) in `Navigation.tsx` lack `aria-label`
-- ❌ Missing: Tab navigation buttons in `ProdDescContainer.tsx` (Description/Reviews) lack `aria-label`
+- ❌ Missing: Navigation buttons (search, person, cart) in `Navigation.tsx` lack `aria-label` (lines 61, 66, 71)
+- ❌ Missing: Tab navigation buttons in `ProdDescContainer.tsx` (Description/Reviews) lack `aria-label` and `aria-pressed` (lines 27, 37)
+- ❌ Missing: Cart close button in `CartContainer.tsx` lacks `aria-label` (line 49)
 - ⚠️ Partial: Some images have alt text, but could be more descriptive
 
 **Files needing fixes:**
 - `src/components/navigation/Navigation.tsx` - lines 61, 66, 71 (icon buttons)
-- `src/components/productDetail/ProdDescContainer.tsx` - lines 27, 37 (tab buttons)
+- `src/components/productDetail/ProdDescContainer.tsx` - lines 27, 37 (tab buttons - should use `aria-pressed` for active state)
+- `src/components/cart/CartContainer.tsx` - line 49 (close button)
 
 **Recommendation:** 
-- Add `aria-label` to all icon buttons
-- Add `aria-label` or `aria-pressed` to tab buttons
+- Add `aria-label` to all icon buttons ("Search", "User account", "Shopping cart")
+- Add `aria-label` and `aria-pressed={value === buttonValue}` to tab buttons
+- Add `aria-label="Close cart"` to cart close button
 - Ensure all interactive elements are keyboard accessible
 - Add more descriptive alt text where needed
 
@@ -186,21 +189,18 @@ queryFn: async () => {
 ### 22. Directory Casing Consistency
 **Status:** Partially fixed, but verify all imports are consistent with actual directory structure (all lowercase).
 
-### 23. Unused Code - NEEDS VERIFICATION
-**Issues:**
-- `getProducts` function in `apiRequestRepository.ts` - appears unused (only `getProductsCategory` is used)
-- `ReviewsViews.tsx` component - not imported anywhere, has broken code (undefined variables: reviews, ProdNav, title, defaultAvatar, RatingContainer)
-- `Product` interface in `type.ts` - may not be used (verify)
+### 23. Unused Code - PARTIALLY ADDRESSED
+**Status:** Some items verified, one remains
+- ✅ Fixed: `ReviewsViews.tsx` - now properly implemented and integrated
+- ⚠️ Remaining: `getProducts` function in `apiRequestRepository.ts` - appears unused (only `getProductsCategory` is used)
+- ✅ Verified: `Product` interface in `type.ts` - IS used as return type for `getProducts` function (even though function is unused)
 
 **Files to check:**
-- `src/api/apiRequestRepository.ts` - `getProducts` function
-- `src/components/productDetail/ReviewsViews.tsx` - entire component appears unused
-- `src/type.ts` - `Product` interface
+- `src/api/apiRequestRepository.ts` - `getProducts` function (line 34) - not imported anywhere
 
 **Recommendation:** 
-- Remove unused `getProducts` function or mark for future use
-- Remove or fix `ReviewsViews.tsx` (has broken code with undefined variables)
-- Verify and remove unused `Product` interface if not needed
+- Remove unused `getProducts` function or mark for future use with a comment
+- Keep `Product` interface as it's used by `getProducts` (even if function is unused)
 
 ### 24. Missing Error Boundaries
 **Recommendation:** Add React error boundaries to catch component errors gracefully:
@@ -299,13 +299,57 @@ class ErrorBoundary extends React.Component {
 
 **Recommendation:** 
 - Add toast notifications or success messages when items are added to cart
-- Consider showing cart item count badge
+- Consider showing cart item count badge on cart icon
 - Add animation/feedback on button click
+- Show cart item count in navigation
 
 **Implementation options:**
 - Use a toast library (react-hot-toast, sonner)
 - Show inline success message
 - Animate cart icon when item added
+- Display cart count badge: `{cart.length > 0 && <span className="badge">{cart.length}</span>}`
+
+### 38. Missing Cart Functionality
+**Issues:**
+- Cart items only show title, no other details (price, quantity, thumbnail)
+- No way to remove items from cart
+- No way to update quantity in cart
+- Cart items are just a list of titles
+
+**Files:**
+- `src/components/cart/CartContainer.tsx` - cart display is minimal
+
+**Recommendation:**
+- Display full cart item details (image, title, price, quantity)
+- Add remove button for each cart item
+- Add quantity controls (increase/decrease) in cart
+- Show total price
+- Add "Clear cart" functionality
+- Improve cart UI/UX
+
+### 39. Missing Cart Item Count Badge
+**Issue:** No visual indicator of cart item count in navigation
+
+**Files:**
+- `src/components/navigation/Navigation.tsx` - cart icon has no badge
+
+**Recommendation:**
+- Add cart item count badge to cart icon
+- Show count when cart.length > 0
+- Animate badge when items are added
+- Make it accessible with `aria-label` including count
+
+### 40. Tab Navigation Missing Active State Indicators
+**Issue:** Tab buttons in `ProdDescContainer.tsx` don't have proper ARIA attributes for accessibility
+
+**Files:**
+- `src/components/productDetail/ProdDescContainer.tsx` - lines 27, 37
+
+**Recommendation:**
+- Add `aria-pressed={value === buttonValue}` to indicate active tab
+- Add `role="tab"` and `aria-controls` for proper tab semantics
+- Wrap in `role="tablist"` container
+- Ensure keyboard navigation works (Arrow keys to switch tabs)
 
 ### ✅ 37. Broken/Unused ReviewsViews Component - FIXED
 **File:** `src/components/productDetail/ReviewsViews.tsx`
@@ -356,11 +400,11 @@ class ErrorBoundary extends React.Component {
 - #6, #7, #8 (Type safety improvements - mostly addressed, minor remaining)
 
 ### Low Priority (Nice to Have)
-- #13 (Accessibility improvements - navigation buttons, tab buttons)
+- #13 (Accessibility improvements - navigation buttons, tab buttons, cart close button)
 - #14 (Path aliases for imports)
 - #16 (Performance optimizations - React.memo)
 - #17 (Loading states)
-- #23 (Unused code cleanup - getProducts, ReviewsViews, Product interface)
+- #23 (Unused code cleanup - getProducts function)
 - #24 (Error boundaries)
 - #27 (Input validation)
 - #28 (API error handling improvements)
@@ -371,7 +415,9 @@ class ErrorBoundary extends React.Component {
 - #33 (Documentation)
 - #34 (Quote usage consistency)
 - #36 (User feedback for cart actions - toast notifications)
-- #37 (Fix broken ReviewsViews component or remove it)
+- #38 (Missing cart functionality - remove items, quantity controls, better display)
+- #39 (Missing cart item count badge)
+- #40 (Tab navigation missing active state indicators)
 
 ---
 
