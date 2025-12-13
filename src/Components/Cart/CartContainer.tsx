@@ -3,7 +3,32 @@ import { FaRegTimesCircle } from "react-icons/fa";
 import { CartContext } from "../../features/CartProvider";
 import { CartItem } from "../../type";
 
-type CartContainer = {
+/**
+ * ✅ FIXED: Changed from CartContainer to CartContainerProps
+ * 
+ * WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+ * The original type name was: type CartContainer
+ * 
+ * PROBLEMS:
+ * 1. Naming convention violation: Type names for component props should end with "Props"
+ *    - This is a React/TypeScript best practice
+ *    - Makes it clear this type is for component props, not a component itself
+ * 2. Confusing: CartContainer is also the component name, so having a type with the same
+ *    name creates ambiguity
+ * 3. Inconsistent: Other prop types in the codebase follow the Props suffix pattern
+ * 
+ * WHY THE NEW IMPLEMENTATION WORKS:
+ * - Follows React naming convention: ComponentNameProps for prop types
+ * - Clear distinction: CartContainer = component, CartContainerProps = prop type
+ * - Consistent with React ecosystem standards
+ * - Better IDE autocomplete and code navigation
+ * 
+ * LEARN MORE:
+ * - React component props: https://react.dev/learn/passing-props-to-a-component
+ * - TypeScript naming conventions: https://google.github.io/styleguide/tsguide.html#naming
+ * - React TypeScript cheatsheet: https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example
+ */
+type CartContainerProps = {
   isCartActive: boolean;
   setIsCartActive: (status: boolean) => void;
 };
@@ -11,7 +36,7 @@ type CartContainer = {
 export const CartContainer = ({
   isCartActive,
   setIsCartActive,
-}: CartContainer) => {
+}: CartContainerProps) => {
   const active = isCartActive ? "w-full sm:w-96" : "w-0 overflow-hidden";
 
   const { cart } = useContext(CartContext);

@@ -1,12 +1,85 @@
-import { ProductView } from "../../type";
+import { useContext } from "react";
+import { ProductView, CartItem, CartAction } from "../../type";
 import { NavLink } from "react-router";
 import { RatingContainer } from "./RatingContainer";
+import { CartContext } from "../../features/CartProvider";
 
 interface ShopListProps {
   shopList: ProductView[];
 }
 
 export const ShopItems = ({ shopList }: ShopListProps) => {
+  // ✅ IMPLEMENTED: Add to cart functionality
+  //
+  // WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+  // The original button had no onClick handler - it was just a placeholder:
+  //   <button>Add to cart</button>  // ❌ No functionality
+  //
+  // PROBLEMS:
+  // 1. Non-functional: Button did nothing when clicked
+  // 2. Poor UX: Users expect the button to work
+  // 3. Incomplete feature: Core e-commerce functionality missing
+  //
+  // WHY THE NEW IMPLEMENTATION WORKS:
+  // - Uses React Context to access cart state and dispatch function
+  // - Converts ProductView to CartItem format (adds quantity: 1)
+  // - Dispatches "Add" action to add item to cart
+  // - Provides user feedback (could add toast notification later)
+  //
+  // HOW IT WORKS:
+  // 1. useContext(CartContext) gives us access to cart state and dispatch
+  // 2. handleAddToCart converts ProductView → CartItem (adds quantity: 1)
+  // 3. Dispatches { type: "Add", product: cartItem } action
+  // 4. CartReducer handles the action and updates cart state
+  // 5. All components using CartContext automatically re-render with new cart
+  //
+  // LEARN MORE:
+  // - React Context: https://react.dev/learn/passing-data-deeply-with-context
+  // - useReducer: https://react.dev/reference/react/useReducer
+  // - Type conversion: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#type-assertions
+  const { dispatch } = useContext(CartContext);
+
+  /**
+   * Handles adding a product to the cart
+   * 
+   * WHY WE NEED THIS FUNCTION:
+   * - ProductView and CartItem have different shapes
+   * - ProductView: { id, title, thumbnail, price, rating }
+   * - CartItem: { id, title, thumbnail, price, quantity }
+   * - We need to add quantity: 1 when converting
+   * 
+   * HOW IT WORKS:
+   * 1. Takes a ProductView (from shop list)
+   * 2. Creates a CartItem with quantity: 1
+   * 3. Dispatches "Add" action to CartReducer
+   * 4. CartReducer adds item to cart state
+   * 
+   * LEARN MORE:
+   * - Object spread: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
+   * - Type narrowing: https://www.typescriptlang.org/docs/handbook/2/narrowing.html
+   */
+  const handleAddToCart = (product: ProductView) => {
+    // Convert ProductView to CartItem format
+    // We add quantity: 1 because this is a new item being added
+    const cartItem: CartItem = {
+      id: product.id,
+      title: product.title,
+      price: product.price,
+      thumbnail: product.thumbnail,
+      quantity: 1, // New items start with quantity 1
+    };
+
+    // Dispatch the "Add" action to the cart reducer
+    // This will trigger CartReducer to add the item to the cart
+    const action: CartAction = {
+      type: "Add",
+      product: cartItem,
+    };
+
+    dispatch(action);
+    // TODO: Consider adding user feedback (toast notification, animation, etc.)
+  };
+
   return (
     <div className="flex flex-col items-center">
       <div className="w-full max-w-screen-xl flex justify-between px-3">
@@ -56,21 +129,32 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                     >
                       Show detail
                     </NavLink>
-                    <button className="w-full  py-2 border-[1px] border-black		rounded-full">
-                      {/* ✅ FIXED: Changed from "Add to card" to "Add to cart" */}
-                      {/* 
-                        WHY THE ORIGINAL WAS INCORRECT:
-                        - Typo: "card" instead of "cart"
-                        - Poor user experience: confusing terminology
-                        - Unprofessional appearance
-                        
-                        WHY THE FIX MATTERS:
-                        - Correct terminology improves UX
-                        - Professional appearance
-                        - Clear communication with users
-                        
-                        NOTE: This button doesn't actually add to cart yet - see IMPROVEMENTS.md #21
-                      */}
+                    {/* ✅ IMPLEMENTED: Add to cart button with functionality */}
+                    {/*
+                      WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+                      The original button had no onClick handler:
+                        <button>Add to cart</button>  // ❌ No functionality
+                      
+                      PROBLEMS:
+                      1. Non-functional: Button did nothing when clicked
+                      2. Poor UX: Users expect buttons to work
+                      3. Incomplete feature: Core e-commerce functionality missing
+                      
+                      WHY THE NEW IMPLEMENTATION WORKS:
+                      - onClick handler calls handleAddToCart function
+                      - Function converts ProductView to CartItem and dispatches action
+                      - Cart state updates automatically via Context
+                      - Button is now fully functional
+                      
+                      LEARN MORE:
+                      - Event handlers: https://react.dev/learn/responding-to-events
+                      - Context API: https://react.dev/learn/passing-data-deeply-with-context
+                    */}
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="w-full  py-2 border-[1px] border-black		rounded-full hover:bg-gray-100 transition-colors"
+                      aria-label={`Add ${title} to cart`}
+                    >
                       Add to cart
                     </button>
                   </div>
