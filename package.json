@@ -1,5 +1,5 @@
 {
-  "name": "ecomerce_products_app",
+  "name": "ecommerce_products_app",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,11 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.11",
@@ -18,8 +22,7 @@
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
     "react-router": "^7.6.3",
-    "react-router-dom": "^7.6.3",
-    "zustand": "^5.0.6"
+    "react-router-dom": "^7.6.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.29.0",
@@ -32,6 +35,7 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.2.0",
     "postcss": "^8.5.6",
+    "prettier": "^3.7.4",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.34.1",

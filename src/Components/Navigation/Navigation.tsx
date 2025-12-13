@@ -6,12 +6,14 @@ import {
   IoBagOutline,
   IoAppsSharp,
 } from "react-icons/io5";
-import { Footer } from "../Footer/Footer";
-import { CartContainer } from "../Cart/CartContainer";
+import { Footer } from "../footer/Footer";
+import { CartContainer } from "../cart/CartContainer";
+// ✅ FIXED: Import route constants instead of using magic strings
+import { ROUTES } from "../../constants/routes";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
-  const [isCartActive, setIsCartActive] = useState(false)
+  const [isCartActive, setIsCartActive] = useState(false);
 
   const navActive = isActive ? "top-[65px]" : "top-[-350px]";
 
@@ -32,7 +34,7 @@ export const Navigation = () => {
               <li>
                 <NavLink
                   className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/"
+                  to={ROUTES.HOME}
                 >
                   Home
                 </NavLink>
@@ -40,7 +42,7 @@ export const Navigation = () => {
               <li>
                 <NavLink
                   className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/Shop"
+                  to={ROUTES.SHOP}
                 >
                   Shop
                 </NavLink>
@@ -48,7 +50,7 @@ export const Navigation = () => {
               <li>
                 <NavLink
                   className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/Blog"
+                  to={ROUTES.BLOG}
                 >
                   Blog
                 </NavLink>
@@ -66,7 +68,10 @@ export const Navigation = () => {
                 </button>
               </li>
               <li className="flex">
-                <button onClick={ () => setIsCartActive(true) } className="p-3 sm:p-0">
+                <button
+                  onClick={() => setIsCartActive(true)}
+                  className="p-3 sm:p-0"
+                >
                   <IoBagOutline />
                 </button>
               </li>
@@ -74,7 +79,10 @@ export const Navigation = () => {
           </nav>
         </div>
       </div>
-      <CartContainer isCartActive={isCartActive} setIsCartActive={setIsCartActive} />
+      <CartContainer
+        isCartActive={isCartActive}
+        setIsCartActive={setIsCartActive}
+      />
       <Outlet />
       <Footer />
     </>

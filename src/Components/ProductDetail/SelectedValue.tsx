@@ -1,7 +1,6 @@
 import { ProdNav, type Reviews } from "../../type";
-import { RatingContainer } from "../Shop/RatingContainer";
-import defaultAvatar from "../../../public/default-avatar.jpg";
 import { ReviewContainer } from "./ReviewContainer";
+import { ReviewsViews } from "./ReviewsViews";
 
 interface SelectedValueProps {
   id: string;
@@ -29,32 +28,48 @@ export const SelectedValue = ({
     case ProdNav.Reviews:
       return (
         <>
-          <h6 className="text-2xl font-medium">
-            {reviews.length} {ProdNav.Reviews} - {title}
-          </h6>
-          <ul>
-            {reviews.map((item, index) => {
-              const { date, reviewerName, comment, rating } = item;
-              return (
-                <li key={index} className="mt-5 flex  gap-6">
-                  <div>
-                    <img
-                      className="w-10 rounded-full"
-                      src={defaultAvatar}
-                      alt="avatar"
-                    />
-                  </div>
-                  <div>
-                    <RatingContainer rating={rating} />
-                    <p className="my-1">
-                      {reviewerName} - {date}
-                    </p>
-                    <p>{comment}</p>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+          {/* ✅ IMPLEMENTED: Empty state for no reviews */}
+          {/*
+            WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+            The original code always showed <ul>{reviews.map(...)}</ul> even when reviews.length === 0.
+            This would show "0 Reviews" with an empty list, which is:
+            - Confusing for users (they see "0 Reviews" but no explanation)
+            - Poor UX (no feedback about why there are no reviews)
+            - Unprofessional appearance
+            
+            WHY THE NEW IMPLEMENTATION WORKS:
+            - Shows a clear, friendly message when no reviews exist
+            - Provides helpful context (encourages users to be the first to review)
+            - Better user experience with proper feedback
+            - Still shows the review form so users can add the first review
+            
+            HOW IT WORKS:
+            1. Check if reviews.length === 0
+            2. If empty, show empty state message
+            3. If not empty, use ReviewsViews component to display reviews
+            4. Always show ReviewContainer so users can add reviews
+            
+            LEARN MORE:
+            - Empty states in UX: https://www.nngroup.com/articles/empty-state-ux/
+            - Conditional rendering: https://react.dev/learn/conditional-rendering
+            - User engagement patterns: https://www.interaction-design.org/literature/topics/user-engagement
+            - Component composition: https://react.dev/learn/passing-props-to-a-component
+          */}
+          {reviews.length === 0 ? (
+            <>
+              <div className="flex flex-col items-center justify-center py-8 px-4 text-center border-b border-gray-200">
+                <p className="text-lg font-medium text-gray-700 mb-2">
+                  No reviews yet
+                </p>
+                <p className="text-sm text-gray-500">
+                  Be the first to review this product!
+                </p>
+              </div>
+            </>
+          ) : (
+            <ReviewsViews reviews={reviews} title={title} />
+          )}
+
           <ReviewContainer id={id} />
         </>
       );

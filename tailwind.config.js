@@ -8,7 +8,7 @@ export default {
         "theme-gray-font": "#696869",
         "theme-gray-border": "#D7D7D6",
         "des-nav-color": "#F4F4F5",
-        "block-color": "#fff"
+        "block-color": "#fff",
       },
     },
   },

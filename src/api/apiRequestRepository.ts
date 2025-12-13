@@ -1,6 +1,26 @@
 import axios from "axios";
-import { Category, Product, ProductSummary, ProductView } from "../type";
-import { setCategoryUrl } from "../querys/useGetQuery/setCategoryUrl";
+import { Category, ProductSummary, ProductView } from "../type";
+// ✅ FIXED: Changed import path from "../querys/useGetQuery/setCategoryUrl" to "./setCategoryUrl"
+//
+// WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+// The original import was: import { setCategoryUrl } from "../querys/useGetQuery/setCategoryUrl";
+//
+// PROBLEMS:
+// 1. Wrong path: The file is actually in the same directory (./setCategoryUrl.ts)
+// 2. Typo in path: "querys" should be "queries" (though the actual directory was different)
+// 3. Unnecessary nesting: Importing from a deeply nested, non-existent path
+// 4. Breaks when files are moved or reorganized
+//
+// WHY THE NEW IMPLEMENTATION WORKS:
+// - Uses relative path from same directory (./setCategoryUrl)
+// - Shorter, clearer import path
+// - Matches actual file location
+// - Easier to maintain
+//
+// LEARN MORE:
+// - ES6 imports: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
+// - Module resolution: https://www.typescriptlang.org/docs/handbook/module-resolution.html
+import { setCategoryUrl } from "./setCategoryUrl";
 import { API_URL } from "./apiUrl";
 
 export const getProduct = async (id: string): Promise<ProductSummary> => {
@@ -9,12 +29,6 @@ export const getProduct = async (id: string): Promise<ProductSummary> => {
   );
 
   return response.data;
-};
-
-export const getProducts = async (): Promise<Product> => {
-  const response = await axios.get(API_URL);
-
-  return response.data.prodct;
 };
 
 export const getProductsCategory = async (

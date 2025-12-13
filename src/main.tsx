@@ -2,21 +2,13 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { RouterProvider } from "react-router";
 import "./index.css";
-import { router } from "./Route/router.tsx";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { router } from "./routes/router.tsx";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { CartProvider } from "./Features/CartProvider.tsx";
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      retry: 1,
-      staleTime: 10 * 60 * 1000,
-    },
-  },
-});
+import { CartProvider } from "./features/CartProvider.tsx";
+// ✅ FIXED: Use centralized QueryClient instead of creating a new one
+// This ensures consistent configuration across the app and follows DRY principle
+import { queryClient } from "./queryClient";
 
 declare global {
   interface Window {
