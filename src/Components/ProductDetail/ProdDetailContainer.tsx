@@ -42,7 +42,7 @@ export const ProdDetailContainer = () => {
   const [searchParams] = useSearchParams();
   const id = searchParams.get("id");
   const { data, error, isFetching } = useGetProduct(id);
-
+  
   if (error) return <ApiCallError error={error} />;
 
   if (isFetching) return <ApiCallLoading />;

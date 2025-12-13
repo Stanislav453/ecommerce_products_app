@@ -52,12 +52,12 @@ export const useGetProduct = (id: string | null) => {
       // Note: id can't be null here because enabled: !!id prevents this from running
       // But TypeScript doesn't know that, so we keep the check for type safety
       // In practice, this will never throw because enabled guards against null
-      if (!id) {
-        throw new Error("Product ID is missing!!");
-      }
+        if (!id) {
+          throw new Error("Product ID is missing!!");
+        }
       // ✅ Let React Query handle errors - don't catch and swallow them
       // If getProduct() throws, React Query will catch it and set error state
-      return getProduct(id);
+        return getProduct(id);
     },
   });
 };

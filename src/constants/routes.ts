@@ -43,8 +43,3 @@ export const ROUTES = {
   PRODUCT_DETAIL: '/product-detail',
 } as const;
 
-/**
- * Type for route values - ensures type safety when using routes
- */
-export type Route = typeof ROUTES[keyof typeof ROUTES];
-

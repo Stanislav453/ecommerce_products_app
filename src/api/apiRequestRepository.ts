@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Category, Product, ProductSummary, ProductView } from "../type";
+import { Category, ProductSummary, ProductView } from "../type";
 // ✅ FIXED: Changed import path from "../querys/useGetQuery/setCategoryUrl" to "./setCategoryUrl"
 //
 // WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
@@ -29,31 +29,6 @@ export const getProduct = async (id: string): Promise<ProductSummary> => {
   );
 
   return response.data;
-};
-
-export const getProducts = async (): Promise<Product> => {
-  const response = await axios.get(API_URL);
-
-  // ✅ FIXED: Changed from response.data.prodct to response.data.products
-  //
-  // WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
-  // The original code had: return response.data.prodct;  // ❌ Typo: "prodct" instead of "products"
-  //
-  // PROBLEMS:
-  // 1. Typo: "prodct" is not a valid property name
-  // 2. Runtime error: Accessing undefined property returns undefined
-  // 3. Type error: Function promises to return Product but returns undefined
-  // 4. Silent failure: The error might not be obvious until the function is actually used
-  //
-  // WHY THE NEW IMPLEMENTATION WORKS:
-  // - Uses correct property name: "products" (matches API response structure)
-  // - Returns the actual data from the API
-  // - Type-safe: Matches the Promise<Product> return type
-  //
-  // LEARN MORE:
-  // - API integration: https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs
-  // - Error handling: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling
-  return response.data.products;
 };
 
 export const getProductsCategory = async (

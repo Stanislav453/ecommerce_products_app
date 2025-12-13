@@ -60,7 +60,7 @@ export const SelectedValue = ({
               <div className="flex flex-col items-center justify-center py-8 px-4 text-center border-b border-gray-200">
                 <p className="text-lg font-medium text-gray-700 mb-2">No reviews yet</p>
                 <p className="text-sm text-gray-500">Be the first to review this product!</p>
-              </div>
+                  </div>
             </>
           ) : (
             <ReviewsViews reviews={reviews} title={title} />

@@ -112,7 +112,7 @@ export const ShopContainer = () => {
           )}
         </div>
       ) : (
-        <ShopItems shopList={data} />
+      <ShopItems shopList={data} />
       )}
     </section>
   );

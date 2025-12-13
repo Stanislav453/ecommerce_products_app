@@ -68,21 +68,21 @@ export const ReviewsViews = ({ reviews, title }: ReviewsViewsProps) => {
           const uniqueKey = `${reviewerEmail}-${date}`;
           return (
             <li key={uniqueKey} className="mt-5 flex gap-6">
-              <div>
-                <img
-                  className="w-10 rounded-full"
-                  src={defaultAvatar}
+                <div>
+                  <img
+                    className="w-10 rounded-full"
+                    src={defaultAvatar}
                   alt={`${reviewerName}'s avatar`}
-                />
-              </div>
-              <div>
-                <RatingContainer rating={rating} />
-                <p className="my-1">
-                  {reviewerName} - {date}
-                </p>
-                <p>{comment}</p>
-              </div>
-            </li>
+                  />
+                </div>
+                <div>
+                  <RatingContainer rating={rating} />
+                  <p className="my-1">
+                    {reviewerName} - {date}
+                  </p>
+                  <p>{comment}</p>
+                </div>
+              </li>
           );
         })}
       </ul>

@@ -9,7 +9,7 @@ interface ProductDetailViewsProps {
 
 export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
   // ✅ CRITICAL: Hooks MUST be called at the top level, before any early returns
-  // 
+  //
   // WHY THIS IS IMPORTANT:
   // React Hooks must be called in the exact same order on every render.
   // If we call hooks after an early return (like `if (data === null) return null;`),
