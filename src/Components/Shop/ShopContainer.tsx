@@ -8,7 +8,7 @@ import { ShopFilter } from "./ShopFilter";
 import { ShopItems } from "./ShopItems";
 
 export const ShopContainer = () => {
-  const [selectFilterValue, setselectedValue] = useState<Category>("all");
+  const [selectFilterValue, setSelectedValue] = useState<Category>("all");
 
   const { data, error, isFetching } =
     useGetCategoryQuery(selectFilterValue);
@@ -27,11 +27,10 @@ export const ShopContainer = () => {
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">
         <div className="w-full  max-w-screen-xl flex flex-col sm:flex-row  gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex">
-            This is products
             <p>Showing 1 - {data.length} results</p>
           </div>
           <div>
-            <ShopFilter setselectedValue={setselectedValue} />
+            <ShopFilter setselectedValue={setSelectedValue} />
           </div>
         </div>
       </div>

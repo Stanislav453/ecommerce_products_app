@@ -14,7 +14,7 @@ export const getProduct = async (id: string): Promise<ProductSummary> => {
 export const getProducts = async (): Promise<Product> => {
   const response = await axios.get(API_URL);
 
-  return response.data.prodct;
+  return response.data.products;
 };
 
 export const getProductsCategory = async (

@@ -12,12 +12,12 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
       <div className="w-full max-w-screen-xl flex justify-between px-3">
         <div className="w-full flex">
           <ul className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            {shopList.map((product: ProductView, index: number) => {
+            {shopList.map((product: ProductView) => {
               const { id, title, thumbnail, price, rating } = product;
               return (
                 <li
                   className="w-full bg-linear-to-r from-cyan-500 to-blue-500"
-                  key={index}
+                  key={id}
                 >
                   <div className="flex justify-center bg-gradient-to-b from-slate-400 to-gray-400 rounded-3xl">
                     <img width={300} height={300} src={thumbnail} alt={title} />
@@ -37,7 +37,7 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                       Show detail
                     </NavLink>
                     <button className="w-full  py-2 border-[1px] border-black		rounded-full">
-                      Add to card
+                      Add to cart
                     </button>
                   </div>
                 </li>

@@ -49,8 +49,25 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
           Failed to submit review: {error?.message || "Unknown error"}
         </p>
       )}
-      <p>Your rating</p>
-      <div>PLACEFOR RATING</div>
+      <p>Your rating *</p>
+      <div className="flex gap-2 mb-4">
+        {[1, 2, 3, 4, 5].map((star) => (
+          <button
+            key={star}
+            type="button"
+            onClick={() => setReview({ ...review, rating: star })}
+            className={`text-2xl focus:outline-none transition-colors ${
+              star <= review.rating ? "text-yellow-400" : "text-gray-300"
+            }`}
+            aria-label={`Rate ${star} star${star !== 1 ? "s" : ""}`}
+          >
+            ★
+          </button>
+        ))}
+        <span className="ml-2 text-sm text-gray-600">
+          {review.rating} / 5
+        </span>
+      </div>
       <form className="mt-12" onSubmit={handlerSubmit}>
         <p className="flex flex-col">
           <label className="mb-3" htmlFor="comment">

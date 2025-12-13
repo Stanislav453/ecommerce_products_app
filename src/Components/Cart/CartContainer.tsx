@@ -16,8 +16,6 @@ export const CartContainer = ({
 
   const { cart } = useContext(CartContext);
 
-  console.log("This is CART", cart);
-
   return (
     <aside
       className={`fixed top-0 right-0 ${active} z-50 bg-block-color h-full shadow-black shadow-xl transition-all `}
