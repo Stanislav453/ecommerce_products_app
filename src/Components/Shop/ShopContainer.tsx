@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSearchParams } from "react-router";
 import { useGetCategoryQuery } from "../../queries/useGetCategoryQuery";
 import { Category } from "../../type";
 import { PageSection } from "../PageSection";
@@ -7,28 +7,66 @@ import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";
 import { ShopItems } from "./ShopItems";
 
+/**
+ * ✅ FIXED: Changed from local state to URL search params for category filtering
+ *
+ * WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+ * The original code used: const [selectFilterValue, setSelectedValue] = useState<Category>("all");
+ *
+ * PROBLEMS:
+ * 1. Not shareable: Filter state lost when sharing URL
+ *    - User filters to "beauty" category, shares URL, recipient sees "all" products
+ * 2. Not bookmarkable: Filter state lost on page refresh
+ *    - User filters to "furniture", refreshes page, filter resets to "all"
+ * 3. Poor UX: Can't deep link to specific category
+ *    - Can't send someone a link to "beauty products" page
+ * 4. Browser history: Can't use back/forward buttons to navigate filters
+ *
+ * WHY THE NEW IMPLEMENTATION WORKS:
+ * - Uses URL search params: /shop?category=beauty
+ * - Filter state is in URL, making it shareable and bookmarkable
+ * - Preserves filter state on page refresh
+ * - Browser back/forward buttons work with filters
+ * - Deep linkable: Can share links to specific filtered views
+ * - Better UX: Users can bookmark their favorite category views
+ *
+ * HOW IT WORKS:
+ * 1. Read category from URL search params on mount
+ * 2. Default to "all" if no category param exists
+ * 3. Update URL when category changes
+ * 4. URL and filter state stay in sync
+ *
+ * LEARN MORE:
+ * - React Router search params: https://reactrouter.com/en/main/hooks/use-search-params
+ * - URL design: https://www.w3.org/Provider/Style/URI
+ * - State management in URLs: https://kentcdodds.com/blog/avoid-nesting-state
+ */
+// Helper function to validate category
+function isValidCategory(value: string): value is Category {
+  return ["all", "beauty", "fragrances", "furniture", "groceries"].includes(value);
+}
+
 export const ShopContainer = () => {
-  // ✅ FIXED: Changed from setselectedValue to setSelectedValue (camelCase)
-  //
-  // WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
-  // The original code had: const [selectFilterValue, setselectedValue] = useState<Category>("all");
-  //
-  // PROBLEMS:
-  // 1. Naming convention violation: React setState functions should be camelCase
-  //    - setselectedValue should be setSelectedValue (capital S)
-  // 2. Inconsistency: Doesn't follow React/JavaScript naming conventions
-  // 3. Confusing: Harder to read and understand
-  //
-  // WHY THE NEW IMPLEMENTATION WORKS:
-  // - Follows React naming convention: setState functions are camelCase with capital letter
-  // - Consistent with React ecosystem standards
-  // - More readable and professional
-  //
-  // LEARN MORE:
-  // - React useState: https://react.dev/reference/react/useState
-  // - JavaScript naming conventions: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#variables
-  // - Code style guides: https://google.github.io/styleguide/jsguide.html
-  const [selectFilterValue, setSelectedValue] = useState<Category>("all");
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Get category from URL, default to "all" if not present
+  const categoryParam = searchParams.get("category");
+  const selectFilterValue: Category = 
+    categoryParam && isValidCategory(categoryParam) 
+      ? (categoryParam as Category) 
+      : "all";
+
+  // Update URL when category changes
+  const setSelectedValue = (category: Category) => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    if (category === "all") {
+      // Remove category param for "all" to keep URL clean
+      newSearchParams.delete("category");
+    } else {
+      newSearchParams.set("category", category);
+    }
+    setSearchParams(newSearchParams, { replace: true });
+  };
 
   const { data, error, isFetching } = useGetCategoryQuery(selectFilterValue);
 
@@ -61,7 +99,10 @@ export const ShopContainer = () => {
             <p>Showing 1 - {data.length} results</p>
           </div>
           <div>
-            <ShopFilter setselectedValue={setSelectedValue} />
+            <ShopFilter 
+              setselectedValue={setSelectedValue} 
+              currentValue={selectFilterValue}
+            />
           </div>
         </div>
       </div>

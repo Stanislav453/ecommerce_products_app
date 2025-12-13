@@ -5,7 +5,7 @@ This document contains suggestions for fixes and improvements to the ecommerce p
 **Last Updated:** Based on current codebase review
 **Status Summary:**
 
-- ✅ **26 items fixed** (Critical bugs, type safety, code quality, UI/UX improvements, unused code cleanup, configuration, formatting, RESTful routing)
+- ✅ **27 items fixed** (Critical bugs, type safety, code quality, UI/UX improvements, unused code cleanup, configuration, formatting, RESTful routing, URL state management)
 - ⬜ **12 items pending** (Accessibility, UX enhancements, code style)
 - 🎯 **Next recommended fixes:** #11 (Accessibility), #35 (Cart count badge)
 
@@ -336,6 +336,46 @@ class ErrorBoundary extends React.Component {
 - Before: `/product-detail?id=123` (search parameter)
 - After: `/product-detail/123` (path parameter - RESTful)
 
+### ✅ 39. Shop Category Filter Not in URL - FIXED
+
+**Status:** ✅ Fixed - Category filter now uses URL search params
+
+**Issue:** Shop category filter used local state, making filters not shareable or bookmarkable
+
+**Current implementation (before fix):**
+- Used `useState` for category filter
+- Filter state lost on page refresh
+- Filter state not in URL, can't share filtered views
+- No deep linking to specific categories
+
+**Fixed:**
+- ✅ Changed to use `useSearchParams()` for category state
+- ✅ Category now in URL: `/shop?category=beauty`
+- ✅ Filter state preserved on page refresh
+- ✅ Shareable: Can share links to specific filtered views
+- ✅ Bookmarkable: Can bookmark favorite category views
+- ✅ Browser history: Back/forward buttons work with filters
+- ✅ Controlled select: Select value syncs with URL state
+- ✅ Input validation: Validates category param from URL
+
+**Files updated:**
+- ✅ `src/components/shop/ShopContainer.tsx` - Now uses `useSearchParams()` instead of `useState`
+- ✅ `src/components/shop/ShopFilter.tsx` - Added `currentValue` prop for controlled component
+
+**URL format:**
+- `/shop` - Shows all products (no category param)
+- `/shop?category=beauty` - Shows beauty products
+- `/shop?category=furniture` - Shows furniture products
+
+**Benefits:**
+- ✅ Shareable filter state (can share filtered views)
+- ✅ Bookmarkable (can bookmark favorite categories)
+- ✅ Deep linkable (can link directly to category views)
+- ✅ Better UX (filter state persists across navigation)
+- ✅ Browser history support (back/forward buttons work)
+
+**Note:** This is a legitimate use of search params (filtering), unlike #38 where resource IDs should be in path.
+
 ## Security and Best Practices
 
 ### ⬜ 25. Missing Input Validation
@@ -605,6 +645,7 @@ class ErrorBoundary extends React.Component {
 - ✅ #30 (Inconsistent spacing - formatted with Prettier)
 - ✅ #37 (Broken/Unused ReviewsViews Component - FIXED)
 - ✅ #38 (Product ID in path params - RESTful routing)
+- ✅ #39 (Shop category filter in URL - shareable/bookmarkable filters)
 
 ### High Priority (Next Steps)
 
