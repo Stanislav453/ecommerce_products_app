@@ -60,6 +60,8 @@ export const router = createBrowserRouter([
         path: ROUTES.PRODUCT_DETAIL,
         element: <ProductDetail />,
         errorElement: <NotFoundPage />,
+        // ✅ FIXED: Route now uses path parameter :id instead of search param
+        // This makes URLs RESTful: /product-detail/123 instead of /product-detail?id=123
       },
     ],
   },

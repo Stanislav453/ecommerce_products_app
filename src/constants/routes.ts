@@ -35,10 +35,42 @@
 /**
  * Application route paths
  * Following REST conventions: lowercase, kebab-case for multi-word routes
+ * ✅ FIXED: Product detail now uses path parameter instead of search param
  */
 export const ROUTES = {
   HOME: "/",
   SHOP: "/shop",
   BLOG: "/blog",
-  PRODUCT_DETAIL: "/product-detail",
+  PRODUCT_DETAIL: "/product-detail/:id",
 } as const;
+
+/**
+ * Helper function to generate product detail URL with ID
+ * ✅ FIXED: Changed from search param (?id=123) to path param (/product-detail/123)
+ *
+ * WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
+ * The original code used: `${ROUTES.PRODUCT_DETAIL}?id=${id}`
+ * This created URLs like: /product-detail?id=123
+ *
+ * PROBLEMS:
+ * 1. Not RESTful: Resource IDs should be in the path, not query params
+ * 2. Poor SEO: Search engines prefer clean URLs with path parameters
+ * 3. Less semantic: Path parameters are more intuitive and readable
+ * 4. Harder to bookmark/share: Path params are more user-friendly
+ * 5. Inconsistent with REST conventions: Industry standard is path params for resources
+ *
+ * WHY THE NEW IMPLEMENTATION WORKS:
+ * - Uses path parameter: /product-detail/:id
+ * - Creates clean URLs: /product-detail/123
+ * - RESTful: Follows industry standards
+ * - Better SEO: Search engines prefer path parameters
+ * - More intuitive: Easier to read and understand
+ *
+ * LEARN MORE:
+ * - REST API conventions: https://restfulapi.net/resource-naming/
+ * - React Router params: https://reactrouter.com/en/main/route/route#dynamic-segments
+ * - URL design: https://www.w3.org/Provider/Style/URI
+ */
+export const getProductDetailUrl = (id: string): string => {
+  return `/product-detail/${id}`;
+};

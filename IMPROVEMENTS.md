@@ -5,8 +5,8 @@ This document contains suggestions for fixes and improvements to the ecommerce p
 **Last Updated:** Based on current codebase review
 **Status Summary:**
 
-- ✅ **24 items fixed** (Critical bugs, type safety, code quality, UI/UX improvements, unused code cleanup, configuration)
-- ⬜ **13 items pending** (Accessibility, UX enhancements, code style)
+- ✅ **26 items fixed** (Critical bugs, type safety, code quality, UI/UX improvements, unused code cleanup, configuration, formatting, RESTful routing)
+- ⬜ **12 items pending** (Accessibility, UX enhancements, code style)
 - 🎯 **Next recommended fixes:** #11 (Accessibility), #35 (Cart count badge)
 
 ## Critical Bugs (High Priority)
@@ -287,6 +287,55 @@ class ErrorBoundary extends React.Component {
 - Simple flat structure: `["products", ...]` - appropriate for small codebase
 - No over-engineering: Kept it simple without unnecessary hierarchy
 
+### ✅ 38. Product ID in Search Params Instead of Path - FIXED
+
+**Status:** ✅ Fixed - Now uses RESTful path parameters
+
+**Issue:** Product detail route uses search parameter (`?id=123`) instead of path parameter (`/product-detail/123`)
+
+**Current implementation:**
+- Route: `/product-detail`
+- Usage: `/product-detail?id=123` (search parameter)
+- Getting ID: `useSearchParams().get("id")` in `ProdDetailContainer.tsx`
+- Link: `${ROUTES.PRODUCT_DETAIL}?id=${id}` in `ShopItems.tsx`
+
+**Problems:**
+1. ❌ **Not RESTful**: Resource IDs should be in the path, not query params
+   - REST convention: `/products/:id` or `/product-detail/:id`
+   - Query params should be for filtering/sorting, not resource identification
+2. ❌ **Poor SEO**: Search engines prefer clean URLs with path parameters
+   - `/product-detail/123` is better indexed than `/product-detail?id=123`
+3. ❌ **Less semantic**: Path parameters are more intuitive and readable
+   - `/product-detail/123` clearly shows "product detail for ID 123"
+   - `/product-detail?id=123` is less clear
+4. ❌ **Harder to bookmark/share**: Path params are more user-friendly
+   - Users can easily see and modify the ID in the URL
+5. ❌ **Inconsistent with REST conventions**: Industry standard is path params for resources
+
+**Fixed:**
+- ✅ Changed route to: `/product-detail/:id` (RESTful path parameter)
+- ✅ Updated router: `path: "/product-detail/:id"`
+- ✅ Changed `ProdDetailContainer` to use `useParams()` instead of `useSearchParams()`
+- ✅ Updated all links: `getProductDetailUrl(id)` instead of `${ROUTES.PRODUCT_DETAIL}?id=${id}`
+- ✅ Created helper function: `getProductDetailUrl(id: string)` in `routes.ts`
+
+**Files updated:**
+- ✅ `src/routes/router.tsx` - Added `:id` parameter to route path
+- ✅ `src/components/productDetail/ProdDetailContainer.tsx` - Now uses `useParams()` instead of `useSearchParams()`
+- ✅ `src/components/shop/ShopItems.tsx` - Updated link to use `getProductDetailUrl(id)`
+- ✅ `src/constants/routes.ts` - Updated route constant and added helper function
+
+**Benefits achieved:**
+- ✅ RESTful URL structure (follows industry standards)
+- ✅ Better SEO (search engines prefer path parameters)
+- ✅ More intuitive URLs (easier to read and understand)
+- ✅ Easier to bookmark/share (cleaner URLs)
+- ✅ Better type safety (React Router validates path params)
+
+**URL format:**
+- Before: `/product-detail?id=123` (search parameter)
+- After: `/product-detail/123` (path parameter - RESTful)
+
 ## Security and Best Practices
 
 ### ⬜ 25. Missing Input Validation
@@ -555,6 +604,7 @@ class ErrorBoundary extends React.Component {
 - ✅ #29 (Unused dependencies - zustand removed)
 - ✅ #30 (Inconsistent spacing - formatted with Prettier)
 - ✅ #37 (Broken/Unused ReviewsViews Component - FIXED)
+- ✅ #38 (Product ID in path params - RESTful routing)
 
 ### High Priority (Next Steps)
 

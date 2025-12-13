@@ -3,8 +3,8 @@ import { ProductView, CartItem, CartAction } from "../../type";
 import { NavLink } from "react-router";
 import { RatingContainer } from "./RatingContainer";
 import { CartContext } from "../../features/CartProvider";
-// ✅ FIXED: Import route constants instead of using magic strings
-import { ROUTES } from "../../constants/routes";
+// ✅ FIXED: Import route constants and helper function
+import { ROUTES, getProductDetailUrl } from "../../constants/routes";
 
 interface ShopListProps {
   shopList: ProductView[];
@@ -126,11 +126,26 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                     />
 
                     <NavLink
-                      to={`${ROUTES.PRODUCT_DETAIL}?id=${id}`}
+                      to={getProductDetailUrl(id)}
                       className="w-full  py-2 border-[1px] border-black		rounded-full mb-1 mt-3"
                     >
                       Show detail
                     </NavLink>
+                    {/* ✅ FIXED: Changed from search param to path param
+                      Original: to={`${ROUTES.PRODUCT_DETAIL}?id=${id}`}  // ❌ /product-detail?id=123
+                      Fixed: to={getProductDetailUrl(id)}  // ✅ /product-detail/123 (RESTful)
+                      
+                      WHY THIS IS BETTER:
+                      - RESTful URL structure (follows industry standards)
+                      - Better SEO (search engines prefer path parameters)
+                      - More intuitive URLs (easier to read and understand)
+                      - Easier to bookmark/share (cleaner URLs)
+                      - Uses helper function for consistency and maintainability
+                      
+                      LEARN MORE:
+                      - REST API conventions: https://restfulapi.net/resource-naming/
+                      - React Router params: https://reactrouter.com/en/main/route/route#dynamic-segments
+                    */}
                     {/* ✅ IMPLEMENTED: Add to cart button with functionality */}
                     {/*
                       WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
