@@ -13,7 +13,7 @@ export interface ReviewSubmission {
  * Adds a review to a product
  * Note: dummyjson.com doesn't support review updates via API,
  * so this is a mock implementation that simulates the behavior.
- * 
+ *
  * In a real app, this would use:
  * import axios from "axios";
  * import { API_URL } from "./apiUrl";
@@ -27,7 +27,7 @@ export const addProductReview = async (
   // In a real app, this would POST/PUT to an endpoint like:
   // const response = await axios.post(`${API_URL}/${productId}/reviews`, review);
   // return response.data;
-  
+
   // Simulate API call delay
   await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -45,4 +45,3 @@ export const addProductReview = async (
   // The actual persistence would happen on the backend
   return newReview;
 };
-

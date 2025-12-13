@@ -18,7 +18,9 @@ export const ProdDescContainer = ({
   const [value, setValue] = useState<ProdNav>(ProdNav.Description);
 
   const getButtonClass = (buttonValue: ProdNav) =>
-    value === buttonValue ? "bg-des-nav-color" : "bg-white border-b-[1px] border-theme-gray-border";
+    value === buttonValue
+      ? "bg-des-nav-color"
+      : "bg-white border-b-[1px] border-theme-gray-border";
 
   return (
     <article className="w-full max-w-screen-xl flex flex-col md:flex-row gap-12 justify-between items-start py-5 px-3 ">

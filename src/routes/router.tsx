@@ -11,27 +11,27 @@ import { ROUTES } from "../constants/routes";
 
 /**
  * ✅ FIXED: Route configuration using constants and REST conventions
- * 
+ *
  * WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
  * The original code had:
  * - path: "/Shop" (capitalized, not RESTful)
  * - path: "/Blog" (capitalized, not RESTful)
  * - path: "/Product-detail" (inconsistent casing)
  * - Hardcoded strings scattered throughout
- * 
+ *
  * PROBLEMS:
  * 1. Not RESTful: Routes should be lowercase (REST API convention)
  * 2. Inconsistent: Mix of capitalized and lowercase routes
  * 3. Magic strings: Hard to refactor and maintain
  * 4. Typos: Easy to make mistakes
- * 
+ *
  * WHY THE NEW IMPLEMENTATION WORKS:
  * - Uses ROUTES constants: Single source of truth
  * - RESTful conventions: All routes lowercase (/shop, /blog)
  * - Type safety: TypeScript ensures correct route usage
  * - Easy refactoring: Change route in one place
  * - Consistent: All routes follow same pattern
- * 
+ *
  * LEARN MORE:
  * - REST API conventions: https://restfulapi.net/resource-naming/
  * - React Router: https://reactrouter.com/en/main/start/overview

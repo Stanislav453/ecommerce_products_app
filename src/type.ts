@@ -42,7 +42,7 @@ export type ProductView = {
   rating: number;
 };
 
-export interface CartItem  {
+export interface CartItem {
   id: string;
   title: string;
   price: number;

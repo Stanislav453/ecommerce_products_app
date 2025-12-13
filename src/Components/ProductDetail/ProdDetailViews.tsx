@@ -34,26 +34,36 @@ export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
   // Early return AFTER hooks (this is safe)
   if (data === null) return null;
 
-  const { title, images, price, rating, description, category, tags, id, thumbnail } = data;
+  const {
+    title,
+    images,
+    price,
+    rating,
+    description,
+    category,
+    tags,
+    id,
+    thumbnail,
+  } = data;
 
   /**
    * Handles adding product to cart with selected quantity
-   * 
+   *
    * WHY WE NEED THIS FUNCTION:
    * - ProductSummary and CartItem have different shapes
    * - ProductSummary: { id, title, price, thumbnail, ... } (no quantity)
    * - CartItem: { id, title, price, thumbnail, quantity }
    * - We need to add the selected quantity when converting
-   * 
+   *
    * HOW IT WORKS:
    * 1. Takes current quantity from state
    * 2. Creates CartItem with selected quantity
    * 3. Dispatches "Add" action to CartReducer
    * 4. CartReducer adds item(s) to cart
-   * 
+   *
    * NOTE: If item already exists in cart, CartReducer will add it again
    * (This creates duplicate entries - could be improved to check for existing items)
-   * 
+   *
    * LEARN MORE:
    * - Type conversion: https://www.typescriptlang.org/docs/handbook/2/everyday-types.html
    * - Reducer patterns: https://react.dev/reference/react/useReducer
@@ -94,7 +104,7 @@ export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
             <RatingContainer rating={rating} />
           </div>
           <p className="my-2 text-theme-gray-font ">{description}</p>
-          
+
           {/* ✅ IMPLEMENTED: Quantity manager and Add to cart functionality */}
           {/*
             WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
@@ -155,7 +165,7 @@ export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
               Add to cart ({quantity})
             </button>
           </div>
-          
+
           <div className="border-t border-theme-gray-border"></div>
           <div className="flex mt-2">
             <p>

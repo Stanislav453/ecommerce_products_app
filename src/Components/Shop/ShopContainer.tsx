@@ -30,8 +30,7 @@ export const ShopContainer = () => {
   // - Code style guides: https://google.github.io/styleguide/jsguide.html
   const [selectFilterValue, setSelectedValue] = useState<Category>("all");
 
-  const { data, error, isFetching } =
-    useGetCategoryQuery(selectFilterValue);
+  const { data, error, isFetching } = useGetCategoryQuery(selectFilterValue);
 
   if (error) return <ApiCallError error={error} />;
 
@@ -66,7 +65,7 @@ export const ShopContainer = () => {
           </div>
         </div>
       </div>
-      
+
       {/* ✅ IMPLEMENTED: Empty state for no products found */}
       {/*
         WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
@@ -96,9 +95,11 @@ export const ShopContainer = () => {
       */}
       {data.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
-          <p className="text-xl font-medium text-gray-700 mb-2">No products found</p>
+          <p className="text-xl font-medium text-gray-700 mb-2">
+            No products found
+          </p>
           <p className="text-sm text-gray-500 mb-4">
-            {selectFilterValue !== "all" 
+            {selectFilterValue !== "all"
               ? `No products available in the "${selectFilterValue}" category.`
               : "No products are currently available."}
           </p>
@@ -112,7 +113,7 @@ export const ShopContainer = () => {
           )}
         </div>
       ) : (
-      <ShopItems shopList={data} />
+        <ShopItems shopList={data} />
       )}
     </section>
   );

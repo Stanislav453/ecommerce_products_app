@@ -4,31 +4,31 @@ import defaultAvatar from "../../../public/default-avatar.jpg";
 
 /**
  * ✅ FIXED: ReviewsViews component with proper props and imports
- * 
+ *
  * WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
  * The original component had:
  * - No props interface - undefined variables (reviews, ProdNav, title, defaultAvatar, RatingContainer)
  * - Not imported anywhere - component was unused
  * - Broken code that would cause runtime errors
- * 
+ *
  * PROBLEMS:
  * 1. Undefined variables: Component tried to use variables that didn't exist
  * 2. No props: Component couldn't receive data from parent
  * 3. Missing imports: Required dependencies weren't imported
  * 4. Unused: Component was never integrated into the app
- * 
+ *
  * WHY THE NEW IMPLEMENTATION WORKS:
  * - Proper props interface: Component receives all needed data as props
  * - All imports included: ProdNav, Reviews type, RatingContainer, defaultAvatar
  * - Separation of concerns: Handles review list rendering, parent handles conditional logic
  * - Reusable: Can be used anywhere reviews need to be displayed
- * 
+ *
  * HOW IT WORKS:
  * 1. Receives reviews array, title, and ProdNav as props
  * 2. Displays review count and title in header
  * 3. Maps through reviews and displays each with avatar, rating, name, date, and comment
  * 4. Uses composite key (reviewerEmail + date) for stable React keys
- * 
+ *
  * LEARN MORE:
  * - React component props: https://react.dev/learn/passing-props-to-a-component
  * - Component composition: https://react.dev/learn/passing-props-to-a-component#passing-jsx-as-children
@@ -68,21 +68,21 @@ export const ReviewsViews = ({ reviews, title }: ReviewsViewsProps) => {
           const uniqueKey = `${reviewerEmail}-${date}`;
           return (
             <li key={uniqueKey} className="mt-5 flex gap-6">
-                <div>
-                  <img
-                    className="w-10 rounded-full"
-                    src={defaultAvatar}
+              <div>
+                <img
+                  className="w-10 rounded-full"
+                  src={defaultAvatar}
                   alt={`${reviewerName}'s avatar`}
-                  />
-                </div>
-                <div>
-                  <RatingContainer rating={rating} />
-                  <p className="my-1">
-                    {reviewerName} - {date}
-                  </p>
-                  <p>{comment}</p>
-                </div>
-              </li>
+                />
+              </div>
+              <div>
+                <RatingContainer rating={rating} />
+                <p className="my-1">
+                  {reviewerName} - {date}
+                </p>
+                <p>{comment}</p>
+              </div>
+            </li>
           );
         })}
       </ul>

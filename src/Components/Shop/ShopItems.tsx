@@ -43,19 +43,19 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
 
   /**
    * Handles adding a product to the cart
-   * 
+   *
    * WHY WE NEED THIS FUNCTION:
    * - ProductView and CartItem have different shapes
    * - ProductView: { id, title, thumbnail, price, rating }
    * - CartItem: { id, title, thumbnail, price, quantity }
    * - We need to add quantity: 1 when converting
-   * 
+   *
    * HOW IT WORKS:
    * 1. Takes a ProductView (from shop list)
    * 2. Creates a CartItem with quantity: 1
    * 3. Dispatches "Add" action to CartReducer
    * 4. CartReducer adds item to cart state
-   * 
+   *
    * LEARN MORE:
    * - Object spread: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax
    * - Type narrowing: https://www.typescriptlang.org/docs/handbook/2/narrowing.html

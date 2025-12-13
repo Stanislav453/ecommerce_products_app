@@ -13,7 +13,7 @@ import { ROUTES } from "../../constants/routes";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
-  const [isCartActive, setIsCartActive] = useState(false)
+  const [isCartActive, setIsCartActive] = useState(false);
 
   const navActive = isActive ? "top-[65px]" : "top-[-350px]";
 
@@ -68,7 +68,10 @@ export const Navigation = () => {
                 </button>
               </li>
               <li className="flex">
-                <button onClick={ () => setIsCartActive(true) } className="p-3 sm:p-0">
+                <button
+                  onClick={() => setIsCartActive(true)}
+                  className="p-3 sm:p-0"
+                >
                   <IoBagOutline />
                 </button>
               </li>
@@ -76,7 +79,10 @@ export const Navigation = () => {
           </nav>
         </div>
       </div>
-      <CartContainer isCartActive={isCartActive} setIsCartActive={setIsCartActive} />
+      <CartContainer
+        isCartActive={isCartActive}
+        setIsCartActive={setIsCartActive}
+      />
       <Outlet />
       <Footer />
     </>

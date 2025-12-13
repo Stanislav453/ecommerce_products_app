@@ -95,9 +95,7 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
             ★
           </button>
         ))}
-        <span className="ml-2 text-sm text-gray-600">
-          {review.rating} / 5
-        </span>
+        <span className="ml-2 text-sm text-gray-600">{review.rating} / 5</span>
       </div>
       <form className="mt-12" onSubmit={handlerSubmit}>
         <p className="flex flex-col">

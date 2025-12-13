@@ -5,10 +5,10 @@ import { CartItem } from "../../type";
 
 /**
  * ✅ FIXED: Changed from CartContainer to CartContainerProps
- * 
+ *
  * WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
  * The original type name was: type CartContainer
- * 
+ *
  * PROBLEMS:
  * 1. Naming convention violation: Type names for component props should end with "Props"
  *    - This is a React/TypeScript best practice
@@ -16,13 +16,13 @@ import { CartItem } from "../../type";
  * 2. Confusing: CartContainer is also the component name, so having a type with the same
  *    name creates ambiguity
  * 3. Inconsistent: Other prop types in the codebase follow the Props suffix pattern
- * 
+ *
  * WHY THE NEW IMPLEMENTATION WORKS:
  * - Follows React naming convention: ComponentNameProps for prop types
  * - Clear distinction: CartContainer = component, CartContainerProps = prop type
  * - Consistent with React ecosystem standards
  * - Better IDE autocomplete and code navigation
- * 
+ *
  * LEARN MORE:
  * - React component props: https://react.dev/learn/passing-props-to-a-component
  * - TypeScript naming conventions: https://google.github.io/styleguide/tsguide.html#naming
@@ -50,7 +50,7 @@ export const CartContainer = ({
           <FaRegTimesCircle className="w-[2.1875rem] h-[2.1875rem] " />
         </button>
       </div>
-      
+
       {/* ✅ IMPLEMENTED: Empty state for empty cart */}
       {/*
         WHY THE ORIGINAL IMPLEMENTATION WAS INCORRECT:
@@ -78,8 +78,12 @@ export const CartContainer = ({
       */}
       {cart.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full px-4 py-8 text-center">
-          <p className="text-lg font-medium text-gray-600 mb-2">Your cart is empty</p>
-          <p className="text-sm text-gray-500">Add some products to get started!</p>
+          <p className="text-lg font-medium text-gray-600 mb-2">
+            Your cart is empty
+          </p>
+          <p className="text-sm text-gray-500">
+            Add some products to get started!
+          </p>
         </div>
       ) : (
         <ul>
