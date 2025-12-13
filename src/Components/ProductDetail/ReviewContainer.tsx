@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { shopRepository } from "../../api/shopRepository";
+import { useUpdateProductReview } from "../../queries/useUpdateProductReview";
 
 type ReviewContainerProps = {
   id: string;
@@ -12,22 +12,43 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
     author: "",
     email: "",
     saveUserInfo: false,
+    rating: 5,
   });
-  const { mutate, status } = shopRepository.updateProductReviews(id);
+
+  const { mutate, isPending, isError, isSuccess, error } =
+    useUpdateProductReview(id);
 
   const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    mutate(review);
+    mutate(review, {
+      onSuccess: () => {
+        // Reset form on success
+        setReview({
+          id: id,
+          comment: "",
+          author: "",
+          email: "",
+          saveUserInfo: false,
+          rating: 5,
+        });
+      },
+    });
   };
-
-  console.log("useMutation", status);
 
   return (
     <div>
       <h5>Add a review </h5>
       <p>
-        Your email adress will not be published. Required fields are marked *
+        Your email address will not be published. Required fields are marked *
       </p>
+      {isSuccess && (
+        <p className="text-green-600 mb-4">Review submitted successfully!</p>
+      )}
+      {isError && (
+        <p className="text-red-600 mb-4">
+          Failed to submit review: {error?.message || "Unknown error"}
+        </p>
+      )}
       <p>Your rating</p>
       <div>PLACEFOR RATING</div>
       <form className="mt-12" onSubmit={handlerSubmit}>
@@ -93,10 +114,11 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
           </label>
         </p>
         <button
-          className="bg-black text-white font-bold px-8 py-4 rounded-2xl"
+          className="bg-black text-white font-bold px-8 py-4 rounded-2xl disabled:opacity-50 disabled:cursor-not-allowed"
           type="submit"
+          disabled={isPending}
         >
-          Submit
+          {isPending ? "Submitting..." : "Submit"}
         </button>
       </form>
     </div>
