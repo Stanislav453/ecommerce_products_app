@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FaRegTimesCircle } from "react-icons/fa";
-import { CartContext } from "../../features/CartProvider";
+import { CartContext } from "../../modules/CartProvider";
 import { CartItem } from "../../type";
 
 type CartContainer = {

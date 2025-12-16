@@ -5,7 +5,7 @@ import "./index.css";
 import { router } from "./route/router.tsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { CartProvider } from "./features/CartProvider.tsx";
+import { CartProvider } from "./modules/CartProvider.tsx";
 
 const queryClient = new QueryClient({
   defaultOptions: {
