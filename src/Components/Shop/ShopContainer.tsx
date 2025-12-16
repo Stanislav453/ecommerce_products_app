@@ -1,5 +1,5 @@
-import { ShopItems } from "../../Components/Shop/ShopItems";
-import { PageSection } from "../../Components/PageSection";
+import { ShopItems } from "./ShopItems";
+import { PageSection } from "../PageSection";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { ShopFilter } from "./ShopFilter";

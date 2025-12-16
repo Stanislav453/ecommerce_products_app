@@ -1,5 +1,5 @@
 import { ProductSummary } from "../../type";
-import { RatingContainer } from "../Shop/RatingContainer";
+import { RatingContainer } from "../shop/RatingContainer";
 
 interface ProductDetailViewsProps {
   data: ProductSummary | null;

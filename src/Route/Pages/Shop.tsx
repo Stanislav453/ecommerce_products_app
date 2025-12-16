@@ -1,3 +1,3 @@
-import { ShopContainer } from "../../Components/Shop/ShopContainer";
+import { ShopContainer } from "../../components/shop/ShopContainer";
 
 export const Shop = () => <ShopContainer />;

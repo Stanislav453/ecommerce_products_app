@@ -6,8 +6,8 @@ import {
   IoBagOutline,
   IoAppsSharp,
 } from "react-icons/io5";
-import { Footer } from "../Footer/Footer";
-import { CartContainer } from "../Cart/CartContainer";
+import { Footer } from "../footer/Footer";
+import { CartContainer } from "../cart/CartContainer";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);

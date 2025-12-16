@@ -1,3 +1,3 @@
-import { ProdDetailContainer } from "../../Components/ProductDetail/ProdDetailContainer";
+import { ProdDetailContainer } from "../../components/productDetail/ProdDetailContainer";
 
 export const ProductDetail = () => <ProdDetailContainer />;
