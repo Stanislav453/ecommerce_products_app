@@ -1,4 +1,4 @@
-import { CartAction, CartItem } from "../type";
+import { CartAction, CartItem } from "../../type";
 
 export const CartReducer = (
   state: CartItem[],

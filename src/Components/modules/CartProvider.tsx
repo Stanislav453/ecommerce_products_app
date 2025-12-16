@@ -1,15 +1,10 @@
-import React, { createContext, useReducer } from "react";
-import { CartContextType } from "../type";
+import React, { useReducer } from "react";
 import { CartReducer } from "./CartReducer";
+import { CartContext } from "./CartContext";
 
 type ContextProviverProps = {
   children: React.ReactNode;
 };
-
-export const CartContext = createContext<CartContextType>({
-  cart: [],
-  dispatch: () => {},
-});
 
 export const CartProvider = ({ children }: ContextProviverProps) => {
   const [cart, dispatch] = useReducer(CartReducer, []);
