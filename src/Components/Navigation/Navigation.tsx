@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, Outlet } from "react-router";
 import {
   IoSearchOutline,
@@ -8,12 +8,19 @@ import {
 } from "react-icons/io5";
 import { Footer } from "../footer/Footer";
 import { CartContainer } from "../cart/CartContainer";
+import { CartContext } from "../modules/CartContext";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
-  const [isCartActive, setIsCartActive] = useState(false)
+  const [isCartActive, setIsCartActive] = useState(true);
 
   const navActive = isActive ? "top-[65px]" : "top-[-350px]";
+
+  const { cart } = useContext(CartContext);
+
+  const cartCount = cart.reduce((sum, product) => {
+    return Number(product.quantity) + sum;
+  }, 0);
 
   return (
     <>
@@ -66,15 +73,26 @@ export const Navigation = () => {
                 </button>
               </li>
               <li className="flex">
-                <button onClick={ () => setIsCartActive(true) } className="p-3 sm:p-0">
+                <button
+                  onClick={() => setIsCartActive(true)}
+                  className="p-3 sm:p-0"
+                >
                   <IoBagOutline />
+                  {cartCount > 0 && (
+                    <p className="absolute top-0 right-[-14px] bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center">
+                      {cartCount}
+                    </p>
+                  )}
                 </button>
               </li>
             </ul>
           </nav>
         </div>
       </div>
-      <CartContainer isCartActive={isCartActive} setIsCartActive={setIsCartActive} />
+      <CartContainer
+        isCartActive={isCartActive}
+        setIsCartActive={setIsCartActive}
+      />
       <Outlet />
       <Footer />
     </>

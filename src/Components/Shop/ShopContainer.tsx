@@ -1,11 +1,12 @@
-import { ShopItems } from "./ShopItems";
-import { PageSection } from "../PageSection";
-import { ApiCallError } from "../ui/ApiCallError";
-import { ApiCallLoading } from "../ui/ApiCallLoading";
-import { ShopFilter } from "./ShopFilter";
+
 import { useState } from "react";
 import { Category } from "../../type";
 import { useGetCategoryQuery } from "../../querys/useGetQuery/useGetCategoryQuery";
+import { ShopItems } from "./ShopItems";
+import { ApiCallError } from "../ui/ApiCallError";
+import { ApiCallLoading } from "../ui/ApiCallLoading";
+import { PageSection } from "../PageSection";
+import { ShopFilter } from "./ShopFilter";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState<Category>("all");

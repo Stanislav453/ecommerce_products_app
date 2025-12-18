@@ -1,6 +1,7 @@
 import { ProductView } from "../../type";
 import { NavLink } from "react-router";
 import { RatingContainer } from "./RatingContainer";
+import CartButtonContainer from "./CartButtonContainer";
 
 interface ShopListProps {
   shopList: ProductView[];
@@ -36,9 +37,9 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                     >
                       Show detail
                     </NavLink>
-                    <button className="w-full  py-2 border-[1px] border-black		rounded-full">
-                      Add to card
-                    </button>
+                    <div className="h-[42px]">
+                      <CartButtonContainer product={product} />
+                    </div>
                   </div>
                 </li>
               );

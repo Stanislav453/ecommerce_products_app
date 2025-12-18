@@ -94,12 +94,8 @@ export type UserReview = {
   saveUserInfo: boolean;
 };
 
-export interface CartItem  {
-  id: string;
-  title: string;
-  price: number;
+export interface CartItem extends ProductView {
   quantity: number;
-  thumbnail: string;
 }
 
 export type CartAction =
