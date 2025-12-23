@@ -1,7 +1,7 @@
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import { FaRegTimesCircle } from "react-icons/fa";
 import { CartContext } from "../modules/CartContext";
-import { CartItem } from "../../type";
+import { CalcProductType, CartItem } from "../../type";
 import CartButtonContainer from "../shop/CartButtonContainer";
 
 type CartContainer = {
@@ -17,16 +17,21 @@ export const CartContainer = ({
 
   const { cart } = useContext(CartContext);
 
-  const subTotal =
-    Math.round(
-      cart.reduce((sum, product) => {
-        return sum + Number(product.price) * Number(product.quantity);
-      }, 0) * 100
-    ) / 100;
+  const calcProduct = useMemo<CalcProductType>(() => {
+    let itemsCount = 0;
+    let subTotal = 0;
 
-  const cartItems = cart.reduce((sum, product) => {
-    return Number(product.quantity) + sum;
-  }, 0);
+    for (const product of cart) {
+      const { price, quantity } = product;
+      const productPrice = Number(price);
+      const productQuantity = Number(quantity);
+
+      itemsCount += productQuantity;
+      subTotal += productPrice * productQuantity;
+    }
+
+    return { itemsCount, subTotal: Math.round(subTotal * 100) / 100 };
+  }, [cart]);
 
   return (
     <aside
@@ -37,7 +42,9 @@ export const CartContainer = ({
           <FaRegTimesCircle className="w-[2.1875rem] h-[2.1875rem] " />
         </button>
       </div>
-      <p className="text-xl font-bold p-4">Your cart (items: {cartItems})</p>
+      <p className="text-xl font-bold p-4">
+        Your cart (items: {calcProduct.itemsCount})
+      </p>
       <ul>
         {cart.map((product: CartItem, index) => {
           const { title, thumbnail, price, quantity } = product;
@@ -65,11 +72,13 @@ export const CartContainer = ({
             </li>
           );
         })}
-      </ul >
+      </ul>
       <div className=" sticky bottom-0 right-0 z-50 w-full px-4 py-8 bg-white">
         <div className="flex justify-between">
           <h2 className="text-2xl font-semibold">Subtotal</h2>
-          <p className="text-2xl font-semibold text-gray-600">${subTotal}</p>
+          <p className="text-2xl font-semibold text-gray-600">
+            ${calcProduct.subTotal}
+          </p>
         </div>
         <p className="my-3">Shipping and discounts calculated at checkout.</p>
         <div className="flex  gap-4">

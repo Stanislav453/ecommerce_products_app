@@ -108,3 +108,9 @@ export type CartContextType = {
   cart: CartItem[];
   dispatch: React.Dispatch<CartAction>;
 };
+
+
+export type CalcProductType = {
+  itemsCount: number;
+  subTotal: number;
+};
