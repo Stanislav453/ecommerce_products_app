@@ -1,4 +1,5 @@
 import { ProductSummary } from "../../type";
+import CartButtonContainer from "../shop/CartButtonContainer";
 import { RatingContainer } from "../shop/RatingContainer";
 
 interface ProductDetailViewsProps {
@@ -27,8 +28,10 @@ export const ProdDetailViews = ({ data }: ProductDetailViewsProps) => {
             <RatingContainer rating={rating} />
           </div>
           <p className="my-2 text-theme-gray-font ">{description}</p>
-          <div className="mb-2">PLACE FOR COUNT MANAGER</div>
-          <div className="border-t border-theme-gray-border"></div>
+          <div className="max-w-52" >
+            <CartButtonContainer product={data} />
+          </div>
+          <div className="mt-3 border-t border-theme-gray-border"></div>
           <div className="flex mt-2">
             <p>
               {" "}
