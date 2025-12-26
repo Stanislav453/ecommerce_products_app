@@ -1,6 +1,6 @@
 import { CartAction, CartItem } from "../../type";
 
-export const CartReducer = (
+export const cartReducer = (
   state: CartItem[],
   action: CartAction
 ): CartItem[] => {
