@@ -5,15 +5,9 @@ import CartItems from "./CartItems";
 import { calcProduct } from "./calcProduct";
 import TotalPriceCard from "./TotalPriceCard";
 
-type CartContainer = {
-  isCartActive: boolean;
-  setIsCartActive: (status: boolean) => void;
-};
+export const CartContainer = () => {
+  const { isCartActive, setIsCartActive } = useContext(CartContext);
 
-export const CartContainer = ({
-  isCartActive,
-  setIsCartActive,
-}: CartContainer) => {
   const active = isCartActive ? "w-full sm:w-96" : "w-0 overflow-hidden";
 
   const { cart } = useContext(CartContext);

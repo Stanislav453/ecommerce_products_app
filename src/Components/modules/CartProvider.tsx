@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { cartReducer } from "./cartReducer";
 import { CartContext } from "./CartContext";
 import { loadCartFromStorage, saveCartToStorage } from "./cartStorage";
@@ -12,12 +12,14 @@ export const CartProvider = ({ children }: ContextProviverProps) => {
     loadCartFromStorage()
   );
 
+  const [isCartActive, setIsCartActive] =  useState(false);
+
   useEffect(() => {
     saveCartToStorage(cart);
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, dispatch }}>
+    <CartContext.Provider value={{ cart, dispatch, setIsCartActive, isCartActive }}>
       {children}
     </CartContext.Provider>
   );

@@ -12,11 +12,10 @@ import { CartContext } from "../modules/CartContext";
 
 export const Navigation = () => {
   const [isActive, setIsActive] = useState(false);
-  const [isCartActive, setIsCartActive] = useState(true);
 
   const navActive = isActive ? "top-[65px]" : "top-[-350px]";
 
-  const { cart } = useContext(CartContext);
+  const { cart, setIsCartActive } = useContext(CartContext);
 
   const cartCount = cart.reduce((sum, product) => {
     return Number(product.quantity) + sum;
@@ -89,10 +88,7 @@ export const Navigation = () => {
           </nav>
         </div>
       </div>
-      <CartContainer
-        isCartActive={isCartActive}
-        setIsCartActive={setIsCartActive}
-      />
+      <CartContainer      />
       <Outlet />
       <Footer />
     </>

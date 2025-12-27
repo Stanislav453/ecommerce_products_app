@@ -107,8 +107,9 @@ export type CartAction =
 export type CartContextType = {
   cart: CartItem[];
   dispatch: React.Dispatch<CartAction>;
+  isCartActive: boolean;
+  setIsCartActive: (active: boolean) => void;
 };
-
 
 export type CalcProductType = {
   itemsCount: number;
