@@ -1,5 +1,5 @@
 import React, { useEffect, useReducer } from "react";
-import { cartReducer } from "./CartReducer";
+import { cartReducer } from "./cartReducer";
 import { CartContext } from "./CartContext";
 import { loadCartFromStorage, saveCartToStorage } from "./cartStorage";
 
