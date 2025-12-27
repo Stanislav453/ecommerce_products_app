@@ -2,7 +2,7 @@ import { CartItem } from "../../type";
 
 const CART_KEY = "cart";
 
-export const localCartFromStorage = (): CartItem[] => {
+export const loadCartFromStorage = (): CartItem[] => {
   try {
     const data = localStorage.getItem(CART_KEY);
     return data ? JSON.parse(data) : [];
