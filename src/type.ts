@@ -115,3 +115,10 @@ export type CalcProductType = {
   itemsCount: number;
   subTotal: number;
 };
+
+export type ProductPage = {
+  products: ProductView[];
+  total: number;
+  skip: number;
+  limit: number;
+};

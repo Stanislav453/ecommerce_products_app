@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Category, Product, ProductSummary, ProductView } from "../type";
+import { Category, Product, ProductPage, ProductSummary } from "../type";
 import { setCategoryUrl } from "../querys/useGetQuery/setCategoryUrl";
 import { API_URL } from "./apiUrl";
 
@@ -11,18 +11,20 @@ export const getProduct = async (id: string): Promise<ProductSummary> => {
   return response.data;
 };
 
-export const getProducts = async (): Promise<Product> => {
-  const response = await axios.get(API_URL);
+export const getProducts = async (skip: number): Promise<Product> => {
+  const pageSize = 20;
+  const response = await axios.get(`${API_URL}?limit=${pageSize}&skip=${skip}`);
 
   return response.data.prodct;
 };
 
 export const getProductsCategory = async (
-  category: Category
-): Promise<ProductView[]> => {
-  const url = setCategoryUrl(category);
+  category: Category,
+  skip: number
+): Promise<ProductPage> => {
+  const url = setCategoryUrl(category, skip);
 
   const response = await axios.get(url);
 
-  return response.data.products;
+  return response.data;
 };
