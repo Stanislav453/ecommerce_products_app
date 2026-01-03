@@ -46,7 +46,7 @@ export const Navigation = () => {
               <li>
                 <NavLink
                   className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/Shop"
+                  to="/shop"
                 >
                   Shop
                 </NavLink>
@@ -88,7 +88,7 @@ export const Navigation = () => {
           </nav>
         </div>
       </div>
-      <CartContainer      />
+      <CartContainer />
       <Outlet />
       <Footer />
     </>
