@@ -6,23 +6,26 @@ interface ShopFilterFetcherProps {
 }
 
 export const ShopFilter = ({ setselectedValue }: ShopFilterFetcherProps) => {
+  
   const navigate = useNavigate();
+  
+  const selectCategoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value as Category;
+
+    setselectedValue(value);
+
+    if (value === "all") {
+      navigate("/shop");
+    } else {
+      navigate(`/shop/category/${value}`);
+    }
+  };
 
   return (
     <select
       className="border-2"
       name="category-filter"
-      onChange={(e) => {
-        const value = e.target.value as Category;
-
-        setselectedValue(value);
-
-        if (value === "all") {
-          navigate("/shop");
-        } else {
-          navigate(`/shop/category/${value}`);
-        }
-      }}
+      onChange={(e) => selectCategoryHandler(e)}
     >
       <option value="all">category</option>
       <option value="all">all</option>
