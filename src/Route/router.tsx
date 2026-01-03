@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { Navigation } from "../components/navigation/Navigation";
-import { Shop } from "./pages/Shop";
 import { Blog } from "./pages/Blog";
 import { ProductDetail } from "./pages/ProductDetail";
+import { Shop } from "./pages/Shop";
 
 export const router = createBrowserRouter([
   {
@@ -16,18 +16,23 @@ export const router = createBrowserRouter([
         errorElement: <NotFoundPage />,
       },
       {
-        path: "/Shop",
+        path: "/shop",
         element: <Shop />,
         errorElement: <NotFoundPage />,
       },
       {
-        path: "/Blog",
+        path: "/blog",
         element: <Blog />,
         errorElement: <NotFoundPage />,
       },
       {
-        path: "/Product-detail",
+        path: "/product-detail",
         element: <ProductDetail />,
+        errorElement: <NotFoundPage />,
+      },
+      {
+        path: "/shop/category/:category",
+        element: <Shop />,
         errorElement: <NotFoundPage />,
       },
     ],
