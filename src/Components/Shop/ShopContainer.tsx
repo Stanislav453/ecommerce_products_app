@@ -49,7 +49,7 @@ export const ShopContainer = () => {
 
   if (!data) return null;
 
-  const total = data.pages[0].total ?? products.length;
+  const total = data.pages[0].total 
 
   return (
     <section>
@@ -60,7 +60,6 @@ export const ShopContainer = () => {
       <div className="flex flex-col items-center py-4 sm:py-0 sm:pb-4 sm:pt-20">
         <div className="w-full max-w-screen-xl flex flex-col sm:flex-row gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex flex-col">
-            <div>This is products</div>
             <p>
               Showing 1 - {products.length} results of {total}
             </p>

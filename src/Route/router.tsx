@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { Navigation } from "../components/navigation/Navigation";
-import { Blog } from "./pages/Blog";
 import { ProductDetail } from "./pages/ProductDetail";
 import { Shop } from "./pages/Shop";
 
@@ -18,11 +17,6 @@ export const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
-        errorElement: <NotFoundPage />,
-      },
-      {
-        path: "/blog",
-        element: <Blog />,
         errorElement: <NotFoundPage />,
       },
       {
