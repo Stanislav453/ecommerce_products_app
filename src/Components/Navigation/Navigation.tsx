@@ -51,14 +51,6 @@ export const Navigation = () => {
                   Shop
                 </NavLink>
               </li>
-              <li>
-                <NavLink
-                  className="block w-full py-3 border-t-2 sm:border-0 "
-                  to="/Blog"
-                >
-                  Blog
-                </NavLink>
-              </li>
             </ul>
             <ul className="flex justify-center gap-3 border-t-2 sm:border-0 ">
               <li className="flex">
