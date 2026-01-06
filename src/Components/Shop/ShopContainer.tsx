@@ -61,7 +61,7 @@ export const ShopContainer = () => {
         <div className="w-full max-w-screen-xl flex flex-col sm:flex-row gap-12 sm:gap-0 justify-center sm:justify-between items-center px-3">
           <div className="flex flex-col">
             <p>
-              Showing 1 - {products.length} results of {total}
+              {products.length} results of {total}
             </p>
           </div>
 
