@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { Category } from "../../type";
 import { useGetCategoryQuery } from "../../querys/useGetQuery/useGetCategoryQuery";
 import { ShopItems } from "./ShopItems";
@@ -6,7 +6,7 @@ import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { PageSection } from "../PageSection";
 import { ShopFilter } from "./ShopFilter";
-import { observe } from "./observe";
+import { useObserverFetch } from "../../hooks/useObserverFetch";
 
 export const ShopContainer = () => {
   const [selectFilterValue, setselectedValue] = useState<Category>("all");
@@ -21,27 +21,16 @@ export const ShopContainer = () => {
     isFetchingNextPage,
   } = useGetCategoryQuery(selectFilterValue);
 
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
-
   const products = useMemo(() => {
     if (!data) return [];
     return data.pages.flatMap((p) => p.products);
   }, [data]);
 
-  useEffect(() => {
-    const el = loadMoreRef.current;
-    if (!el) return;
-
-    const observerValue = observe({
-      hasNextPage,
-      isFetchingNextPage,
-      fetchNextPage,
-    });
-
-    observerValue.observe(el);
-
-    return () => observerValue.disconnect();
-  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+  const loadMoreRef = useObserverFetch({
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+  });
 
   if (isError) return <ApiCallError error={error} />;
 
@@ -49,7 +38,7 @@ export const ShopContainer = () => {
 
   if (!data) return null;
 
-  const total = data.pages[0].total 
+  const total = data.pages[0].total;
 
   return (
     <section>
