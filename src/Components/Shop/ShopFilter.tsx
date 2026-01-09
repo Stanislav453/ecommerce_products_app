@@ -1,18 +1,11 @@
 import { Category } from "../../type";
 import { useNavigate } from "react-router";
 
-interface ShopFilterFetcherProps {
-  setselectedValue: (category: Category) => void;
-}
-
-export const ShopFilter = ({ setselectedValue }: ShopFilterFetcherProps) => {
-  
+export const ShopFilter = () => {
   const navigate = useNavigate();
-  
+
   const selectCategoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value as Category;
-
-    setselectedValue(value);
 
     if (value === "all") {
       navigate("/shop");

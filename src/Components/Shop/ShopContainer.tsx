@@ -1,5 +1,4 @@
-import { useMemo, useState } from "react";
-import { Category } from "../../type";
+import { useMemo } from "react";
 import { useGetCategoryQuery } from "../../querys/useGetQuery/useGetCategoryQuery";
 import { ShopItems } from "./ShopItems";
 import { ApiCallError } from "../ui/ApiCallError";
@@ -7,9 +6,10 @@ import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { PageSection } from "../PageSection";
 import { ShopFilter } from "./ShopFilter";
 import { useObserverFetch } from "../../hooks/useObserverFetch";
+import { useLoadPathname } from "../../hooks/useLoadPathname";
 
 export const ShopContainer = () => {
-  const [selectFilterValue, setselectedValue] = useState<Category>("all");
+  const currentPath = useLoadPathname();
 
   const {
     data,
@@ -19,7 +19,7 @@ export const ShopContainer = () => {
     fetchNextPage,
     hasNextPage,
     isFetchingNextPage,
-  } = useGetCategoryQuery(selectFilterValue);
+  } = useGetCategoryQuery(currentPath);
 
   const products = useMemo(() => {
     if (!data) return [];
@@ -55,7 +55,7 @@ export const ShopContainer = () => {
           </div>
 
           <div>
-            <ShopFilter setselectedValue={setselectedValue} />
+            <ShopFilter />
           </div>
         </div>
       </div>
