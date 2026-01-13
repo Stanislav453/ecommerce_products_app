@@ -122,3 +122,8 @@ export type ProductPage = {
   skip: number;
   limit: number;
 };
+
+export type CategoryResponse = {
+  slug: string;
+  name: string;
+} 

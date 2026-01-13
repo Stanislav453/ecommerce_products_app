@@ -1,5 +1,11 @@
 import axios from "axios";
-import { Category, Product, ProductPage, ProductSummary } from "../type";
+import {
+  Category,
+  CategoryResponse,
+  Product,
+  ProductPage,
+  ProductSummary,
+} from "../type";
 import { setCategoryUrl } from "../querys/useGetQuery/setCategoryUrl";
 import { API_URL } from "./apiUrl";
 
@@ -26,5 +32,10 @@ export const getProductsCategory = async (
 
   const response = await axios.get(url);
 
+  return response.data;
+};
+
+export const getCategories = async (): Promise<CategoryResponse[]> => {
+  const response = await axios.get(`${API_URL}/categories?select=slug,name`);
   return response.data;
 };

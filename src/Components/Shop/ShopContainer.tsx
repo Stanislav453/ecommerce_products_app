@@ -4,7 +4,7 @@ import { ShopItems } from "./ShopItems";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { PageSection } from "../PageSection";
-import { ShopFilter } from "./ShopFilter";
+import { ShopFilterContainer } from "./ShopFilterContainer";
 import { useObserverFetch } from "../../hooks/useObserverFetch";
 import { useLoadPathname } from "../../hooks/useLoadPathname";
 
@@ -55,7 +55,9 @@ export const ShopContainer = () => {
           </div>
 
           <div>
-            <ShopFilter />
+            {/* <ShopFilter />
+             */}
+            <ShopFilterContainer />
           </div>
         </div>
       </div>
