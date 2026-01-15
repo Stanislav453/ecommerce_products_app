@@ -36,6 +36,6 @@ export const getProductsCategory = async (
 };
 
 export const getCategories = async (): Promise<CategoryResponse[]> => {
-  const response = await axios.get(`${API_URL}/categories?select=slug,name`);
+  const response = await axios.get(`${API_URL}/categoris?select=slug,name`);
   return response.data;
 };
