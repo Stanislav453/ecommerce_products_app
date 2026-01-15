@@ -1,69 +1,46 @@
-# React + TypeScript + Vite
+1. Simple e-shop built in React, focused on working with an API.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+2. USED TECHNOLOGIES
+   React
+   TypeScript
+   React Router
+   Tailwind CSS
+   TanStack React Query (cache)
+   Axios(fetch)
+   REST API
 
-Currently, two official plugins are available:
+3. FEATURES
+- Loading products from an API
+- Displaying product details
+- Filtering products by category
+- Saving the filter to the URL
+- Adding and removing products from the cart
+- Saving the cart to localStorage
+- Navigation using React Router
+- Set data to cache memory
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+4. DESCRIPTION
+   This e-shop serves as a learning project for working with React and other libraries commonly used in real projects.
+   The application includes a routing system, displays a homepage, products, and their detail pages.
+   The site features a filtering system that is stored in the URL and a cart system that calculates the total price based on the stored products.
 
-## Expanding the ESLint configuration
+5. INSTALATION AND RUN PROJECT
+   Clone the repository
+   - git clone https://github.com/Stanislav453/ecommerce_products_app
+     Install dependencies
+   - npm install
+     Run project
+   - npm run dev
+   - Aplication running on http://localhost:5173/
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+6. API
+   The project uses an external REST API for products
+   https://dummyjson.com/
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+What I learned from the project
+- Using TanStack Query and storing data in the cache
+- Storing the filter in the URL
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Possible improvements
+- Better UI
+- Make Animation after action
