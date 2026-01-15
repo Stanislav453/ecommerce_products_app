@@ -4,7 +4,7 @@ import { ShopItems } from "./ShopItems";
 import { ApiCallError } from "../ui/ApiCallError";
 import { ApiCallLoading } from "../ui/ApiCallLoading";
 import { PageSection } from "../PageSection";
-import { ShopFilterContainer } from "./ShopFilterContainer";
+import { ShopFilterContainer } from "../shopFilterContainer/ShopFilterContainer";
 import { useObserverFetch } from "../../hooks/useObserverFetch";
 import { useLoadPathname } from "../../hooks/useLoadPathname";
 
