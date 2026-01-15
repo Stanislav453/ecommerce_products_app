@@ -1,5 +1,4 @@
 import { useState } from "react";
-// import { shopRepository } from "../../api/shopRepository";
 
 type ReviewContainerProps = {
   id: string;
@@ -13,14 +12,6 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
     email: "",
     saveUserInfo: false,
   });
-  // const { mutate, status } = shopRepository.updateProductReviews(id);
-
-  const handlerSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    mutate(review);
-  };
-
-  console.log("useMutation", status);
 
   return (
     <div>
@@ -30,7 +21,7 @@ export const ReviewContainer = ({ id }: ReviewContainerProps) => {
       </p>
       <p>Your rating</p>
       <div>PLACEFOR RATING</div>
-      <form className="mt-12" onSubmit={handlerSubmit}>
+      <form className="mt-12">
         <p className="flex flex-col">
           <label className="mb-3" htmlFor="comment">
             Your review *
