@@ -55,8 +55,6 @@ export const ShopContainer = () => {
           </div>
 
           <div>
-            {/* <ShopFilter />
-             */}
             <ShopFilterContainer />
           </div>
         </div>
