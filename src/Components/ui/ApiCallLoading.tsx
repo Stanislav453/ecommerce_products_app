@@ -1,4 +1,3 @@
-import React from 'react'
 import loadingSpinner from "../../../public/loadingSpinner.svg";
 
 export const ApiCallLoading = () => {

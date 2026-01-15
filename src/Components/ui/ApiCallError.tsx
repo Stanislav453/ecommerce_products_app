@@ -1,5 +1,4 @@
 import { AxiosError } from "axios";
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 type ApiCallErrorProps = {
