@@ -2,6 +2,7 @@ import { ProductView } from "../../type";
 import { NavLink } from "react-router";
 import { RatingContainer } from "./RatingContainer";
 import CartButtonContainer from "./CartButtonContainer";
+import { productDetailId } from "../../route/routeConstant";
 
 interface ShopListProps {
   shopList: ProductView[];
@@ -29,10 +30,13 @@ export const ShopItems = ({ shopList }: ShopListProps) => {
                     <h3 className="text-xl font-medium truncate">{title}</h3>
                     <p className="text-xl font-bold">${price}</p>
 
-                    <RatingContainer rating={rating} className="justify-center" />
+                    <RatingContainer
+                      rating={rating}
+                      className="justify-center"
+                    />
 
                     <NavLink
-                      to={`/Product-detail?id=${id}`}
+                      to={productDetailId(id)}
                       className="w-full py-2 border-[1px] border-black rounded-full mb-1 mt-3"
                     >
                       Show detail
