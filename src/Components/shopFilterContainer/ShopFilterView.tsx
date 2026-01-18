@@ -15,7 +15,7 @@ export const ShopFilterController = ({ categories }: shopFilterViewProps) => {
       name="category-filter"
       onChange={(e) => selectCategoryHandler({ navigate, e })}
     >
-      <option value="all">Category</option>
+      <option value="">Category</option>
       <option value="all">All</option>
       {categories &&
         categories.map((category: CategoryResponse, index: number) => {
