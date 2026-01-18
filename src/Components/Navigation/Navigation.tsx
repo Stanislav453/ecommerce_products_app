@@ -1,8 +1,6 @@
 import { useContext, useState } from "react";
 import { NavLink, Outlet } from "react-router";
 import {
-  IoSearchOutline,
-  IoPersonOutline,
   IoBagOutline,
   IoAppsSharp,
 } from "react-icons/io5";
@@ -52,17 +50,7 @@ export const Navigation = () => {
                 </NavLink>
               </li>
             </ul>
-            <ul className="flex justify-center gap-3 border-t-2 sm:border-0 ">
-              <li className="flex">
-                <button className="p-3 sm:p-0">
-                  <IoSearchOutline />
-                </button>
-              </li>
-              <li className="flex">
-                <button className="p-3 sm:p-0">
-                  <IoPersonOutline />
-                </button>
-              </li>
+            <ul className="flex justify-center gap-3 border-t-2 sm:border-0 "> 
               <li className="flex">
                 <button
                   onClick={() => setIsCartActive(true)}
